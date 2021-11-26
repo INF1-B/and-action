@@ -1,0 +1,73 @@
+/* ----- General usage - NIET VERANDEREN ----- */
+
+body {
+  background-color: #3C3B3A;
+}
+
+/* gebruik voor navbar template in template/navbar.php */
+.navbar {
+
+}
+
+/* gebruik voor footer template in template/footer.php */
+.footer {
+
+}
+
+/* enige attributen die de container mag hebben! voor aanpassingen nieuwe classe aanmaken, dit NIET aanpassen */
+.container {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+}
+
+/* media queries */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+}
+
+/* ----- General usage - NIET VERANDEREN ----- */
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
+
+
+/* ANDERE PAGINA X */
