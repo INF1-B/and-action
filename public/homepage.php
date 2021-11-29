@@ -22,6 +22,7 @@
 
   <head>
     <title>template</title>
+    <link ref="stylesheet" href="./assets/homepageStyle.css"/>
     <?php include "../templates/head.php" ?>
   </head>
 
