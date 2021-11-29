@@ -1,20 +1,20 @@
-/* ----- General usage - NIET VERANDEREN ----- */
+/* ----- General usage - don't change ----- */
 
 body {
   background-color: #3C3B3A;
 }
 
-/* gebruik voor navbar template in template/navbar.php */
+/* use for navbar template (template/navbar.php), DON'T CHANGE THIS */
 .navbar {
 
 }
 
-/* gebruik voor footer template in template/footer.php */
+/* use for footer template (template/footer.php), DON'T CHANGE THIS */
 .footer {
 
 }
 
-/* enige attributen die de container mag hebben! voor aanpassingen nieuwe classe aanmaken, dit NIET aanpassen */
+/* Only attributes that the main container may hold! DON'T CHANGE THIS */
 .container {
   width: 75%;
   margin: 0 auto;
@@ -37,37 +37,3 @@ body {
 @media (min-width: 1200px) { 
 
 }
-
-/* ----- General usage - NIET VERANDEREN ----- */
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
-
-
-/* ANDERE PAGINA X */
