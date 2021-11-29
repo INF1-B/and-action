@@ -1,6 +1,5 @@
 <?php
   include '../src/database/credentials.php';
-  echo DB_HOST;
 ?>
 <!DOCTYPE html>
 <html lang="en">
