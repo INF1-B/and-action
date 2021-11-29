@@ -9,16 +9,10 @@ body {
 
 }
 
-/* use for footer template (template/footer.php), DON'T CHANGE THIS */
-.footer {
-
-}
-
 /* Only attributes that the main container may hold! DON'T CHANGE THIS */
 .container {
   width: 75%;
   margin: 0 auto;
-  display: flex;
 }
 
 /* media queries */
