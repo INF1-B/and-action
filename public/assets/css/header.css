@@ -21,12 +21,12 @@ header{
     display: flex;
     list-style: none;
     justify-content: end;
-    width: 90%;
+    width: 70%;
 }
 
 
 .nav_list{
-    width: 80%;
+    width: 60%;
 }
 
 .nav_list_item{
@@ -64,3 +64,16 @@ header{
     border-radius: 15%;
 }
 
+.search_bar{
+    width: 30%;
+    height: 100%;
+
+}
+
+#search{
+    width: 100%;
+    margin-top: 15%;
+    margin-left: 10%;
+    height: 35px;
+    padding-left: 10px;
+}
