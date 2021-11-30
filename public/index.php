@@ -28,12 +28,6 @@
     </div>
 
     <!-- end main container  -->
-    <!-- start footer -->
-
-    <div class="footer">
-      <?php include "../templates/footer.php";?>
-    </div>
-    <!-- end footer -->
     
   </body>
 
