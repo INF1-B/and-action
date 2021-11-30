@@ -1,0 +1,37 @@
+nav{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav_link{
+    color: white;
+    text-decoration: none;
+}
+
+.nav_button{
+    background-color: #F9B354;
+    padding: 10 10 10 10;
+}
+
+.nav_list{
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2%;
+}
+
+.nav_list_item{
+    padding-right: 25px;
+}
+
+.header_logo{
+    width: 20%;
+}
+
+.line{
+    background-color: #968E8E;
+    height: 5px;
+    width: 80%;
+    display: inline-block;
+}

@@ -1,12 +1,11 @@
 <?php
   include '../src/database/credentials.php';
-  echo DB_HOST;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
-    <title>template</title>
+    <title>index</title>
     <?php include "../templates/head.php" ?>
   </head>
 
