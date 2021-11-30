@@ -12,11 +12,17 @@ $role = 'director';
         <div class="nav_logo">
             <img src="../public/assets/img/logo.png" alt="Logo And action" class="logo">
         </div>
-        <div class="search_bar">
-            <form action="#" method="POST">
-                <input type="text" id="search" placeholder="Search movie">
-            </form>
-        </div>
+        <?php
+        if ($loggedIn) {
+        ?>
+            <div class="search_bar">
+                <form action="#" method="POST">
+                    <input type="text" id="search" placeholder="Search movie">
+                </form>
+            </div>
+        <?php
+        }
+        ?>
         <ul class="nav_list">
             <?php
             if ($loggedIn) {
