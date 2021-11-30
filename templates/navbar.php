@@ -13,27 +13,31 @@ $role = 'director';
             <img src="../public/assets/img/logo.png" alt="Logo And action" class="logo">
         </div>
         <ul class="nav_list">
-            <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
             <?php
-            if ($role == 'admin') {
-            ?>
-                <li class="nav_list_item"><a class="nav_link" href="#">Daschboard</a></li>
-
-            <?php
-            }
-            if ($role == 'director') {
-            ?>
-                <li class="nav_list_item"><a class="nav_link" href="#">My movies</a></li>
-                <li class="nav_list_item"><a class="nav_link" href="#">Uploud movies</a></li>
-            <?php
-            }
             if ($loggedIn) {
             ?>
+                <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
+                <?php
+                if ($role == 'admin') {
+                ?>
+                    <li class="nav_list_item"><a class="nav_link" href="#">Dashboard</a></li>
+
+                <?php
+                }
+                if ($role == 'director') {
+                ?>
+                    <li class="nav_list_item"><a class="nav_link" href="#">My movies</a></li>
+                    <li class="nav_list_item"><a class="nav_link" href="#">Uploud movie</a></li>
+                <?php
+                }
+
+                ?>
                 <li class="nav_list_item"><a class="nav_button" href="#">Sign out</a></li>
 
             <?php
             } else {
             ?>
+                <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
                 <li class="nav_list_item"><a class="nav_link" href="#">Login</a></li>
                 <li class="nav_list_item"><a class="nav_button" href="#">Sign up</a></li>
             <?php
@@ -44,4 +48,4 @@ $role = 'director';
     <div class="row">
         <span class="line"></span>
     </div>
-    </header>
+</header>
