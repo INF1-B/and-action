@@ -1,26 +1,47 @@
 <?php
-session_start();
+$loggedIn = true;
+/**
+ * admin
+ * director
+ */
+$role = 'director';
 
 ?>
 <header class="container">
-    <div>
-        <div class="header_logo">
-            <img src="../public/assets/img/logo.png" alt="Logo And action" class="header_img">
+    <div class="row">
+        <div class="nav_logo">
+            <img src="../public/assets/img/logo.png" alt="Logo And action" class="logo">
         </div>
-
-        <nav>
-            <ul class="nav_list">
-                <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
+        <ul class="nav_list">
+            <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
+            <?php
+            if ($role == 'admin') {
+            ?>
                 <li class="nav_list_item"><a class="nav_link" href="#">Daschboard</a></li>
+
+            <?php
+            }
+            if ($role == 'director') {
+            ?>
                 <li class="nav_list_item"><a class="nav_link" href="#">My movies</a></li>
                 <li class="nav_list_item"><a class="nav_link" href="#">Uploud movies</a></li>
-                <li class="nav_list_item"><a class="nav_link nav_button" href="#">Sign out</a></li>
-                <li class="nav_list_item"><a class="nav_link nav_button" href="#">Sign up</a></li>
-                <li class="nav_list_item"><a class="nav_link nav_button" href="#">Sign in</a></li>
-            </ul>
-        </nav>
+            <?php
+            }
+            if ($loggedIn) {
+            ?>
+                <li class="nav_list_item"><a class="nav_button" href="#">Sign out</a></li>
+
+            <?php
+            } else {
+            ?>
+                <li class="nav_list_item"><a class="nav_link" href="#">Login</a></li>
+                <li class="nav_list_item"><a class="nav_button" href="#">Sign up</a></li>
+            <?php
+            }
+            ?>
+        </ul>
     </div>
-    <div class="line_container">
-    <span class="line"></span>
+    <div class="row">
+        <span class="line"></span>
     </div>
-</header>
+    </header>
