@@ -12,7 +12,7 @@
 
   <body>
     <!-- start navbar -->
-
+      <img src="assets/images/background.svg" alt="achtergrond">
     <div class="navbar">
       <?php include "../templates/navbar.php";?>
     </div>
