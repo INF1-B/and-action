@@ -2,6 +2,7 @@
 
 .container-movie-specific {
   display: flex;
+  color: #FFFFFF;
 }
 
 .container-movie-specific > .text-wrapper {
