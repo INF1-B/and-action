@@ -20,7 +20,7 @@
     <div class="container">
         <div class="approve_container">
             <h1 class="approve_title">Are you sure?</h1>
-            <h2 class="approve_subtitle">You are about to approve: <a class="approve_link" href="#">Ron's gone wrong</a></h2>
+            <p class="approve_subtitle">You are about to approve: <a class="approve_link" href="#">Ron's gone wrong</a></p>
             <div class="button_container">
                 <a href="#" class="approve button">Approve</a>
                 <a href="#" class="cancel button">Cancel</a>
