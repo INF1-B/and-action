@@ -7,6 +7,7 @@ include '../src/database/credentials.php';
 <head>
   <title>And Action</title>
   <?php include "../templates/head.php"?>
+  <link rel="stylesheet" href="assets/css/director-movie-specific.css">
 </head>
 
 <body>
@@ -14,7 +15,6 @@ include '../src/database/credentials.php';
 
   <div class="navbar">
     <?php include "../templates/navbar.php";?>
-    <link rel="stylesheet" href="assets/css/director-movie-specific.css">
   </div>
 
   <!-- end navbar -->
