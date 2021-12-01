@@ -5,7 +5,7 @@
 <html lang="en">
 
   <head>
-    <title>template</title>
+    <title>index</title>
     <?php include "../templates/head.php" ?>
   </head>
 
