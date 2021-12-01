@@ -90,8 +90,9 @@
   justify-content: center;
 }
 
-.form-delete-movie > form > button {
-  background-color: red;
+.form-delete-movie > a > button {
+  background-color: #DC3545;
+  font-weight: bold;
   margin-top: 10px;
   padding: 10px;
   color: white;
