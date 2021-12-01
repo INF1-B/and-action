@@ -20,14 +20,20 @@
 
     <!-- end navbar -->
     <!-- start main container -->
-
+    <div class="image">
+      <img src="assets/images/background.svg" alt="background">
+    </div>
     <div class="container">
-
-      <div></div>
-      <div></div>
+      <div><span class="line"></span></div>
+      <div class="standard">Standard</div>
+      <div class="premium">Premium</div>
+      <div class="director">Director</div>
+      <div class="select"></div>
+      <div class="select"></div>
+      <div class="select"></div>
 
     </div>
-
+   
     <!-- end main container  -->
     
   </body>

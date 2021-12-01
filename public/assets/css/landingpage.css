@@ -1,0 +1,51 @@
+.image img{
+    background-image: url(../images/background.svg);
+    width: 100%;
+    filter: grayscale();
+}
+.line{
+    background-color: grey;
+    height: 5px;
+    width: 100%;
+    border-radius: 15%;
+    display: inline-block;
+}
+.container{
+    justify-content: space-evenly;
+}
+.standard{
+    height: 181px;
+    width: 414px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+.premium{
+    height: 181px;
+    width: 414px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+.director{
+    height: 181px;
+    width: 414px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+.select{
+    height: 492px;
+    width: 414px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
