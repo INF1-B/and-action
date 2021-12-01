@@ -7,6 +7,7 @@
   <head>
     <title>And Action</title>
     <?php include "../templates/head.php" ?>
+    <link rel="stylesheet" href="../public/assets/css/my-movies-director.css">
   </head>
 
   <body>
