@@ -74,8 +74,9 @@ include '../src/database/credentials.php';
         </div>
       </a>
       <div class="form-delete-movie"> 
-        <a href="#">
-          <button class="delete-movie" type="submit" name="delete-movie"> Delete movie </button> 
+        <a href="#" class="delete-movie">
+        Delete movie
+          
         </a>
       </div>
     </div>
