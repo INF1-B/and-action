@@ -7,12 +7,13 @@
 
   <head>
     <title>template</title>
+    <link href="assets/css/landingpage.css" rel="stylesheet">
     <?php include "../templates/head.php" ?>
   </head>
 
   <body>
     <!-- start navbar -->
-      <img src="assets/images/background.svg" alt="achtergrond">
+      
     <div class="navbar">
       <?php include "../templates/navbar.php";?>
     </div>
