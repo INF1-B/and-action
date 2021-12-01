@@ -38,7 +38,7 @@ $role = 'director';
                 if ($role == 'director') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="#">My movies</a></li>
-                    <li class="nav_list_item"><a class="nav_link" href="#">Uploud movie</a></li>
+                    <li class="nav_list_item"><a class="nav_link" href="#">Upload movie</a></li>
                 <?php
                 }
 
