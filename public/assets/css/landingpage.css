@@ -1,8 +1,12 @@
-.image img{
-    background-image: url(../images/background.svg);
+.image-container {
     width: 100%;
-    filter: grayscale();
+    margin-bottom: 50px;
+    background-image: url(../images/background.svg);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
 }
+
 .line{
     background-color: grey;
     height: 5px;
@@ -10,42 +14,64 @@
     border-radius: 15%;
     display: inline-block;
 }
-.container{
-    justify-content: space-evenly;
+
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.standard{
-    height: 181px;
-    width: 414px;
-    background-color: black;
+
+.subscription{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 75px;
+
+}
+
+.standard, .premium, .director{
+    width: 25%;
+    height: 500px;
+}
+
+.main, .sub{
+    color: white;
+}
+
+.main{
+    width: 100%;
+    height: 30%;
+    background-color: #2D2C2C;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+
+}
+
+.sub{
+    width: 100%;
+    height: 65%;
+    background-color: #2D2C2C;
     display: flex;
     justify-content: center;
     align-items: center;
-    color:white;
 }
-.premium{
-    height: 181px;
-    width: 414px;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:white;
+
+.sub li {
+    list-style: none;
 }
-.director{
-    height: 181px;
-    width: 414px;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:white;
-}
-.select{
-    height: 492px;
-    width: 414px;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:white;
+
+.button{
+    background-color: #F9B354;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
