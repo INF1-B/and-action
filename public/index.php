@@ -5,9 +5,10 @@ include '../src/database/credentials.php';
 <html lang="en">
 
 <head>
-  <title>template</title>
+  <title>And-Action</title>
   <link href="assets/css/landingpage.css" rel="stylesheet">
   <?php include "../templates/head.php" ?>
+  <script src="https://kit.fontawesome.com/e187230ac2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,9 +21,11 @@ include '../src/database/credentials.php';
   <!-- end navbar -->
   <!-- start main container -->
   <div class="image-container">
-    <img src="assets/images/logo.svg" alt="logo">
-    <h1>Show your show</h1>
-  </div> 
+      <div class="container">
+        <img src="assets/images/logo.svg" alt="logo">
+        <h1>Show your show</h1>
+      </div>
+  </div>
   <div class="container">
     <div class="row">
       <span class="line"></span>
@@ -37,14 +40,15 @@ include '../src/database/credentials.php';
           </div>
           <div class="sub">
             <ul>
-              <li><img src="./assets/images/check_mark.png" alt="checkmark"> Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-times"></i>Lorem ipsum</li>
+              <li><i class="fas fa-times"></i>Lorem ipsum</li>
+              <li><i class="fas fa-times"></i>Lorem ipsum</li>
             </ul>
+            <a class="button" href="#">Select</a>
           </div>
         </div>
         <div class="premium">
@@ -54,14 +58,15 @@ include '../src/database/credentials.php';
           </div>
           <div class="sub">
             <ul>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
             </ul>
+            <a class="button" href="#">Select</a>
           </div>
         </div>
         <div class="director">
@@ -70,13 +75,13 @@ include '../src/database/credentials.php';
           </div>
           <div class="sub">
             <ul>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
-              <li>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
+              <li><i class="fas fa-check"></i>Lorem ipsum</li>
             </ul>
             <a class="button" href="#">Select</a>
           </div>
