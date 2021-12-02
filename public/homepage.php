@@ -1,21 +1,6 @@
 <?php
   include '../src/database/credentials.php';
   echo DB_HOST;
-
-
-    // $movie = array(
-    //     conor mcgegor = array(
-    //         $src => ''
-    //     ), 
-    // )
-
-//   printMovies(){
-//       foreach($movies as $movie){
-//           echo '<img class="movie" src="" alt="movie">';
-//           echo 'title';
-
-//       }
-//   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
