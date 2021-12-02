@@ -26,7 +26,23 @@
       <div class="movies">
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+            <img src="./assets/moviePic.jpeg" alt="Movie Poster">
+          </div>
+          <div class="movieTitle">
+            <p>The Elephant queen</p>
+          </div>
+        </div>
+        <div class="movieAndTitle">
+          <div class="moviePicture">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
+          </div>
+          <div class="movieTitle">
+            <p>Soldaat zonder wapen</p>
+          </div>
+        </div>
+        <div class="movieAndTitle">
+          <div class="moviePicture">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -34,7 +50,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -42,7 +58,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -50,7 +66,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -58,7 +74,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -66,7 +82,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -74,7 +90,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -82,7 +98,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -90,7 +106,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>
@@ -98,23 +114,7 @@
         </div>
         <div class="movieAndTitle">
           <div class="moviePicture">
-            <img src="" alt="">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-            <img src="" alt="">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-            <img src="" alt="">
+          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
           </div>
           <div class="movieTitle">
             <p>Movie title</p>

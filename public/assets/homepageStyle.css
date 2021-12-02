@@ -12,12 +12,10 @@ span {
 
 .movieAndTitle {
     /* border: white solid 1px; */
-    width: 150px;
-    height: 250px;
     display: flex;
     flex-direction: column;
-    margin-right: 60px;
-    margin-top: 60px;
+    margin-right: 20px;
+    margin-top: 30px;
 }
 
 .movies {
@@ -25,15 +23,18 @@ span {
     flex-wrap: wrap;
 }
 
-.moviePicture {
-    width: 150px;
-    height: 200px;
+.moviePicture img {
+    width: 223px;
+    height: 313px;
     border: white solid 1px;
 }
 
 .movieTitle {
     display: flex;
     align-self: center;
-    margin-top: 15px;
+    margin-top: 30px;
+    height: 95px;
+    width: 223px;
+    font-size: 25px;
     font-weight: bold;
 }
