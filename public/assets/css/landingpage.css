@@ -82,8 +82,8 @@
     height: 65%;
     background-color: #2D2C2C;
     display: flex;
-    justify-content: center;
-    align-items: center;
+        justify-content: center;
+        align-items: center;
     flex-direction: column;
 }
 

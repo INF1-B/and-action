@@ -5,6 +5,7 @@ include '../src/database/credentials.php';
 <html lang="en">
 
 <head>
+  <link rel="icon" href="assets/images/logo.svg" type="image/png">
   <title>And-Action</title>
   <link href="assets/css/landingpage.css" rel="stylesheet">
   <?php include "../templates/head.php" ?>
