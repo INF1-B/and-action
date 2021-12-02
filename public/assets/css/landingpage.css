@@ -87,6 +87,11 @@
     flex-direction: column;
 }
 
+.sub ul{
+    text-align:center;
+    margin-bottom: 5%;
+}
+
 .sub li {
     list-style: none;
 }
@@ -113,4 +118,5 @@
 
 .fa-times{
     color: #C7441C;
+    margin-right: 2px;
 }

@@ -5,7 +5,7 @@ include '../src/database/credentials.php';
 <html lang="en">
 
 <head>
-  <link rel="icon" href="assets/images/logo.svg" type="image/png">
+  <link rel="icon" href="assets/images/logo-svg.png" type="image/png">
   <title>And-Action</title>
   <link href="assets/css/landingpage.css" rel="stylesheet">
   <?php include "../templates/head.php" ?>
@@ -24,7 +24,7 @@ include '../src/database/credentials.php';
   <div class="image-container">
       <div class="container">
         <img src="assets/images/logo.svg" alt="logo">
-        <h1>Show your show</h1>
+        <h1>Show your show!</h1>
       </div>
   </div>
   <div class="container">
@@ -45,9 +45,9 @@ include '../src/database/credentials.php';
               <li><i class="fas fa-check"></i>Lorem ipsum</li>
               <li><i class="fas fa-check"></i>Lorem ipsum</li>
               <li><i class="fas fa-check"></i>Lorem ipsum</li>
-              <li><i class="fas fa-times"></i>Lorem ipsum</li>
-              <li><i class="fas fa-times"></i>Lorem ipsum</li>
-              <li><i class="fas fa-times"></i>Lorem ipsum</li>
+              <li><i class="fas fa-times"></i>&nbsp;Lorem ipsum</li>
+              <li><i class="fas fa-times"></i>&nbsp;Lorem ipsum</li>
+              <li><i class="fas fa-times"></i>&nbsp;Lorem ipsum</li>
             </ul>
             <a class="button" href="#">Select</a>
           </div>
