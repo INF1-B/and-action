@@ -1,4 +1,39 @@
-span {
-    font-weight: bolder;
+* {
     color: white;
+}
+
+.container {
+flex-direction: column;
+}
+
+span {
+    font-weight: normal;
+}
+
+.movieAndTitle {
+    /* border: white solid 1px; */
+    width: 150px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 60px;
+    margin-top: 60px;
+}
+
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.moviePicture {
+    width: 150px;
+    height: 200px;
+    border: white solid 1px;
+}
+
+.movieTitle {
+    display: flex;
+    align-self: center;
+    margin-top: 15px;
+    font-weight: bold;
 }
