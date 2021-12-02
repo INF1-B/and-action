@@ -5,10 +5,10 @@ body {
 }
 
 /* use for navbar template (template/navbar.php), DON'T CHANGE THIS */
-.navbar {
+/*.navbar {
 
 }
-
+*/
 /* Only attributes that the main container may hold! DON'T CHANGE THIS */
 .container {
   width: 75%;
