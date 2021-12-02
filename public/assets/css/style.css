@@ -16,18 +16,29 @@ body {
 }
 
 /* media queries */
+@media (min-width : 321px) {
+  .container-my-movie-director > .movie-row > .movie {
+    width: 40%;
+  }
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-
+  .container-my-movie-director > .movie-row > .movie {
+    width: 18%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
-
-}
+  .container-my-movie-director > .movie-row > .movie {
+    width: 18%; 
+  }
+} 
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
-
+  .container-my-movie-director > .movie-row > .movie {
+    width: 14%;
+  }
 }

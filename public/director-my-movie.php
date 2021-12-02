@@ -6,8 +6,8 @@
 
   <head>
     <title>And Action</title>
-    <?php include "../templates/head.php" ?>
     <link rel="stylesheet" href="../public/assets/css/my-movies-director.css">
+    <?php include "../templates/head.php" ?>
   </head>
 
   <body>
@@ -24,16 +24,15 @@
       <h1>My Movies</h1>
        
       <?php
-          for ($i=0; $i < 2; $i++) { 
+          for ($row=0; $row < 1; $row++) { 
             echo "<div class=\"movie-row\">";
-            for ($j=0; $j < 5; $j++) { 
+            for ($movie=0; $movie < 6; $movie++) { 
               echo "
               <div class=\"movie\">
                 <a href=\"#\">
-                  <div>
-                    <img src=\"\" alt=\"thumbnail\">
+                  <div class=\"thumbnail\" title=\"test\">
                   </div>
-                  <p> Movie title </p>
+                  <p> scary moveh </p>
                 </a>
               </div>
               ";
@@ -44,14 +43,13 @@
 
       <h1> Under review </h1>
       <?php
-          for ($i=0; $i < 3; $i++) { 
+          for ($row=0; $row < 1; $row++) { 
             echo "<div class=\"movie-row\">";
-            for ($j=0; $j < 5; $j++) { 
+            for ($movie=0; $movie < 6; $movie++) { 
               echo "
               <div class=\"movie\">
                 <a href=\"#\">
-                  <div>
-                    <img src=\"\" alt=\"thumbnail\">
+                  <div class=\"thumbnail\" title=\"test\">
                   </div>
                   <p> Movie title </p>
                 </a>
