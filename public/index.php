@@ -20,7 +20,8 @@ include '../src/database/credentials.php';
   <!-- end navbar -->
   <!-- start main container -->
   <div class="image-container">
-
+    <img src="assets/images/logo.svg" alt="logo">
+    <h1>Show your show</h1>
   </div> 
   <div class="container">
     <div class="row">

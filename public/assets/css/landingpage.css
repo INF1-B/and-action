@@ -1,3 +1,10 @@
+.image-container img{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
 .image-container {
     width: 100%;
     margin-bottom: 50px;
@@ -5,7 +12,12 @@
     background-position: center center;
     background-size: cover;
     height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
+
 
 .line{
     background-color: grey;
