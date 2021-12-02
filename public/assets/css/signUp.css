@@ -1,0 +1,100 @@
+*{
+    box-sizing: border-box;
+    padding:0px;
+    margin:0px;
+    background-color: #3C3B3A;
+}
+
+body{
+font-family: Roboto;
+}
+
+.row{
+    display:flex;
+    flex-direction:column;
+    width:600px;
+    height:500px;
+    margin-top:110px;
+    margin-left:300px;
+    background-color:#2D2C2C;
+}
+
+.upper{
+    display:flex;
+    background-color:#2D2C2C;
+    margin-top: 80px;
+}
+h1{
+    background-color:#2D2C2C;
+    color:#F9B354;
+    padding-top:20px;
+    margin-left:5px;
+}
+
+.logo{
+    background-color:#2D2C2C;
+    width:130px;
+    height:130px;
+    margin-left:120px;
+}
+
+/*Forms */
+
+form{
+    background-color:#2D2C2C;
+    height:70px;
+    margin-bottom:200px;
+}
+
+.input{
+    background-color:#FFFFFF;
+    width:350px;
+    height:30px;
+    margin:10px;
+    margin-left:20px;
+}
+
+.SignedIn{
+    margin-left:20px;
+    color:white;
+    background-color:#2D2C2C;
+}
+
+.SignUp{
+    display:flex;
+    color:white;
+    background-color:#2D2C2C;
+    margin-left:100px;
+    margin-top:5px;
+}
+
+.signUp{
+    color:#F9B354;
+    background-color: #2D2C2C;
+}
+.button{
+  background-color:#F9B354;
+  color:#FFFFFF;
+  padding:7px 25px 7px 25px;
+  margin-left:160px;
+  margin-top:18px;
+  font-size:15px;
+  border:none;
+
+}
+
+.checkmark{
+   color:#F9B354;
+}
+
+a{
+    text-decoration: none;
+    color:#F9B354;
+    background-color:#2D2C2C
+}
+
+label{
+    background-color:#2D2C2C;
+    color:#FFFFFF;
+    margin-left:20px;
+}
