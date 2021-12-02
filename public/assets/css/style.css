@@ -1,16 +1,13 @@
+@import url('./header.css');
 /* ----- General usage - don't change ----- */
 
 body {
   background-color: #3C3B3A;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;;
 }
 
 /* use for navbar template (template/navbar.php), DON'T CHANGE THIS */
 .navbar {
-
-}
-
-/* use for footer template (template/footer.php), DON'T CHANGE THIS */
-.footer {
 
 }
 
