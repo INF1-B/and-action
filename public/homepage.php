@@ -120,10 +120,7 @@
             <p>Movie title</p>
           </div>
         </div>
-
       </div>
-      <div></div>
-
     </div>
 
     <!-- end main container  -->
