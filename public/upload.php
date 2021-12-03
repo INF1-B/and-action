@@ -21,7 +21,7 @@
         <form>
           <div class="spaceupload">
             <label for="MovieTitle" class="spacetextupload">Movie title</label>
-            <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title"><br>
+            <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title">
           </div>
           <div class="spaceupload">
             <label for="Category" class="spacetextupload">Category</label>
@@ -35,7 +35,9 @@
               <option value="">Horror</option>
               <option value="">Mystery</option>
               <option value="">Romance</option>
+              <option value="">Sci-if</option>
               <option value="">Thriller</option>
+              <option value="">Other</option>
              </select>
           </div>
           <div class="spaceupload">
@@ -54,7 +56,7 @@
           <div class="spaceupload">
             <p class="spacetextupload">Movie</p>
             <div class="file-upload">
-               <label for="Movie">Select movie</label><br>
+               <label for="Movie">Select movie</label>
                <input type="file" id="Movie" name="Movie" class="file" >
             </div>
           </div>
@@ -62,12 +64,12 @@
             <p class="spacetextupload">Thumbnail</p>
             <div class="file-upload">
               <label for="Thumbnail">Thumbnail</label>
-              <input type="file" id="Thumbnail" name="Thumbnail" class="file"><br>
+              <input type="file" id="Thumbnail" name="Thumbnail" class="file">
             </div>
           </div> 
           <div class="spaceupload">
             <label for="Description" class="spacetextupload">Description</label>
-            <textarea id="Description" name="Description" rows="5" cols="70" placeholder="Type here your description of the movie"></textarea><br>
+            <textarea id="Description" name="Description" rows="5" cols="70" placeholder="Type here your description of the movie"></textarea>
           </div>  
           <div class="spaceupload">
             <input type="submit" value="Upload movie" class="supload">
