@@ -1,0 +1,30 @@
+.admin-dashboard .row{
+    width: 80%;
+    margin: 0 auto;
+    color: white;
+    font-weight: normal;
+}
+
+.admin-dashboard{
+    margin-top: 2%;
+}
+
+.movies{
+    width: 100%;
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie{
+    width: 20%;
+    margin-right: 2%;
+}
+
+.movie_thumbnail{
+    width: 100%;
+}
+
+.movie_title{
+    font-weight: normal;
+}
