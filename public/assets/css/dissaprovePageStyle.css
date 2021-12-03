@@ -59,11 +59,11 @@ textarea {
     outline: none;
 }
 
-.dissaprovePageContainer .container .content a:link {
+.linkDissaprovedVideo:link {
     color: #F9B354;
 }
 
-.dissaprovePageContainer .container .content a:visited {
+.linkDissaprovedVideo:visited {
     color: #F9B354;
 }
 

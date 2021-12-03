@@ -21,7 +21,7 @@
       <div class="container">
         <div class="content">
           <span>Are you sure ?</span>
-          <p>You are about to disapprove: <a href="#">Ron's gone wrong</a>
+          <p>You are about to disapprove: <a class="linkDissaprovedVideo" href="#">Ron's gone wrong</a>
           <div class="formWrapper">
             <form action="" methode="POST">
               <label for="reasonDissaprove">Reason</label>
