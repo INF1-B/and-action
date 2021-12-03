@@ -5,26 +5,20 @@
     background-color: #3C3B3A;
 }
 
-body{
-font-family: Roboto;
-}
-
-
-
 .row{
     display:flex;
     flex-direction:column;
-    width:600px;
-    height:500px;
-    margin-top:110px;
-    margin-left:300px;
+    width:50%;
+    height:54%;
+    margin-top:10%;
+    margin-left:25%;
     background-color:#2D2C2C;
 }
 
 .upper{
     display: flex;
     background-color:#2D2C2C;
-    margin-top:80px;
+    margin-top:15%;
 }
 
 .logo{
@@ -46,7 +40,6 @@ form{
     background-color:#2D2C2C;
     height:70px;
     margin-bottom:200px;
-
 }
 
 .input{

@@ -5,10 +5,6 @@
     background-color: #3C3B3A;
 }
 
-body{
-font-family: Roboto;
-}
-
 .row{
     display:flex;
     flex-direction:column;
@@ -80,7 +76,6 @@ form{
   margin-top:18px;
   font-size:15px;
   border:none;
-
 }
 
 .checkmark{

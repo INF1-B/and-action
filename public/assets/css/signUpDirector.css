@@ -3,11 +3,7 @@
     padding:0px;
     margin:0px;
     background-color: #3C3B3A;
-}
-
-body{
-font-family: Roboto;
-}
+} 
 
 .row{
     display:flex;
@@ -24,6 +20,7 @@ font-family: Roboto;
     background-color:#2D2C2C;
     margin-top: 70px;
 }
+
 h1{
     background-color:#2D2C2C;
     color:#F9B354;
@@ -93,7 +90,6 @@ label{
   margin-top:20px;
   font-size:15px;
   border:none;
-
 }
 
 .checkmark{
