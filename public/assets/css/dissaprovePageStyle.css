@@ -1,14 +1,11 @@
-*{
+.dissaprovePageContainer .container{
+    align-items: center;
+    flex-direction: column;
     color: white;
     font-weight: bold;
 }
 
-.container{
-    align-items: center;
-    flex-direction: column;
-}
-
-.content{
+.dissaprovePageContainer .container .content{
     width: 671px;
     display: flex;
     flex-direction: column;
@@ -62,11 +59,11 @@ textarea {
     outline: none;
 }
 
-a:link {
+.dissaprovePageContainer .container .content a:link {
     color: #F9B354;
 }
 
-a:visited {
+.dissaprovePageContainer .container .content a:visited {
     color: #F9B354;
 }
 
