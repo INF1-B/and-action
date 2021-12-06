@@ -31,7 +31,7 @@ function dbConnect($server, $username, $password, $database){
 function getTableRecords($sql){
     $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     $stmt = prepareQuery($db, $sql);
-    executeQuery($stmt);
+    executePreparedQuery($stmt);
     $result = getResult($stmt);
     $rows = array();
     while($row = mysqli_fetch_assoc($result)) {
@@ -57,8 +57,8 @@ function getTableRecord($sql, $id){
     // prepare the query
     $stmt = prepareQuery($db, $sql);
     // bind the query & execute the query
-    bindQuery($stmt, $id);
-    executeQuery($stmt);
+    bindSelectQuery($stmt, $id);
+    executePreparedQuery($stmt);
     // fetch the record
     $result = getResult($stmt);
     $row = mysqli_fetch_assoc($result);
@@ -66,6 +66,18 @@ function getTableRecord($sql, $id){
     mysqli_stmt_close($stmt);
     mysqli_close($db);
     return $row;
+}
+
+// TO BE TESTED!
+// execute a insert, delete or update query
+function executeQuery($sql, $dataTypes, $values){
+    $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    // prepare the query
+    $stmt = prepareQuery($db, $sql);
+    $stmt = bindQuery($stmt, $dataTypes, $values);
+    mysqli_stmt_execute($stmt);
+    mysqli_close($db);
+    // to be tested!
 }
 
 // ------------------------------------------- //
@@ -79,12 +91,12 @@ function prepareQuery($db, $sql){
 }
 
 // binds a query to an SQL statement by id. ID must be of type int.
-function bindQuery($stmt, $id){
+function bindSelectQuery($stmt, $id){
     mysqli_stmt_bind_param($stmt, 'i', $id) or die( mysqli_stmt_error($stmt));
 }
 
 // executes a prepared and binded query
-function executeQuery($stmt){
+function executePreparedQuery($stmt){
     mysqli_stmt_execute($stmt) or die( mysqli_stmt_error($stmt));
 }
 
@@ -92,6 +104,12 @@ function executeQuery($stmt){
 function getResult($stmt){
     $result = mysqli_stmt_get_result($stmt) or die(mysqli_stmt_error($stmt));
     return $result;
+}
+
+// bind an update, delete or insert query
+function bindQuery($stmt, $dataTypes, $values){
+    mysqli_stmt_bind_param($stmt, $dataTypes, ...$values) or die( mysqli_stmt_error($stmt));
+    return $stmt;
 }
 
 ?>
