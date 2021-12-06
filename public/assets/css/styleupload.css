@@ -1,0 +1,66 @@
+.uploadtitle{
+    color: white;
+    font-size: 30px;
+    padding-bottom: 40px;
+}
+#MovieTitle{
+    width: 350px ;
+    height: 30px;
+    text-align: center left;
+    outline: none;
+    padding-left: 10px;
+}
+.styleselect{
+    width: 175px;
+    height: 30px;
+    outline: none;
+}
+textarea{
+    resize: none;
+    outline: none;
+}
+
+/* upload styling */
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+  }
+.file-upload label{
+    display: block;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    background: #F9B354;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer; 
+}
+/* end of upload styling */
+textarea{
+    resize: none;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+.supload{
+    background-color:#F9B354 ;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  /* generale stuff for upload page*/
+  .spaceupload{
+      margin-bottom: 20px;
+  }
+  .spacetextupload{
+      display: block;
+      color: white;
+      padding-bottom: 10px;
+  }
