@@ -17,13 +17,12 @@
     <!-- end navbar -->
     <!-- start main container -->
 
-    <div class="dissaprovePageContainer">
-      <div class="container">
+      <div class="container dissaprovePageContainer">
         <div class="content">
           <span>Are you sure ?</span>
           <p>You are about to disapprove: <a class="linkDissaprovedVideo" href="#">Ron's gone wrong</a>
           <div class="formWrapper">
-            <form action="" methode="POST">
+            <form action="" method="POST">
               <label for="reasonDissaprove">Reason</label>
               <textarea id="reasonDissaprove" name="reason" rows="6" placeholder="Type here your reason why the movie is not approved"></textarea>
               <div class="submitButtons">
@@ -34,7 +33,6 @@
           </div>
         </div>
       </div>
-    </div>
 
     <!-- end main container  -->
     <!-- start footer -->
