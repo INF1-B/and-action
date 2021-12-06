@@ -66,3 +66,18 @@ function getTableRecord($sql, $id){
 
 
 ?>
+
+<?php 
+/* this part is reserved for the sub functions */
+
+// prepares a query
+function prepareQuery(){
+  
+}
+
+// binds a query to an SQL statement
+function bindQuery(){
+
+}
+
+?>
