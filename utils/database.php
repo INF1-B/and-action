@@ -75,7 +75,8 @@ function executeQuery($sql, $dataTypes, $values){
     // prepare the query
     $stmt = prepareQuery($db, $sql);
     $stmt = bindQuery($stmt, $dataTypes, $values);
-    mysqli_stmt_execute($stmt);
+    executePreparedQuery($stmt);
+    mysqli_stmt_close($stmt);
     mysqli_close($db);
     // to be tested!
 }
