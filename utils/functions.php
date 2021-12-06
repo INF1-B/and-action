@@ -11,9 +11,7 @@ function generateHash($stringValue) {
   $options = [
     'cost' => 17,
   ];    
-  $hashedValue = password_hash($stringValue, PASSWORD_BCRYPT, $options);
-  return $hashedValue;
+  return password_hash($stringValue, PASSWORD_BCRYPT, $options);
 }
-
 
 ?>

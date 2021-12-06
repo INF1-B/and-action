@@ -1,4 +1,5 @@
 <?php
+
 require_once "../src/database/credentials.php";
 
 /* 
@@ -8,12 +9,12 @@ connection, database
 
 // connect to the database, return the $conn var if the connection is succesful, if not return an error message
 function dbConnect($server, $username, $password, $database){
-  // check if the connection exists
-  $conn = mysqli_connect($server, $username, $password, $database);
-  if (!$conn) {
+    // check if the connection exists
+    $conn = mysqli_connect($server, $username, $password, $database);
+    if (!$conn) {
     exit("Could not connect to the database!");
-  } 
-  return $conn;
+    }
+    return $conn;
 }
 
 // Execute a select query on the database and return the results, this will retrieve multiple records.
@@ -28,17 +29,17 @@ function dbConnect($server, $username, $password, $database){
 //
 // example : getTableRecords("SELECT * FROM user");
 function getTableRecords($sql){
-  $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);  
-  $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt) );
-  mysqli_stmt_execute($stmt) or die( mysqli_stmt_error($stmt) );
-  $result = mysqli_stmt_get_result($stmt) or die( mysqli_stmt_error($stmt));
-  $rows = array();
-  while($row = mysqli_fetch_assoc($result)) {
-    array_push($rows, $row);
-  }
-  mysqli_stmt_close($stmt);
-  mysqli_close($db);
-  return $rows;
+    $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $stmt = prepareQuery($db, $sql);
+    executeQuery($stmt);
+    $result = getResult($stmt);
+    $rows = array();
+    while($row = mysqli_fetch_assoc($result)) {
+        array_push($rows, $row);
+    }
+    mysqli_stmt_close($stmt);
+    mysqli_close($db);
+    return $rows;
 }
 
 // execute a select query on the database and return a specific record, this will retrieve 1 single record.
@@ -52,32 +53,45 @@ function getTableRecords($sql){
 //
 // NOTE: $id must be an integer (number)!
 function getTableRecord($sql, $id){
-  $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
-  $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt) );
-  mysqli_stmt_bind_param($stmt, 'i', $id) or die( mysqli_stmt_error($stmt) );
-  mysqli_stmt_execute($stmt) or die( mysqli_stmt_error($stmt) );
-  $result = mysqli_stmt_get_result($stmt);
-  $row = mysqli_fetch_assoc($result);
-  mysqli_stmt_close($stmt);
-  mysqli_close($db);
-  return $row;
+    $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    // prepare the query
+    $stmt = prepareQuery($db, $sql);
+    // bind the query & execute the query
+    bindQuery($stmt, $id);
+    executeQuery($stmt);
+    // fetch the record
+    $result = getResult($stmt);
+    $row = mysqli_fetch_assoc($result);
+    // close the statement & close the connection
+    mysqli_stmt_close($stmt);
+    mysqli_close($db);
+    return $row;
 }
 
-
-
-?>
-
-<?php 
+// ------------------------------------------- //
 /* this part is reserved for the sub functions */
+// ------------------------------------------- //
 
 // prepares a query
-function prepareQuery(){
-  
+function prepareQuery($db, $sql){
+    $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt));
+    return $stmt;
 }
 
 // binds a query to an SQL statement
-function bindQuery(){
+function bindQuery($stmt, $id){
+    mysqli_stmt_bind_param($stmt, 'i', $id) or die( mysqli_stmt_error($stmt));
+}
 
+// executes a prepared and binded query
+function executeQuery($stmt){
+    mysqli_stmt_execute($stmt) or die( mysqli_stmt_error($stmt));
+}
+
+// retrieve a result from a SELECT query, doesn't work if function value is directly returned!
+function getResult($stmt){
+    $result = mysqli_stmt_get_result($stmt) or die(mysqli_stmt_error($stmt));
+    return $result;
 }
 
 ?>

@@ -5,5 +5,4 @@ Think about the login functionality, logout functionality, check if the user is 
 */
 
 
-
 ?>
