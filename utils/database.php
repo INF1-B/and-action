@@ -78,7 +78,7 @@ function prepareQuery($db, $sql){
     return $stmt;
 }
 
-// binds a query to an SQL statement
+// binds a query to an SQL statement by id. ID must be of type int.
 function bindQuery($stmt, $id){
     mysqli_stmt_bind_param($stmt, 'i', $id) or die( mysqli_stmt_error($stmt));
 }
