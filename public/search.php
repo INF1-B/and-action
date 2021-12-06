@@ -6,8 +6,8 @@
 <html lang="en">
 
   <head>
-    <title>Homepage</title>
-    <link rel="stylesheet" href="./assets/homepageStyle.css"/>
+    <title>Search</title>
+    <link rel="stylesheet" href="./assets/css/searchStyle.css"/>
     <?php include "../templates/head.php" ?>
   </head>
 
