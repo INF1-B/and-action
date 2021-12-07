@@ -22,7 +22,7 @@
         <label>Email address</label>
         <input class="input" type="text" name="email" id="email" placeholder="Type here your email address">
         <label for="password">Password</label>
-        <input class="input" type="text" name="password" id="password" placeholder="Type here yourassword">
+        <input class="input" type="text" name="password" id="password" placeholder="Type here your password">
       </div>
       <div class="submit-form">
         <input type="submit" name="submit" value="Sign up">
