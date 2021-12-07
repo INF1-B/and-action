@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <title>Log in</title>
-    <?php include "../templates/head.php" ?>
-    <link rel="stylesheet" href="../public/assets\css/signUp.css">
+<head>
+  <title>Sign up</title>
+  <?php include "../templates/head.php" ?>
+  <link rel="stylesheet" href="../public/assets/css/signUp.css">
 
-  <body>
-    
-    <div class="container">
-      <div class="row">
+<body>
 
-      <div class="upper">
-         <h1>Sign up</h1>
-          <img class="logo" src="../public/assets/img/logo_login.png" alt="logo">
+  <div class="container container-login">
+    <div class="upper">
+      <div>
+        <h1>Sign up</h1>
       </div>
-
-  
-       <form method="post">
-        <label for="email">Email Address</label><br>
-        <input class="input" type="text" name="email" id="email" placeholder="Email address"><br>
-        <label for="password">Password</label><br>
-        <input class="input" type="text" name="password" id="password" placeholder="Password"><br>
-
-        <input class="button" type="submit" name="submit" value="Sign up"><br>
-        <div class="SignUp"> Already have an account?<div class="signUp"><a href="#"> Log in<a></div></div>
-       </form>
-      
-     </div>
+      <div>
+        <img class="logo" src="../public/assets/img/logo_login.png" alt="logo">
+      </div>
     </div>
+    <form method="post">
+      <div class="input-login-text">
+        <label>Email address</label>
+        <input class="input" type="text" name="email" id="email" placeholder="Type here your email address">
+        <label for="password">Password</label>
+        <input class="input" type="text" name="password" id="password" placeholder="Type here yourassword">
+      </div>
+      <div class="submit-form">
+        <input type="submit" name="submit" value="Sign up">
+      </div>
+    </form>
+    <p class="no-account">
+      Already have an account? 
+      <a class="sign-up" href="#">Log in</a>
+    </p>
+  </div>
+</body>
 
-
-    
-  </body>
 </html>

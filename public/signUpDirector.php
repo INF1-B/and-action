@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <title>Sign up Director</title>
-    <?php include "../templates/head.php" ?>
-    <link rel="stylesheet" href="../public/assets/css/signUpDirector.css">
-  <body>
-   <div class="container">
-    <div class="row">
+<head>
+  <title>Sign up director</title>
+  <?php include "../templates/head.php" ?>
+  <link rel="stylesheet" href="../public/assets/css/signUpDirector.css">
 
+<body>
 
-     <div class="upper">
-      <h1>Sign up</h1>
-      <img class="logo" src="../public/assets/img/logo_login.png" alt="logo">
+  <div class="container container-login">
+    <div class="upper">
+      <div>
+        <h1>Sign up</h1>
+      </div>
+      <div>
+        <img class="logo" src="../public/assets/img/logo_login.png" alt="logo">
+      </div>
     </div>
+    <form method="post">
+      <div class="input-login-text">
+        <label for="email">Email address</label>
+        <input class="input" type="text" name="email" id="email" placeholder="Type here your email address">
+        <label for="username">Username</label>
+        <input class="input" type="text" name="username" id="username" placeholder="Type here your username">
+        <label for="password">Password</label>
+        <input class="input" type="text" name="password" id="password" placeholder="Type here yourassword">
+      </div>
+      <div class="submit-form">
+        <input type="submit" name="submit" value="Sign up">
+      </div>
+    </form>
+    <p class="no-account">
+      Already have an account? 
+      <a class="sign-up" href="#">Log in</a>
+    </p>
+  </div>
+</body>
 
-
-       <form method="post">
-        <label for="email">Email Address</label><br>
-        <input class="input" type="text" name="email" id="email" placeholder="Type here your emailaddress"><br>
-        <label for="username">Username</label><br>
-        <input class="input" type="text" name="username" id="username" placeholder="Type here your username"><br>
-        <label for="password">Password</label><br>
-        <input class="input" type="text" name="password" id="password" placeholder="Type here your password"><br>
-
-        <input class="button" type="submit" name="submit" value="Sign up"><br>
-        <div class="SignUp"> Already have an account?<div class="signUp"><a href="#">Log in<a></div></div>
-       </form>
-
-    </div>
-   </div>
-
- </body>
 </html>
