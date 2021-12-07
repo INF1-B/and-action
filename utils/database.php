@@ -68,17 +68,15 @@ function getTableRecord($sql, $id){
     return $row;
 }
 
-// TO BE TESTED!
 // execute a insert, delete or update query
 function executeQuery($sql, $dataTypes, $values){
     $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     // prepare the query
-    $stmt = prepareQuery($db, $sql);
+    $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt));
     $stmt = bindQuery($stmt, $dataTypes, $values);
     executePreparedQuery($stmt);
     mysqli_stmt_close($stmt);
     mysqli_close($db);
-    // to be tested!
 }
 
 // ------------------------------------------- //

@@ -3,6 +3,7 @@
 // ----- databases testing ----- //
 
 require_once "database.php";
+require_once "functions.php";
 
 // test if a connection could be made to the database server
 function testConn($server, $username, $password, $database){
@@ -31,7 +32,15 @@ function testGetRecord($query, $id){
 
 // test if a query can be executed
 function testExecuteQuery(){
+  // insert query - insert an user
+  // executeQuery("INSERT INTO gebruiker (rol_id, abonnement_id, geverifieerd, ingelogd, gebruikersnaam, wachtwoord, email) VALUES (?, ?, ?, ?, ?, ?, ?)", "iiiisss", array(1, 1, 1, 0, "TEST100", generateHash("testWachtwoord"), "TEST100@test.nl"));
 
+  // update query - update an users name, only use if function above has inserted values.
+  // executeQuery("UPDATE gebruiker SET gebruikersnaam=?, email=? WHERE gebruikersnaam = ? AND email = ?", "ssss", array("updated_bruh", "updated_bruh@test.nl", "TEST100", "TEST100@test.nl"));
+
+  // delete query - delete an user account
+  // executeQuery("DELETE FROM gebruiker WHERE gebruikersnaam = ? AND email = ?", "ss", array("updated_bruh", "updated_bruh@test.nl"));
 }
 
+// testExecuteQuery();
 ?>

@@ -14,6 +14,6 @@ function generateHash($stringValue) {
   return password_hash($stringValue, PASSWORD_BCRYPT, $options);
 }
 
-echo generateHash("test3");
+// echo generateHash("test3");
 
 ?>
