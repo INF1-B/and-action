@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>homepage</title>
+    <title>Homepage</title>
     <?php include "../templates/head.php" ?>
     <link rel="stylesheet" type="text/css" href="../public/assets/css/homepage.css">
 </head>
@@ -16,72 +16,90 @@
 
     <div class="container">
 
-    <!--Recently watched -->
+        <!--Recently watched -->
         <div class="upper">
             <h2>Recently watched</h2>
-            <input class="button" type="button" name="filter" value="filter">
+            <button type="button"><a href="#">Filter</button>
         </div>
 
         <div class="movies">
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
         </div>
 
 
-<!--Documentary-->
+        <!--Documentary-->
         <div class="documentary">
             <h2>Documentary</h2>
         </div>
 
         <div class="movies">
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
 
             <div class="movie">
-                <div class="movie-1">
-                </div>
+                <a href="#">
+                    <div class="movie-1">
+                    </div>
+                </a>
                 <p>Scary movie</p>
             </div>
         </div>
