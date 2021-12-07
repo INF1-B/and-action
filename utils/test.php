@@ -29,5 +29,9 @@ function testGetRecord($query, $id){
 }
 // testGetRecord("SELECT * FROM table WHERE id = ?", 100);
 
+// test if a query can be executed
+function testExecuteQuery(){
+
+}
 
 ?>
