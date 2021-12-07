@@ -24,7 +24,7 @@
         <label for="username">Username</label>
         <input class="input" type="text" name="username" id="username" placeholder="Type here your username">
         <label for="password">Password</label>
-        <input class="input" type="text" name="password" id="password" placeholder="Type here yourassword">
+        <input class="input" type="text" name="password" id="password" placeholder="Type here your password">
       </div>
       <div class="submit-form">
         <input type="submit" name="submit" value="Sign up">
