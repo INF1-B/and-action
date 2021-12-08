@@ -17,17 +17,18 @@ function dbConnect($server, $username, $password, $database){
     return $conn;
 }
 
-// Execute a select query on the database and return the results, this will retrieve multiple records.
-// Result will be as follows:
-//
-// array
-//  (
-//  [0] => Array([column1] => "value", [column2] => "value", [column3] => "value"),
-//  [1] => Array([column1] => "value", [column2] => "value", [column3] => "value"),
-// )
-// the [0], [1] represent the rows of the table.
-//
-// example : getTableRecords("SELECT * FROM user");
+/* Execute a select query on the database and return the results, this will retrieve multiple records.
+* Result will be as follows:
+*
+* array
+*  (
+*  [0] => Array([column1] => "value", [column2] => "value", [column3] => "value"),
+*  [1] => Array([column1] => "value", [column2] => "value", [column3] => "value"),
+* )
+* the [0], [1] represent the rows of the table.
+*
+* example : getTableRecords("SELECT * FROM user");
+*/
 function getTableRecords($sql){
     $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     $stmt = prepareQuery($db, $sql);
@@ -42,16 +43,17 @@ function getTableRecords($sql){
     return $rows;
 }
 
-// execute a select query on the database and return a specific record, this will retrieve 1 single record.
-// Result will be as follows: 
-// 
-// array (
-//  [column1] => "value", [column2] => "value", [column3] => "value"
-// )
-//
-// example : getTableRecord("SELECT * FROM user WHERE id = ?", $id); 
-//
-// NOTE: $id must be an integer (number)!
+/* execute a select query on the database and return a specific record, this will retrieve 1 single record.
+* Result will be as follows:
+*
+* array (
+*  [column1] => "value", [column2] => "value", [column3] => "value"
+* )
+*
+* example : getTableRecord("SELECT * FROM user WHERE id = ?", $id);
+*
+* NOTE: $id must be an integer (number)!
+*/
 function getTableRecord($sql, $id){
     $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     // prepare the query
@@ -68,7 +70,16 @@ function getTableRecord($sql, $id){
     return $row;
 }
 
-// execute a insert, delete or update query
+/* execute a insert, delete or update query, example:
+* insert query - insert an user
+* executeQuery("INSERT INTO gebruiker (rol_id, abonnement_id, geverifieerd, ingelogd, gebruikersnaam, wachtwoord, email) VALUES (?, ?, ?, ?, ?, ?, ?)", "iiiisss", array(1, 1, 1, 0, "TEST100", generateHash("testWachtwoord"), "TEST100@test.nl"));
+*
+* update query - update an users name, only use if function above has inserted values.
+* executeQuery("UPDATE gebruiker SET gebruikersnaam=?, email=? WHERE gebruikersnaam = ? AND email = ?", "ssss", array("updated_bruh", "updated_bruh@test.nl", "TEST100", "TEST100@test.nl"));
+*
+* delete query - delete an user account
+* executeQuery("DELETE FROM gebruiker WHERE gebruikersnaam = ? AND email = ?", "ss", array("updated_bruh", "updated_bruh@test.nl"));
+*/
 function executeQuery($sql, $dataTypes, $values){
     $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     // prepare the query
