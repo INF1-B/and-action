@@ -3,7 +3,7 @@
 
   <head>
     <title>template</title>
-    <link rel="stylesheet" href="../public/assets/css/styleupload.css"
+    <link rel="stylesheet" href="./assets/css/styleupload.css">
     <?php include "../templates/head.php" ?>
   </head>
 
