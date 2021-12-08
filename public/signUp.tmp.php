@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Sign up director</title>
+  <title>Sign up</title>
   <?php include "../templates/head.php" ?>
-  <link rel="stylesheet" href="../public/assets/css/signUpDirector.css">
+  <link rel="stylesheet" href="../public/assets/css/signUp.css">
 
 <body>
 
@@ -19,10 +19,8 @@
     </div>
     <form method="post">
       <div class="input-login-text">
-        <label for="email">Email address</label>
+        <label>Email address</label>
         <input class="input" type="text" name="email" id="email" placeholder="Type here your email address">
-        <label for="username">Username</label>
-        <input class="input" type="text" name="username" id="username" placeholder="Type here your username">
         <label for="password">Password</label>
         <input class="input" type="text" name="password" id="password" placeholder="Type here your password">
       </div>

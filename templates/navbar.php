@@ -4,7 +4,7 @@ $loggedIn = true;
  * admin
  * director
  */
-$role = 'director';
+$role = 'admin';
 
 ?>
 <header class="container">
@@ -31,14 +31,14 @@ $role = 'director';
                 <?php
                 if ($role == 'admin') {
                 ?>
-                    <li class="nav_list_item"><a class="nav_link" href="#">Dashboard</a></li>
+                    <li class="nav_list_item"><a class="nav_link" href="../public/admin-dashboard.php">Dashboard</a></li>
 
                 <?php
                 }
                 if ($role == 'director') {
                 ?>
-                    <li class="nav_list_item"><a class="nav_link" href="#">My movies</a></li>
-                    <li class="nav_list_item"><a class="nav_link" href="#">Upload movie</a></li>
+                    <li class="nav_list_item"><a class="nav_link" href="../public/director-my-movie.php">My movies</a></li>
+                    <li class="nav_list_item"><a class="nav_link" href="../public/director-uploud-movie.php">Upload movie</a></li>
                 <?php
                 }
 
@@ -48,9 +48,9 @@ $role = 'director';
             <?php
             } else {
             ?>
-                <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
-                <li class="nav_list_item"><a class="nav_link" href="#">Login</a></li>
-                <li class="nav_list_item"><a class="nav_button" href="#">Sign up</a></li>
+                <li class="nav_list_item"><a class="nav_link" href="../public/index.php">Home</a></li>
+                <li class="nav_list_item"><a class="nav_link" href="../public/login.php">Login</a></li>
+                <li class="nav_list_item"><a class="nav_button" href="../public/signUp.php">Sign up</a></li>
             <?php
             }
             ?>
