@@ -1,19 +1,18 @@
-h2{
-    color:#FFFFFF;
-    margin-left:5%;
-}
 
-p{
-    color:#FFFFFF;
-}
+
+
 
 button{
-     background-color:#F9B354;
-     color:#FFFFFF;
-     border:none;
-     font-size:15px;
-     margin-left:5%;
-     padding: 5px 20px 5px 20px;
+    background-color:#F9B354;
+    color:#FFFFFF;
+    border:none;
+    font-size:15px;
+    margin-left:5%; 
+    margin-bottom: 4px;
+    padding: 10px 20px 10px 20px;
+    align-self: end;
+    font-weight: bold;
+
 }
 
 a{
@@ -29,30 +28,3 @@ a:visited{
     display:flex;
 }
 
-.movies{
-    display: flex;
-    flex-direction: row;
-}
-
-.movie{
-    display: flex;
-    flex-direction:column;
-    margin-top:3%;
-    margin-left:5%;
-    margin-right:2%;
-}
-
-.movie-1{
-    display:flex;
-    flex-direction:column;
-    height:200px;
-    width:160%;
-    margin-right:40px;
-    background-image: url(https://m.media-amazon.com/images/I/619P8E4YT2L._AC_SY445_.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.documentary{
-    margin-top:2%;
-}

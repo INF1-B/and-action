@@ -20,7 +20,7 @@
     <!-- end navbar -->
     <!-- start main container -->
 
-    <div class="container container-my-movie-director">
+    <div class="container container-movies">
       <h1>My Movies</h1>
        
       <?php

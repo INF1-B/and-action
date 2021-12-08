@@ -1,20 +1,30 @@
-.container-my-movie-director {
+.container-movies {
   color: white;
   padding-top: 50px;
 }
 
-.container-my-movie-director > .movie-row {
-  display: flex;
-  flex-wrap: wrap;
+h1{
+  color:#FFFFFF;
+  margin-left:5%;
+  margin-top: 2%;
 }
 
-.container-my-movie-director > .movie-row > .movie {
+h1 > span {
+  font-weight: normal;
+}
+.container-movies > .movie-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 50px;
+}
+
+.container-movies > .movie-row > .movie {
   height: 100%;
   margin: 20px 20px 0px 0px;
   overflow: hidden;
 }
 
-.container-my-movie-director > h1 {
+.container-movies > h1 {
   margin-top: 40px;
 }
 
@@ -23,7 +33,15 @@
   text-decoration: none;
   font-weight: bold;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
+
+.movie > a > p {
+  text-align: center;
+}
+
+
 
 .thumbnail {
   background-color: white;

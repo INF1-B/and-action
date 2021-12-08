@@ -1,13 +1,12 @@
 <?php
   include '../src/database/credentials.php';
-  echo DB_HOST;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
     <title>Search</title>
-    <link rel="stylesheet" href="./assets/css/searchStyle.css"/>
+    <link rel="stylesheet" href="./assets/css/my-movies-director.css"/>
     <?php include "../templates/head.php" ?>
   </head>
 
@@ -21,7 +20,7 @@
     <!-- end navbar -->
     <!-- start main container -->
 
-    <div class="container container-search-movies">
+    <div class="container container-movies">
     <h1>Search: <span>Documentary</span></h1>        
    
    <?php
@@ -29,9 +28,9 @@
       echo "<div class=\"movie-row\">";
       for($movie = 0; $movie < 6; $movie++){
         echo "
-            <div class=\"movieAndTitle\">
+            <div class=\"movie\">
               <a href=\"#\">
-                <div class=\"moviePicture\"> </div>
+                <div class=\"thumbnail\"> </div>
                 <p>The Elephant queen</p>
               </a>
             </div>
