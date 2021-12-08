@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Gegenereerd op: 07 dec 2021 om 11:30
+-- Gegenereerd op: 08 dec 2021 om 07:52
 -- Serverversie: 8.0.27-0ubuntu0.20.04.1
 -- PHP-versie: 7.4.3
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `and_action`
 --
+CREATE DATABASE IF NOT EXISTS `and_action` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `and_action`;
 
 -- --------------------------------------------------------
 
@@ -28,13 +30,14 @@ SET time_zone = "+00:00";
 -- Tabelstructuur voor tabel `abbonement`
 --
 
-CREATE TABLE `abbonement` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `abbonement` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(50) NOT NULL,
   `kwaliteit` varchar(10) NOT NULL,
   `beschrijving` text NOT NULL,
-  `bedrag` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `bedrag` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `abbonement`
@@ -51,12 +54,15 @@ INSERT INTO `abbonement` (`id`, `naam`, `kwaliteit`, `beschrijving`, `bedrag`) V
 -- Tabelstructuur voor tabel `commentaar`
 --
 
-CREATE TABLE `commentaar` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `commentaar` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `film_id` int NOT NULL,
   `gebruiker_id` int NOT NULL,
   `bericht` text NOT NULL,
-  `tijdsstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tijdsstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `film_id` (`film_id`),
+  KEY `gebruiker_id` (`gebruiker_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -65,15 +71,17 @@ CREATE TABLE `commentaar` (
 -- Tabelstructuur voor tabel `film`
 --
 
-CREATE TABLE `film` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `film` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `gebruiker_id` int NOT NULL,
   `titel` varchar(60) NOT NULL,
   `pad` varchar(250) NOT NULL,
   `thumbnail_pad` varchar(250) NOT NULL,
   `geaccepteerd` tinyint(1) NOT NULL,
   `beschrijving` text NOT NULL,
-  `kijkwijzer_leeftijd` int NOT NULL
+  `kijkwijzer_leeftijd` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `gebruiker_id` (`gebruiker_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -82,9 +90,12 @@ CREATE TABLE `film` (
 -- Tabelstructuur voor tabel `film_kijkwijzer_geschiktheid`
 --
 
-CREATE TABLE `film_kijkwijzer_geschiktheid` (
+CREATE TABLE IF NOT EXISTS `film_kijkwijzer_geschiktheid` (
   `kijkwijzer_geschiktheid_id` int NOT NULL,
-  `film_id` int NOT NULL
+  `film_id` int NOT NULL,
+  PRIMARY KEY (`kijkwijzer_geschiktheid_id`,`film_id`),
+  KEY `kijkwijzer_geschiktheid_id` (`kijkwijzer_geschiktheid_id`,`film_id`),
+  KEY `film_id` (`film_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -93,8 +104,8 @@ CREATE TABLE `film_kijkwijzer_geschiktheid` (
 -- Tabelstructuur voor tabel `gebruiker`
 --
 
-CREATE TABLE `gebruiker` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `gebruiker` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `rol_id` int NOT NULL,
   `abonnement_id` int NOT NULL,
   `geverifieerd` tinyint(1) NOT NULL,
@@ -102,8 +113,11 @@ CREATE TABLE `gebruiker` (
   `gebruikersnaam` varchar(50) NOT NULL,
   `wachtwoord` varchar(100) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `abbonement_eind` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `abbonement_eind` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rol_id` (`rol_id`),
+  KEY `abonnement_id` (`abonnement_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `gebruiker`
@@ -120,11 +134,12 @@ INSERT INTO `gebruiker` (`id`, `rol_id`, `abonnement_id`, `geverifieerd`, `ingel
 -- Tabelstructuur voor tabel `genre`
 --
 
-CREATE TABLE `genre` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `genre` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(60) NOT NULL,
-  `beschrijving` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `beschrijving` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `genre`
@@ -142,9 +157,12 @@ INSERT INTO `genre` (`id`, `naam`, `beschrijving`) VALUES
 -- Tabelstructuur voor tabel `genre_film`
 --
 
-CREATE TABLE `genre_film` (
+CREATE TABLE IF NOT EXISTS `genre_film` (
   `genre_id` int NOT NULL,
-  `film_id` int NOT NULL
+  `film_id` int NOT NULL,
+  PRIMARY KEY (`genre_id`,`film_id`),
+  KEY `genre_id` (`genre_id`,`film_id`),
+  KEY `film_id` (`film_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -153,11 +171,12 @@ CREATE TABLE `genre_film` (
 -- Tabelstructuur voor tabel `kijkwijzer_geschiktheid`
 --
 
-CREATE TABLE `kijkwijzer_geschiktheid` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `kijkwijzer_geschiktheid` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(60) NOT NULL,
-  `beschrijving` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `beschrijving` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `kijkwijzer_geschiktheid`
@@ -177,10 +196,13 @@ INSERT INTO `kijkwijzer_geschiktheid` (`id`, `naam`, `beschrijving`) VALUES
 -- Tabelstructuur voor tabel `laatst_bekeken`
 --
 
-CREATE TABLE `laatst_bekeken` (
+CREATE TABLE IF NOT EXISTS `laatst_bekeken` (
   `film_id` int NOT NULL,
   `gebruiker_id` int NOT NULL,
-  `tijdsstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tijdsstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`film_id`,`gebruiker_id`),
+  KEY `film_id` (`film_id`,`gebruiker_id`),
+  KEY `gebruiker_id` (`gebruiker_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -189,11 +211,12 @@ CREATE TABLE `laatst_bekeken` (
 -- Tabelstructuur voor tabel `rol`
 --
 
-CREATE TABLE `rol` (
-  `id` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `rol` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(50) NOT NULL,
-  `beschrijving` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `beschrijving` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `rol`
@@ -210,149 +233,17 @@ INSERT INTO `rol` (`id`, `naam`, `beschrijving`) VALUES
 -- Tabelstructuur voor tabel `thumb_up`
 --
 
-CREATE TABLE `thumb_up` (
+CREATE TABLE IF NOT EXISTS `thumb_up` (
   `gebruiker_id` int NOT NULL,
-  `film_id` int NOT NULL
+  `film_id` int NOT NULL,
+  PRIMARY KEY (`gebruiker_id`,`film_id`),
+  KEY `gebruiker_id` (`gebruiker_id`,`film_id`),
+  KEY `film_id` (`film_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `abbonement`
---
-ALTER TABLE `abbonement`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `commentaar`
---
-ALTER TABLE `commentaar`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `film_id` (`film_id`),
-  ADD KEY `gebruiker_id` (`gebruiker_id`);
-
---
--- Indexen voor tabel `film`
---
-ALTER TABLE `film`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `gebruiker_id` (`gebruiker_id`);
-
---
--- Indexen voor tabel `film_kijkwijzer_geschiktheid`
---
-ALTER TABLE `film_kijkwijzer_geschiktheid`
-  ADD PRIMARY KEY (`kijkwijzer_geschiktheid_id`,`film_id`),
-  ADD KEY `kijkwijzer_geschiktheid_id` (`kijkwijzer_geschiktheid_id`,`film_id`),
-  ADD KEY `film_id` (`film_id`);
-
---
--- Indexen voor tabel `gebruiker`
---
-ALTER TABLE `gebruiker`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `rol_id` (`rol_id`),
-  ADD KEY `abonnement_id` (`abonnement_id`);
-
---
--- Indexen voor tabel `genre`
---
-ALTER TABLE `genre`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `genre_film`
---
-ALTER TABLE `genre_film`
-  ADD PRIMARY KEY (`genre_id`,`film_id`),
-  ADD KEY `genre_id` (`genre_id`,`film_id`),
-  ADD KEY `film_id` (`film_id`);
-
---
--- Indexen voor tabel `kijkwijzer_geschiktheid`
---
-ALTER TABLE `kijkwijzer_geschiktheid`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `laatst_bekeken`
---
-ALTER TABLE `laatst_bekeken`
-  ADD PRIMARY KEY (`film_id`,`gebruiker_id`),
-  ADD KEY `film_id` (`film_id`,`gebruiker_id`),
-  ADD KEY `gebruiker_id` (`gebruiker_id`);
-
---
--- Indexen voor tabel `rol`
---
-ALTER TABLE `rol`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `thumb_up`
---
-ALTER TABLE `thumb_up`
-  ADD PRIMARY KEY (`gebruiker_id`,`film_id`),
-  ADD KEY `gebruiker_id` (`gebruiker_id`,`film_id`),
-  ADD KEY `film_id` (`film_id`);
-
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `abbonement`
---
-ALTER TABLE `abbonement`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT voor een tabel `commentaar`
---
-ALTER TABLE `commentaar`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT voor een tabel `film`
---
-ALTER TABLE `film`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT voor een tabel `gebruiker`
---
-ALTER TABLE `gebruiker`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT voor een tabel `genre`
---
-ALTER TABLE `genre`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT voor een tabel `kijkwijzer_geschiktheid`
---
-ALTER TABLE `kijkwijzer_geschiktheid`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT voor een tabel `rol`
---
-ALTER TABLE `rol`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
-
---
--- Beperkingen voor tabel `abbonement`
---
-ALTER TABLE `abbonement`
-  ADD CONSTRAINT `abbonement_ibfk_1` FOREIGN KEY (`id`) REFERENCES `gebruiker` (`abonnement_id`);
 
 --
 -- Beperkingen voor tabel `commentaar`
@@ -375,6 +266,13 @@ ALTER TABLE `film_kijkwijzer_geschiktheid`
   ADD CONSTRAINT `film_kijkwijzer_geschiktheid_ibfk_2` FOREIGN KEY (`kijkwijzer_geschiktheid_id`) REFERENCES `kijkwijzer_geschiktheid` (`id`);
 
 --
+-- Beperkingen voor tabel `gebruiker`
+--
+ALTER TABLE `gebruiker`
+  ADD CONSTRAINT `gebruiker_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gebruiker_ibfk_2` FOREIGN KEY (`abonnement_id`) REFERENCES `abbonement` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Beperkingen voor tabel `genre_film`
 --
 ALTER TABLE `genre_film`
@@ -387,12 +285,6 @@ ALTER TABLE `genre_film`
 ALTER TABLE `laatst_bekeken`
   ADD CONSTRAINT `laatst_bekeken_ibfk_1` FOREIGN KEY (`film_id`) REFERENCES `film` (`id`),
   ADD CONSTRAINT `laatst_bekeken_ibfk_2` FOREIGN KEY (`gebruiker_id`) REFERENCES `gebruiker` (`id`);
-
---
--- Beperkingen voor tabel `rol`
---
-ALTER TABLE `rol`
-  ADD CONSTRAINT `rol_ibfk_1` FOREIGN KEY (`id`) REFERENCES `gebruiker` (`rol_id`);
 
 --
 -- Beperkingen voor tabel `thumb_up`
