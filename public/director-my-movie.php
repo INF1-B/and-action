@@ -6,7 +6,7 @@
 
   <head>
     <title>And Action</title>
-    <link rel="stylesheet" href="../public/assets/css/my-movies-director.css">
+    <link rel="stylesheet" href="./assets/css/my-movies-director.css">
     <?php include "../templates/head.php" ?>
   </head>
 

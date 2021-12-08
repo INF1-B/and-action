@@ -4,7 +4,7 @@
   <head>
     <title>Dissaprove video</title>
     <?php include "../templates/head.php" ?>
-    <link rel="stylesheet" href="../public/assets\css/dissaprovePageStyle.css">
+    <link rel="stylesheet" href="./assets/css/dissaprovePageStyle.css">
   </head>
 
   <body>
