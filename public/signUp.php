@@ -4,7 +4,7 @@
 <head>
   <title>Sign up director</title>
   <?php include "../templates/head.php" ?>
-  <link rel="stylesheet" href="../public/assets/css/signUpDirector.css">
+  <link rel="stylesheet" href="assets/css/signup.css">
 
 <body>
 
