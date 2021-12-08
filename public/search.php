@@ -21,108 +21,27 @@
     <!-- end navbar -->
     <!-- start main container -->
 
-    <div class="container">
+    <div class="container container-search-movies">
     <h1>Search: <span>Documentary</span></h1>        
-      <div class="movies">
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-            <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>The Elephant queen</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Soldaat zonder wapen</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-        <div class="movieAndTitle">
-          <div class="moviePicture">
-          <img src="./assets/moviePic.jpeg" alt="Movie Poster">
-          </div>
-          <div class="movieTitle">
-            <p>Movie title</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+   
+   <?php
+    for($row=0; $row < 2; $row++){
+      echo "<div class=\"movie-row\">";
+      for($movie = 0; $movie < 6; $movie++){
+        echo "
+            <div class=\"movieAndTitle\">
+              <a href=\"#\">
+                <div class=\"moviePicture\"> </div>
+                <p>The Elephant queen</p>
+              </a>
+            </div>
+        ";
+      }
+      echo "</div>";
+    }
+    
+    ?>
+  
     <!-- end main container  -->
     <!-- start footer -->
 
