@@ -5,8 +5,8 @@
 <html lang="en">
 
   <head>
-    <title>Search</title>
-    <link rel="stylesheet" href="./assets/css/my-movies-director.css"/>
+    <title>And Action</title>
+    <link rel="stylesheet" href="./assets/css/thumpnail-display.css"/>
     <?php include "../templates/head.php" ?>
   </head>
 

@@ -3,10 +3,10 @@
 <html lang="en">
 
 <head>
-    <title>Homepage</title>
+    <title>And Action</title>
     <?php include "../templates/head.php" ?>
     <link rel="stylesheet" type="text/css" href="../public/assets/css/homepage.css">
-    <link rel="stylesheet" type="text/css" href="../public/assets/css/my-movies-director.css">
+    <link rel="stylesheet" type="text/css" href="../public/assets/css/thumpnail-display.css">
 </head>
 
 <body>
