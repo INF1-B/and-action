@@ -8,6 +8,7 @@ include '../src/database/credentials.php';
   <title>And Action</title>
   <?php include "../templates/head.php"?>
   <link rel="stylesheet" href="./assets/css/admin-approve.css">
+  <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
 </head>
 
 <body>
@@ -52,7 +53,7 @@ include '../src/database/credentials.php';
   	    </div>
       </div>
     </div>
-
+  <div>
     <div class="movie-wrapper">
       <a href="#">
         <div class="movie">
@@ -68,6 +69,7 @@ include '../src/database/credentials.php';
         </a>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- end main container  -->

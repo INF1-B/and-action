@@ -67,14 +67,14 @@ door footer met standard hoogte waardoor er ruimte onder aan de pagina zit
     display: flex;
     flex-wrap: wrap;
 }
-.movie{
+/* .movie{
     width: 15%;
     margin-right: 2%;
-}
+} */
 
-.movie_thumbnail{
+/* .movie_thumbnail{
     width: 100%;
-}
+} */
 
 .movie_title{
     font-weight: normal;

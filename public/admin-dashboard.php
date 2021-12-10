@@ -4,7 +4,7 @@
 <head>
     <title>And action</title>
     <?php include "../templates/head.php" ?>
-    <link rel="stylesheet" href="./assets/css/admin-dashboard.css">
+    <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
 </head>
 
 <body>
@@ -15,31 +15,34 @@
     </div>
 
     <!-- end navbar -->
-    <!-- start main container -->
+    <div class="container container-movies">
 
-    <div class="container admin-dashboard">
-        <div class="row">
-            <h1>Under review</h1>
-        </div>
-        <div class="row">
-            <div class="movies">
-                <div class="movie">
-                    <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                    <h2 class="movie_title">Boss baby</h2>
-                </div>
-                <div class="movie">
-                    <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                    <h2 class="movie_title">Boss baby</h2>
-                </div>
-                <div class="movie">
-                    <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                    <h2 class="movie_title">Boss baby</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--Recently watched -->
+<div class="upper">
+    <h1>Under review</h1>
+</div>
 
-    <!-- end main container  -->
+
+
+<?php 
+    for ($row=0; $row < 1; $row++) { 
+        echo "<div class=\"movie-row\">";
+        for ($movie=0; $movie < 6; $movie++) { 
+          echo "
+          <div class=\"movie\">
+            <a href=\"#\">
+              <div class=\"thumbnail\" title=\"test\">
+              </div>
+              <p> scary moveh </p>
+            </a>
+          </div>
+          ";
+        }
+        echo "</div>";
+      }
+?> 
+
+<!-- end main container  -->
 
 </body>
 

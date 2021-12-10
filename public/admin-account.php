@@ -4,6 +4,7 @@
 <head>
   <title>And action</title>
   <link rel="stylesheet" href="./assets/css/account-admin.css">
+  <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
   <?php include "../templates/head.php" ?>
 </head>
 

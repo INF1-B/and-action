@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Homepage</title>
+    <title>And Action</title>
     <?php include "../templates/head.php" ?>
     <link rel="stylesheet" type="text/css" href="../public/assets/css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="../public/assets/css/thumpnail-display.css">
 </head>
 
 <body>
@@ -14,98 +16,55 @@
     </div>
 
 
-    <div class="container">
+    <div class="container container-movies">
 
         <!--Recently watched -->
         <div class="upper">
-            <h2>Recently watched</h2>
+            <h1>Recently watched</h1>
             <button type="button"><a href="#">Filter</button>
         </div>
 
-        <div class="movies">
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-        </div>
 
 
-        <!--Documentary-->
-        <div class="documentary">
-            <h2>Documentary</h2>
-        </div>
+        <?php 
+            for ($row=0; $row < 1; $row++) { 
+                echo "<div class=\"movie-row\">";
+                for ($movie=0; $movie < 6; $movie++) { 
+                  echo "
+                  <div class=\"movie\">
+                    <a href=\"#\">
+                      <div class=\"thumbnail\" title=\"test\">
+                      </div>
+                      <p> scary moveh </p>
+                    </a>
+                  </div>
+                  ";
+                }
+                echo "</div>";
+              }
+        ?> 
 
-        <div class="movies">
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
+        <h1>Documentary</h1>
 
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
+        <?php 
+            for ($row=0; $row < 1; $row++) { 
+                echo "<div class=\"movie-row\">";
+                for ($movie=0; $movie < 6; $movie++) { 
+                  echo "
+                  <div class=\"movie\">
+                    <a href=\"#\">
+                      <div class=\"thumbnail\" title=\"test\">
+                      </div>
+                      <p> scary moveh </p>
+                    </a>
+                  </div>
+                  ";
+                }
+                echo "</div>";
+              }
+        ?> 
 
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-
-            <div class="movie">
-                <a href="#">
-                    <div class="movie-1">
-                    </div>
-                </a>
-                <p>Scary movie</p>
-            </div>
-        </div>
-
-
-    </div>
+        
 
     <!-- end main container  -->
 
