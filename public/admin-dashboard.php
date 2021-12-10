@@ -18,23 +18,29 @@
     <!-- end navbar -->
     <!-- start main container -->
 
-    <div class="container admin-dashboard">
+    <div class="container admin-dashboard thumpnail-display">
         <div class="row">
             <h1>Under review</h1>
         </div>
         <div class="row">
             <div class="movies">
                 <div class="movie">
-                    <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                    <h2 class="movie_title">Boss baby</h2>
+                    <a href="#">    
+                        <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+                        <p class="movie_title">Boss baby</p>
+                    </a>
                 </div>
                 <div class="movie">
-                    <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                    <h2 class="movie_title">Boss baby</h2>
+                    <a href="#">
+                        <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+                        <p class="movie_title">Boss baby</p>
+                    </a>
                 </div>
                 <div class="movie">
-                    <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                    <h2 class="movie_title">Boss baby</h2>
+                    <a href="#">
+                        <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+                        <p class="movie_title">Boss baby</p>
+                    </a>
                 </div>
             </div>
         </div>
