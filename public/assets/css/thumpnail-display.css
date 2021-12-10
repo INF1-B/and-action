@@ -52,3 +52,21 @@ h1 > span {
   background-size: cover;
   height: 280px;
 }
+
+/* Bigger movie thumpnail for movie specific pages*/
+.movie-wrapper > a > .movie {
+  height: 600px;
+}
+
+
+
+.movie-wrapper > a {
+  display: block;
+}
+
+.movie-wrapper > a >.movie > img {
+  margin: 0 auto; 
+  height: 600px;
+  border: 2px solid gray;
+  display: block;
+}
