@@ -16,6 +16,15 @@ In order to run the application, all the files that are held in the main reposit
 
 ## Hardware
 The following hardware requirements are needed to run the web application
+Low end laptop or pc is good enough with:
+ *Intel i3 processor
+ *A graphic card
 
 
 # Installation
+
+Installation for XAMPP 8.0.0:
+
+1.Go to the following link: https://www.apachefriends.org/index.html.
+2.Download the latest version of XAMPP.
+3.Open XAMPP and start the apache.
