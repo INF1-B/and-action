@@ -22,28 +22,27 @@ footer {
 /* media queries */
 @media (min-width : 321px) {
   .container-movies  > .movie-row > .movie {
-    width: 40%;
+    width: 200px;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
   .container-movies > .movie-row > .movie {
-    width: 18%;
+    width: 200px;
   }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
   .container-movies > .movie-row > .movie {
-    width: 14%; 
+    width: 200px; 
   }
 } 
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
   .container-movies > .movie-row > .movie {
-    /* width: 14%; */
-    width: 14%;
+    width: 200px;
   }
 }

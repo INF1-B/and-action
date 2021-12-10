@@ -37,10 +37,6 @@ h1 > span {
   flex-direction: column;
 }
 
-.movie > a > p {
-  text-align: center;
-}
-
 
 
 .thumbnail , .movie_thumbnail{
