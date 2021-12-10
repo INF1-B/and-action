@@ -16,37 +16,34 @@
     </div>
 
     <!-- end navbar -->
-    <!-- start main container -->
+    <div class="container container-movies">
 
-    <div class="container admin-dashboard thumpnail-display">
-        <div class="row">
-            <h1>Under review</h1>
-        </div>
-        <div class="row">
-            <div class="movies">
-                <div class="movie">
-                    <a href="#">    
-                        <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                        <p class="movie_title">Boss baby</p>
-                    </a>
-                </div>
-                <div class="movie">
-                    <a href="#">
-                        <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                        <p class="movie_title">Boss baby</p>
-                    </a>
-                </div>
-                <div class="movie">
-                    <a href="#">
-                        <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
-                        <p class="movie_title">Boss baby</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--Recently watched -->
+<div class="upper">
+    <h1>Under review</h1>
+</div>
 
-    <!-- end main container  -->
+
+
+<?php 
+    for ($row=0; $row < 1; $row++) { 
+        echo "<div class=\"movie-row\">";
+        for ($movie=0; $movie < 6; $movie++) { 
+          echo "
+          <div class=\"movie\">
+            <a href=\"#\">
+              <div class=\"thumbnail\" title=\"test\">
+              </div>
+              <p> scary moveh </p>
+            </a>
+          </div>
+          ";
+        }
+        echo "</div>";
+      }
+?> 
+
+<!-- end main container  -->
 
 </body>
 
