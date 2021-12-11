@@ -77,7 +77,7 @@ form > div {
     color:#F9B354;
 }
 
-.register-error, .register-success {
+.register-error, .register-success, .register-note {
     text-align: center;
     padding: 10px 0px 10px 0px;
 }
@@ -91,5 +91,10 @@ form > div {
 }
 
 .register-success > a {
+    color: white;
+}
+
+.register-note {
+    font-size: 10px;
     color: white;
 }

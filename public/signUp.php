@@ -1,6 +1,9 @@
 <?php
 
-$message = "";
+$message = "
+<p class=\"register-note\">
+  Note that signing up can take some time. You will get a message once registration is succesfull
+</p>";
 
 if (isset($_POST["submit"])) { 
   include "../utils/filter.php";
@@ -13,7 +16,7 @@ if (isset($_POST["submit"])) {
   $input["email"] = filterEmail($_POST["email"]);
   $input["email"] = $input["email"] ? filterInputPost($_POST["email"], "email") : false;
 
-  // check if any values were false, if so return an error, else insert the new user & return a success message
+  // check if any values were false, if so return an error, else insert the new user 
   if (in_array(false, $input)) {
     $message = "
     <p class=\"register-error\">
