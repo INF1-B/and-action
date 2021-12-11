@@ -17,7 +17,7 @@ function filterInputTextGeneral($value){
 */
 // to be tested
 function filterInputGet($getVariable, $parameterName){
-  $filteredValue = !empty($getVariable) ? FILTER_INPUT(INPUT_GET, $parameterName, FILTER_SANITIZE_SPECIAL_CHARS) : "ERROR, unable to filter " . $parameterName;
+  $filteredValue = !empty($getVariable) ? FILTER_INPUT(INPUT_GET, $parameterName, FILTER_SANITIZE_SPECIAL_CHARS) : false;
   return $filteredValue;
 }
 
@@ -28,13 +28,13 @@ function filterInputGet($getVariable, $parameterName){
 */
 // to be tested
 function filterInputPost($postVariable, $parameterName){
-  $filteredValue = !empty($postVariable) ? FILTER_INPUT(INPUT_POST, $parameterName, FILTER_SANITIZE_SPECIAL_CHARS) : "ERROR, unable to filter " . $parameterName;
+  $filteredValue = !empty($postVariable) ? FILTER_INPUT(INPUT_POST, $parameterName, FILTER_SANITIZE_SPECIAL_CHARS) : false;
   return $filteredValue;
 }
 
 // returns true if an email address is valid, if not it will return an error message
 function filterEmail($email){
-  $email = filter_var($email, FILTER_VALIDATE_EMAIL) ? true : "ERROR: Not an valid email!";
+  $email = filter_var($email, FILTER_VALIDATE_EMAIL) ? true : false;
   return $email;
 }
 
