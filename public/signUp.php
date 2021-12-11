@@ -25,16 +25,16 @@ if (isset($_POST["submit"])) {
                         VALUES (?, ?, ?, ?, ?, ?, ?)", 
                        "iiiisss",
                        array(3, 3, 0, 0, $input["username"], generateHash($input["password"]), $input["email"]))) {
-                        $message = "
-                        <p class=\"register-success\">
-                          You have been registered! Please log in at the <a href=\"login.php\"> Login page </a>
-                        </p>";
-                       } else {
-                        $message = "
-                        <p class=\"register-error\">
-                          ERROR: Duplicate email. Please pick another email to register!
-                        </p>";
-                       }
+      $message = "
+      <p class=\"register-success\">
+        You have been registered! Please log in at the <a href=\"login.php\"> Login page </a>
+      </p>";
+      } else {
+      $message = "
+      <p class=\"register-error\">
+        ERROR: Duplicate email. Please pick another email to register!
+      </p>";
+    }
   }
 }
 
