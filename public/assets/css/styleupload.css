@@ -53,15 +53,15 @@ textarea{
     margin: 4px 2px;
     cursor: pointer;
     font-weight: bold;
-  }
+}
   /* generale stuff for upload page*/
-  .spaceupload{
+.spaceupload{
       margin-bottom: 20px;
   }
-  .spacetextupload{
+.spacetextupload{
       display: block;
       padding-bottom: 10px;
-  }
+}
 
 /*style for the drop down */
 input{
@@ -88,11 +88,11 @@ input{
     cursor: pointer;
     transition: 0.2s linear;
 }
-.task{
+.selection{
     display: block;
     padding-left: 0;
 }
-.task:hover{
+.selection:hover{
     background-color: aliceblue;
 }
 .show{
