@@ -29,7 +29,7 @@
               <div class="select-field">
               <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
               <span class="down-arrow">&blacktriangledown;</span>
-            </div>
+              </div>
               <div class="list">
                 <label for="Action" class="task"><input type="checkbox" name="Action" id="Action">Action</label>
                 <label for="Comedy" class="task"><input type="checkbox" name="Comedy" id="Comedy">Comedy</label>
@@ -60,15 +60,19 @@
             </select> 
           </div>  
           <div class="spaceupload">
-            <label for="kijkwijzer_geschiktheid" class="spacetextupload">Kijkwijzer geschikheid</label>
-            <select name="kijkwijzer_geschiktheid" id="kijkwijzer_geschiktheid" class="styleselect">
-              <option value="null">Choose kijkwijzer</option>
-              <option value="Voilence">Voilence</option>
-              <option value="Sex">Sex</option>
-              <option value="Discrimnation">Discrimnation</option>
-              <option value="Fear">Fear</option>
-              <option value="Fear">Foul launguage</option>
-            </select>
+            <div class="multi-selector">
+              <div class="select-field">
+              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
+              <span class="down-arrow">&blacktriangledown;</span>
+              </div>
+              <div class="list">
+                <label for="Voilence" class="task"><input type="checkbox" name="Voilence" id="Voilence">Voilence</label>
+                <label for="Sex" class="task"><input type="checkbox" name="Sex" id="Sex">Sex</label>
+                <label for="Discrimnation" class="task"><input type="checkbox" name="Discrimnation" id="Discrimnation">Discrimnation</label>
+                <label for="Fear" class="task"><input type="checkbox" name="Fear" id="Fear">Fear</label>
+                <label for="Foul launguage" class="task"><input type="checkbox" name="Foul launguage" id="Foul launguage">Foul launguage</label>
+              </div>
+            </div>
           </div>
           <div class="spaceupload">
             <p class="spacetextupload">Movie</p>
@@ -94,22 +98,8 @@
         </form>
     </div>
     <!-- end main container  -->
-    <div class="spaceupload">
-            <div class="multi-selector">
-              <div class="select-field">
-              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
-              <span class="down-arrow">&blacktriangledown;</span>
-            </div>
-              <div class="list">
-                <label for="Voilence" class="task"><input type="checkbox" name="Voilence" id="Voilence">Voilence</label>
-                <label for="Sex" class="task"><input type="checkbox" name="Sex" id="Sex">Sex</label>
-                <label for="Discrimnation" class="task"><input type="checkbox" name="Discrimnation" id="Discrimnation">Discrimnation</label>
-                <label for="Fear" class="task"><input type="checkbox" name="Fear" id="Fear">Fear</label>
-                <label for="Foul launguage" class="task"><input type="checkbox" name="Foul launguage" id="Foul launguage">Foul launguage</label>
-              </div>
-            </div>
-          </div>
-     <!--script for the multiple select-field -->
+  
+  <!--script for the multiple select-field -->
   <script>
     document.querySelector('.select-field').addEventListener('click',()=>{
         document.querySelector('.list').classList.toggle('show');
