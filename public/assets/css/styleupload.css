@@ -1,6 +1,7 @@
 .uploadtitle{
     font-size: 30px;
     padding-bottom: 40px;
+    color: white;
 }
 #MovieTitle{
     width: 350px ;
@@ -14,13 +15,11 @@
     height: 30px;
     outline: none;
 }
-
 textarea{
     resize: none;
     outline: none;
     font-family:  'Roboto', Arial, Helvetica, sans-serif;
 }
-
 /* upload styling */
 .file {
     opacity: 0;
@@ -39,6 +38,7 @@ textarea{
     justify-content: center;
     font-weight: bold;
     cursor: pointer; 
+    color:white;
 }
 /* end of upload styling */
 textarea{
@@ -53,6 +53,7 @@ textarea{
     margin: 4px 2px;
     cursor: pointer;
     font-weight: bold;
+    color: white;
   }
   /* generale stuff for upload page*/
   .spaceupload{
@@ -61,6 +62,7 @@ textarea{
   .spacetextupload{
       display: block;
       padding-bottom: 10px;
+      color:white;
   }
 
 /*style for the drop down */

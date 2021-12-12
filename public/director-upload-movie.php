@@ -25,9 +25,10 @@
             <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title">
           </div>
           <div class="spaceupload">
+          <p class="spacetextupload">Category</p>
             <div class="multi-selector">
               <div class="select-field">
-              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
+              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector" disabled>
               <span class="down-arrow">&blacktriangledown;</span>
               </div>
               <div class="list">
@@ -60,9 +61,10 @@
             </select> 
           </div>  
           <div class="spaceupload">
+          <p class="spacetextupload">Kijkwijzer</p>
             <div class="multi-selector">
               <div class="select-field">
-              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
+              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector" disabled>
               <span class="down-arrow">&blacktriangledown;</span>
               </div>
               <div class="list">
