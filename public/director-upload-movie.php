@@ -99,53 +99,18 @@
      </div>
 <!---------List of checkboxes and options----------->
      <div class="list">
-       <label for="Action" class="task">
-            <input type="checkbox" name="" id="Action">Action
-     </label>
-       <label for="task2" class="task">
-            <input type="checkbox" name="" id="task2">
-            Task 2
-     </label>
-       <label for="task3" class="task">
-            <input type="checkbox" name="" id="task3">
-            Task 3
-     </label>
-       <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
-     <label for="task4" class="task">
-            <input type="checkbox" name="" id="task4">
-            Task 4
-     </label>
+      <label for="Action" class="task"><input type="checkbox" name="Action" id="Action">Action</label>
+      <label for="Comedy" class="task"><input type="checkbox" name="Comedy" id="Comedy">Comedy</label>
+      <label for="Drama" class="task"><input type="checkbox" name="Drama" id="Drama">Drama</label>
+      <label for="Documentary" class="task"><input type="checkbox" name="Documentary" id="Documentary">Documentary</label>
+      <label for="Fantasy" class="task"><input type="checkbox" name="Fantasy" id="Fantasy">Fantasy</label>
+      <label for="Horror" class="task"><input type="checkbox" name="Horror" id="Horror">Horror</label>
+      <label for="Mystery" class="task"><input type="checkbox" name="Mystery" id="Mystery">Mystery</label>
+      <label for="Romance" class="task"><input type="checkbox" name="Romance" id="Romance">Romance</label>
+      <label for="Sci-if" class="task"><input type="checkbox" name="Sci-if" id="Sci-if">Sci-if</label>
+      <label for="Thriller" class="task"><input type="checkbox" name="Thriller" id="Thriller">Thriller</label>
+      <label for="Western" class="task"><input type="checkbox" name="Western" id="Western">Western</label>
+      <label for="Other" class="task"><input type="checkbox" name="Other" id="Other">Other</label>
      </div>
     </div>
 
