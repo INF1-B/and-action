@@ -26,22 +26,26 @@
             <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title">
           </div>
           <div class="spaceupload">
-            <label for="Category" class="spacetextupload">Category</label>
-            <select name="Category" id="Category" class="styleselect">
-              <option value="null">Choose category</option>
-              <option value="Action">Action</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Drama">Drama</option>
-              <option value="Documentary">Documentary</option>
-              <option value="Fantasy">Fantasy</option>
-              <option value="Horror">Horror</option>
-              <option value="Mystery">Mystery</option>
-              <option value="Romance">Romance</option>
-              <option value="Sci-if">Sci-if</option>
-              <option value="Thriller">Thriller</option>
-              <option value="Western">Western</option>
-              <option value="Other">Other</option>
-             </select>
+            <div class="multi-selector">
+              <div class="select-field">
+              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
+              <span class="down-arrow">&blacktriangledown;</span>
+            </div>
+              <div class="list">
+                <label for="Action" class="task"><input type="checkbox" name="Action" id="Action">Action</label>
+                <label for="Comedy" class="task"><input type="checkbox" name="Comedy" id="Comedy">Comedy</label>
+                <label for="Drama" class="task"><input type="checkbox" name="Drama" id="Drama">Drama</label>
+                <label for="Documentary" class="task"><input type="checkbox" name="Documentary" id="Documentary">Documentary</label>
+                <label for="Fantasy" class="task"><input type="checkbox" name="Fantasy" id="Fantasy">Fantasy</label>
+                <label for="Horror" class="task"><input type="checkbox" name="Horror" id="Horror">Horror</label>
+                <label for="Mystery" class="task"><input type="checkbox" name="Mystery" id="Mystery">Mystery</label>
+                <label for="Romance" class="task"><input type="checkbox" name="Romance" id="Romance">Romance</label>
+                <label for="Sci-if" class="task"><input type="checkbox" name="Sci-if" id="Sci-if">Sci-if</label>
+                <label for="Thriller" class="task"><input type="checkbox" name="Thriller" id="Thriller">Thriller</label>
+                <label for="Western" class="task"><input type="checkbox" name="Western" id="Western">Western</label>
+                <label for="Other" class="task"><input type="checkbox" name="Other" id="Other">Other</label>
+              </div>
+            </div>
           </div>
           <div class="spaceupload">
             <label for="AgeRating" class="spacetextupload">Age rating</label>
@@ -90,44 +94,13 @@
           </div>  
         </form>
     </div>
-
-    <div class="multi-selector">
-
-     <div class="select-field">
-<input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
-     <span class="down-arrow">&blacktriangledown;</span>
-     </div>
-<!---------List of checkboxes and options----------->
-     <div class="list">
-      <label for="Action" class="task"><input type="checkbox" name="Action" id="Action">Action</label>
-      <label for="Comedy" class="task"><input type="checkbox" name="Comedy" id="Comedy">Comedy</label>
-      <label for="Drama" class="task"><input type="checkbox" name="Drama" id="Drama">Drama</label>
-      <label for="Documentary" class="task"><input type="checkbox" name="Documentary" id="Documentary">Documentary</label>
-      <label for="Fantasy" class="task"><input type="checkbox" name="Fantasy" id="Fantasy">Fantasy</label>
-      <label for="Horror" class="task"><input type="checkbox" name="Horror" id="Horror">Horror</label>
-      <label for="Mystery" class="task"><input type="checkbox" name="Mystery" id="Mystery">Mystery</label>
-      <label for="Romance" class="task"><input type="checkbox" name="Romance" id="Romance">Romance</label>
-      <label for="Sci-if" class="task"><input type="checkbox" name="Sci-if" id="Sci-if">Sci-if</label>
-      <label for="Thriller" class="task"><input type="checkbox" name="Thriller" id="Thriller">Thriller</label>
-      <label for="Western" class="task"><input type="checkbox" name="Western" id="Western">Western</label>
-      <label for="Other" class="task"><input type="checkbox" name="Other" id="Other">Other</label>
-     </div>
-    </div>
-
-
-
-
-
-
     <!-- end main container  -->
     
      <!--script for the multiple select-field -->
   <script>
     document.querySelector('.select-field').addEventListener('click',()=>{
         document.querySelector('.list').classList.toggle('show');
-        document.querySelector('.down-arrow').classList.toggle('rotate180');
-
-    });
+        document.querySelector('.down-arrow').classList.toggle('rotate180'); });
    </script>
    <!-- end of script -->
   </body>
