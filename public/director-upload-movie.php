@@ -4,7 +4,6 @@
   <head>
     <title>template</title>
     <link rel="stylesheet" href="./assets/css/styleupload.css">
-    <link rel=
     <?php include "../templates/head.php" ?>
   </head>
 
@@ -68,7 +67,7 @@
               <option value="Sex">Sex</option>
               <option value="Discrimnation">Discrimnation</option>
               <option value="Fear">Fear</option>
-              <option value="Foul launguage">Foul launguage</option>
+              <option value="Fear">Foul launguage</option>
             </select>
           </div>
           <div class="spaceupload">
@@ -95,7 +94,21 @@
         </form>
     </div>
     <!-- end main container  -->
-    
+    <div class="spaceupload">
+            <div class="multi-selector">
+              <div class="select-field">
+              <input type="text" name="" placeholder="Choose Category" id="" class="input-selector">
+              <span class="down-arrow">&blacktriangledown;</span>
+            </div>
+              <div class="list">
+                <label for="Voilence" class="task"><input type="checkbox" name="Voilence" id="Voilence">Voilence</label>
+                <label for="Sex" class="task"><input type="checkbox" name="Sex" id="Sex">Sex</label>
+                <label for="Discrimnation" class="task"><input type="checkbox" name="Discrimnation" id="Discrimnation">Discrimnation</label>
+                <label for="Fear" class="task"><input type="checkbox" name="Fear" id="Fear">Fear</label>
+                <label for="Foul launguage" class="task"><input type="checkbox" name="Foul launguage" id="Foul launguage">Foul launguage</label>
+              </div>
+            </div>
+          </div>
      <!--script for the multiple select-field -->
   <script>
     document.querySelector('.select-field').addEventListener('click',()=>{
