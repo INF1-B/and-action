@@ -20,6 +20,9 @@ textarea{
     outline: none;
     font-family:  'Roboto', Arial, Helvetica, sans-serif;
 }
+.graycolor{
+    color: gray;
+}
 /* upload styling */
 .file {
     opacity: 0;
@@ -62,9 +65,8 @@ textarea{
   .spacetextupload{
       display: block;
       padding-bottom: 10px;
-      color:white;
+      color: white;
   }
-
 /*style for the drop down */
 input{
     outline: none;

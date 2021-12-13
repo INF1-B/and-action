@@ -61,11 +61,11 @@
             </select> 
           </div>  
           <div class="spaceupload">
-          <p class="spacetextupload">Filmguide</p>
+          <p class="spacetextupload">Film guide</p>
             <div class="multi-selector">
               <div class="select-fieldFilmguide">
                 <input type="text" name="Filmguide" placeholder="Choose Film guide" id="Filmguide" class="input-selector" disabled>
-                <span class="down-arrow" id="downArrow2">&blacktriangledown;</span>
+                <span class="down-arrow" id="downArrow2"> &blacktriangledown;</span>
               </div>
               <div class="listFilmguide">
                 <label for="Voilence" class="task"><input type="checkbox" name="Voilence" id="Voilence"> Voilence</label>
