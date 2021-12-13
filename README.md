@@ -17,5 +17,20 @@ In order to run the application, all the files that are held in the main reposit
 ## Hardware
 The following hardware requirements are needed to run the web application
 
+Low end laptop or pc with atleast:
+ *An intel i3 processor
+ *A graphic card
 
 # Installation
+1.Go to the following link: https://www.apachefriends.org/index.html and install XAMPP on a Windows computer.
+2.Open XAMPP and click on 'start' next to 'apache'.
+3.Start MySQL as well and click on admin, this will lead u to PHPMyAdmin.
+4.Go to Github.com and clone the repository: https://github.com/INF1-B/and-action to ur c:/xampp/htdocs map.
+5.Search for the 'and-action' map, and search for the database file which can be found in /src/database/export/and_action_windows.sql
+6.Download the database file 'and_action_windows.sql' and go to PHPMyAdmin.
+7.Go to 'Import', click on 'choose file' and import the 'and_action_windows.sql' database file. Make sure file character is set on UTF-8 and click on 'start' at the bottom of the page. The database is ready now!
+8.Go to ur webbrowser and type in 'http://localhost/and-action-1/public/index.php' and now you're able to use the website!
+
+
+
+
