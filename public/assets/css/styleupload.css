@@ -5,14 +5,14 @@
 }
 #MovieTitle{
     width: 350px ;
-    height: 30px;
+    height: 40px;
     text-align: center left;
     outline: none;
     padding-left: 10px;
 }
 .styleselect{
-    width: 200px;
-    height: 30px;
+    width: 225px;
+    height: 40px;
     outline: none;
 }
 textarea{
@@ -55,7 +55,7 @@ textarea{
     font-weight: bold;
     color: white;
   }
-  /* generale stuff for upload page*/
+ /* generale stuff for upload page*/
   .spaceupload{
       margin-bottom: 20px;
   }
@@ -73,17 +73,17 @@ input{
 .multi-selector{
     width: max-content;
 }
-.select-field{
+.select-field,.select-fieldFilmguide{
     border: 1px solid rgb(187, 187, 187);
 }
-.select-field,.task,.list{
+.select-field,.task,.list,.listFilmguide,.select-fieldFilmguide{
     width: 100%;
     background-color: white;
     padding: 0.3rem;
 }
-.list{
+.list,.listFilmguide{
     display: none;
-}
+} 
 .down-arrow{
     font-size: 1.2rem;
     display: inline-block;
