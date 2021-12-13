@@ -28,14 +28,13 @@
     height:130px;
 }
 
-.input[type="text"] {
+.input[type="text"], .input[type="password"] {
     background-color:#FFFFFF;
     color:black;
     height:30px;
     width: 100%;
     padding:10px;
-    margin-bottom:5px;
-    margin-top:5px;
+    margin: 2px 0px 10px 0px;
     border:none;
 }
 
@@ -43,12 +42,10 @@ form > div {
     width: 85%;
     margin: 0 auto;
     display: block;
-    margin-top:10px;
 }
 
-.checkbox-form {
+form > div > label {
     margin-top: 20px;
-    margin-bottom: 10px;
 }
 
 .submit-form {
@@ -58,12 +55,12 @@ form > div {
 
 .submit-form > input {
     margin: 0 auto;
+    margin-top: 15px;
     padding: 7px 20px 7px 20px;
     font-size:15px;
     background-color:#F9B354;
     color: white;
     border:none;
-    margin-top:5%;
 }
 
 .no-account {
@@ -97,4 +94,9 @@ form > div {
 .register-note {
     font-size: 10px;
     color: white;
+}
+
+.subscription {
+    width: 100%;
+    padding: 2px;
 }

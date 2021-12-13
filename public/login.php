@@ -20,7 +20,7 @@
     <form method="post">
       <div class="input-login-text">
         <input class="input" type="text" name="email" id="email" placeholder="Email address">
-        <input class="input" type="text" name="password" id="password" placeholder="Password">
+        <input class="input" type="password" name="password" id="password" placeholder="Password">
       </div>
       <div class="checkbox-form">
         <input type="checkbox" name="signed" id="signed">
