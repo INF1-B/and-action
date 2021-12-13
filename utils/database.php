@@ -85,9 +85,10 @@ function executeQuery($sql, $dataTypes, $values){
     // prepare the query
     $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt));
     $stmt = bindQuery($stmt, $dataTypes, $values);
-    executePreparedQuery($stmt);
+    $result = executePreparedQuery($stmt);
     mysqli_stmt_close($stmt);
     mysqli_close($db);
+    return $result;
 }
 
 // ------------------------------------------- //
@@ -107,7 +108,11 @@ function bindSelectQuery($stmt, $id){
 
 // executes a prepared and binded query
 function executePreparedQuery($stmt){
-    mysqli_stmt_execute($stmt) or die( mysqli_stmt_error($stmt));
+    if (mysqli_stmt_execute($stmt)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // retrieve a result from a SELECT query, doesn't work if function value is directly returned!

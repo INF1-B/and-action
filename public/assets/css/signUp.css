@@ -30,7 +30,7 @@
 
 .input[type="text"] {
     background-color:#FFFFFF;
-    color:lightgray;
+    color:black;
     height:30px;
     width: 100%;
     padding:10px;
@@ -72,8 +72,29 @@ form > div {
     margin-top:10px;
 }
 
-
 .sign-up {
     text-decoration: none;
     color:#F9B354;
+}
+
+.register-error, .register-success, .register-note {
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.register-error {
+    color: red;
+}
+
+.register-success {
+    color: lightgreen;
+}
+
+.register-success > a {
+    color: white;
+}
+
+.register-note {
+    font-size: 10px;
+    color: white;
 }
