@@ -95,4 +95,22 @@ function filterUploadFileLength($fileName, $allowedLength){
   return "ERROR: the name of the uploaded file contains to many characters!";
 }
 
+/* returns true if the resolution of an image is $x x $y (e.g. : 400x600), if it is not that image size it will return an error message
+*
+* Example 1 : filterImageResolution('https://media.geeksforgeeks.org/wp-content/uploads/geeksforgeeks-13.png', 667, 184); // return true
+* Example 2 : filterImageResolution('https://media.geeksforgeeks.org/wp-content/uploads/geeksforgeeks-13.png', 667, 185); // return error message
+*
+* For thumbnails, this should be set to 400x600
+*
+*/
+function filterImageResolution($image, $x, $y){
+  $imageAttributes = getImageSize($image);
+  $imageX = $imageAttributes[0]; // x - width
+  $imageY = $imageAttributes[1]; // y - height
+  if ($imageX == $x && $imageY == $y){
+    return true;
+  }
+  return "ERROR: The size of the image does not fit the specified x and y axes, these are " . $x . " x " . $y . " yours are $imageX x $imageY";
+}
+
 ?>
