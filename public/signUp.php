@@ -69,11 +69,11 @@ if (isset($_POST["submit"])) {
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
       <div>
         <label for="email">Email address</label>
-        <input class="input" type="text" name="email" id="email" placeholder="Type here your email address">
+        <input type="text" name="email" id="email" placeholder="Type here your email address">
         <label for="username">Username</label>
-        <input class="input" type="text" name="username" id="username" placeholder="Type here your username">
+        <input type="text" name="username" id="username" placeholder="Type here your username">
         <label for="password">Password</label>
-        <input class="input" type="password" name="password" id="password" placeholder="Type here your password">
+        <input type="password" name="password" id="password" placeholder="Type here your password">
       </div>
 
       <div>
