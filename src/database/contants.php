@@ -9,4 +9,5 @@ $extensions = array(".jpeg",".jpg",".png",".gif");
 $mimeTypesVideo = array ("video/mp4","video/mp3");
 
 $extensionsVideo = array (".mp4",".mp3");
+
 ?>
