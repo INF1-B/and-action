@@ -1,0 +1,61 @@
+.filter {
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    width: 100vw;
+    transition: all 0.5s ease;
+    height: 100%;
+    background-color: rgba(60, 59, 58, 0.5);
+
+}
+
+.menu{
+    background: #3C3B3A;
+    width: 25vw;
+    height: 100%;
+    border-right: 2px solid grey;
+    color: white;
+}
+
+
+.active-filter{
+    left: 0px;
+}
+
+.menu h1{
+    margin-bottom: 15px;
+}
+.menu h2{
+    margin-bottom: 15px;
+}
+
+
+.close{
+    font-size: 35px;
+    float: right;
+    margin-top: 5%;
+    margin-right: 10%;
+}
+.menu_items{
+    padding-top: 30%;
+    margin-left: 10%;
+}
+
+.menu_items .list{
+    list-style: none;
+    margin-bottom: 5%;
+}
+
+.button{
+    margin: 0 auto;
+    padding: 10px 25px 10px 25px;
+    font-size:15px;
+    background-color:#F9B354;
+    color: white;
+    border:none;
+    margin-top:5%;
+}
+
+.menu_items .list li{
+   padding-bottom: 5px;
+}
