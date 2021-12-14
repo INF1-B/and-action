@@ -138,7 +138,7 @@ function getVideoLength($file){
 *
 */
 function changeVideoQuality($originalVideo, $resolution, $outputPath){
-  system("ffmpeg -i" . $originalVideo . " -s " . $resolution . " " . $outputPath);
+  system("ffmpeg -i " . $originalVideo . " -s " . $resolution . " " . $outputPath);
 }
 
 changeVideoQuality("test/testmovie.mp4", "200x200", "test/bad-movie.mp4")
