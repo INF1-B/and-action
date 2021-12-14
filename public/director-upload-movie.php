@@ -32,25 +32,25 @@
               <span class="down-arrow">&blacktriangledown;</span>
               </div>
               <div class="list">
-                <label for="Action" class="task"><input type="checkbox" name="Action" id="Action"> Action</label>
-                <label for="Comedy" class="task"><input type="checkbox" name="Comedy" id="Comedy"> Comedy</label>
-                <label for="Drama" class="task"><input type="checkbox" name="Drama" id="Drama"> Drama</label>
-                <label for="Documentary" class="task"><input type="checkbox" name="Documentary" id="Documentary"> Documentary</label>
-                <label for="Fantasy" class="task"><input type="checkbox" name="Fantasy" id="Fantasy"> Fantasy</label>
-                <label for="Horror" class="task"><input type="checkbox" name="Horror" id="Horror"> Horror</label>
-                <label for="Mystery" class="task"><input type="checkbox" name="Mystery" id="Mystery"> Mystery</label>
-                <label for="Romance" class="task"><input type="checkbox" name="Romance" id="Romance"> Romance</label>
-                <label for="Sci-if" class="task"><input type="checkbox" name="Sci-if" id="Sci-if"> Sci-if</label>
-                <label for="Thriller" class="task"><input type="checkbox" name="Thriller" id="Thriller"> Thriller</label>
-                <label for="Western" class="task"><input type="checkbox" name="Western" id="Western"> Western</label>
-                <label for="Other" class="task"><input type="checkbox" name="Other" id="Other"> Other</label>
+                <label for="Action" class="task"><input type="checkbox" name="Category[]" id="Action" value="Action"/> Action</label>
+                <label for="Comedy" class="task"><input type="checkbox" name="Category[]" id="Comedy" value="Comedy"/> Comedy</label>
+                <label for="Drama" class="task"><input type="checkbox" name="Category[]" id="Drama" value="Drama"/> Drama</label>
+                <label for="Documentary" class="task"><input type="checkbox" name="Category[]" id="Documentary" value="Documentary"/> Documentary</label>
+                <label for="Fantasy" class="task"><input type="checkbox" name="Category[]" id="Fantasy" value="Fantasy"/> Fantasy</label>
+                <label for="Horror" class="task"><input type="checkbox" name="Category[]" id="Horror" value="Horror"/> Horror</label>
+                <label for="Mystery" class="task"><input type="checkbox" name="Category[]" id="Mystery" value="Mystery"/> Mystery</label>
+                <label for="Romance" class="task"><input type="checkbox"  name="Category[]" id="Romance" value="Romance"/> Romance</label>
+                <label for="Science-fiction" class="task"><input type="checkbox"  name="Category[]" id="Science-fiction" value="Science-fiction"/> Science fiction</label>
+                <label for="Thriller" class="task"><input type="checkbox" name="Category[]" id="Thriller" value="Thriller"/> Thriller</label>
+                <label for="Western" class="task"><input type="checkbox" name="Category[]" id="Western" value="Western"/> Western</label>
+                <label for="Other" class="task"><input type="checkbox" name="Category[]" id="Other" value="Other"/> Other</label>
               </div>
             </div>
           </div>
           <div class="spaceupload">
             <label for="AgeRating" class="spacetextupload">Age rating</label>
             <select name="AgeRating" id="AgeRating" class="styleselect">
-              <option value="null">Choose age rating</option>
+              <option value="" disabled selected> Select your age </option>
               <option value="0">ALL</option>
               <option value="6">6</option>
               <option value="9">9</option>
@@ -68,11 +68,12 @@
                 <span class="down-arrow" id="downArrow2"> &blacktriangledown;</span>
               </div>
               <div class="listFilmguide">
-                <label for="Voilence" class="task"><input type="checkbox" name="Voilence" id="Voilence"> Voilence</label>
-                <label for="Sex" class="task"><input type="checkbox" name="Sex" id="Sex"> Sex</label>
-                <label for="Discrimnation" class="task"><input type="checkbox" name="Discrimnation" id="Discrimnation"> Discrimnation</label>
-                <label for="Fear" class="task"><input type="checkbox" name="Fear" id="Fear"> Fear</label>
-                <label for="Foul-launguage" class="task"><input type="checkbox" name="Foul launguage" id="Foul-launguage"> Foul launguage</label>
+                <label for="Violence" class="task"><input type="checkbox" name="Filmguide[]" id="Violence" value="Violence"> Violence</label>
+                <label for="Sex" class="task"><input type="checkbox" name="Filmguide[]" id="Sex" value="Sex"> Sex</label>
+                <label for="Drugs" class="task"><input type="checkbox" name="Filmguide[]" id="Drugs" value="Horror"> Drugs</label>
+                <label for="Discrimination" class="task"><input type="checkbox" name="Filmguide[]" id="Discrimination" value="Discrimination"> Discrimination</label>
+                <label for="Fear" class="task"><input type="checkbox" name="Filmguide[]" id="Fear" value="Fear"> Fear</label>
+                <label for="Foul-language" class="task"><input type="checkbox" name="Filmguide[]" id="Foul-language" value="Foul-language"> Foul language</label>
               </div>
             </div>
           </div>
@@ -100,7 +101,7 @@
         </form>
     </div>
     <!-- end main container  -->
-  
+
   <!--script for the multiple select-field -->
   <script>
     document.querySelector('.select-field').addEventListener('click',()=>{
