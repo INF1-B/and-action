@@ -118,21 +118,25 @@ function filterImageResolution($image, $x, $y){
 * Example: getVideoLength("video.mp4") // returns 60 if length of the video is 60 seconds
 *
 */
-function getVideoLength($file){
+function getVideoLengthTest($file){
   $dur = shell_exec("ffmpeg -i ".$file." 2>&1");
   if(preg_match("/: Invalid /", $dur)){
-     return false;
+    return false;
   }
   preg_match("/Duration: (.{2}):(.{2}):(.{2})/", $dur, $duration);
   if(!isset($duration[1])){
-     return false;
+    return false;
   }
-
+  $hours = $duration[1];
+  $minutes = $duration[2];
   $seconds = $duration[3];
-  return $seconds;
+  //  return $seconds + ($minutes*60) + ($hours*60*60);
+  echo $seconds;
 }
 
-/* Once a user has uploaded a movie, the resolution will be changed here. for a user with a standard subscription this should be 720p
+getVideoLengthTest("test/testmovie.mp4");
+
+/* Once a user has uploaded a movie, the resolution will be changed here. for a user with a standard subscription this should be 720p. Make sure the rights are correctly set!
 *
 * Example: changeVideoQuality("test/testmovie.mp4", "200x200", "test/bad-movie.mp4")
 *
