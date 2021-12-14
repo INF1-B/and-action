@@ -113,4 +113,31 @@ function filterImageResolution($image, $x, $y){
   return "ERROR: The size of the image does not fit the specified x and y axes, these are " . $x . " x " . $y . " yours are $imageX x $imageY";
 }
 
+/* retrieves the length of a video, the application ffmpeg is needed to succesfully execute this
+*
+* Example: getVideoLength("video.mp4") // returns 60 if length of the video is 60 seconds
+*
+*/
+function getVideoLength($file){
+  $dur = shell_exec("ffmpeg -i ".$file." 2>&1");
+  if(preg_match("/: Invalid /", $dur)){
+     return false;
+  }
+  preg_match("/Duration: (.{2}):(.{2}):(.{2})/", $dur, $duration);
+  if(!isset($duration[1])){
+     return false;
+  }
+
+  $seconds = $duration[3];
+  return $seconds;
+}
+
+/* Once a user has uploaded a movie, the resolution will be changed here. for a user with a standard subscription
+*
+* Example: 
+*
+*/
+function changeVideoResolution($originalVideo, $resolution, $path, $rescaledVideoName){
+  system("ffmpeg -i" . $originalVideo . " -s " . $resolution . " " . $path . "/" . $rescaledVideoName);
+}
 ?>
