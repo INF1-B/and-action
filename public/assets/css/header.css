@@ -10,7 +10,7 @@ header{
 }
 
 .logo {
-    width: 80%
+    width: 100%
 }
 
 .nav_logo{
@@ -39,7 +39,6 @@ header{
     text-decoration: none;
     letter-spacing: 1px;
     transition: 0.7s;
-
 }
 
 .nav_link:hover{
@@ -69,7 +68,6 @@ header{
 .search_bar{
     width: 30%;
     height: 100%;
-
 }
 
 #search{
