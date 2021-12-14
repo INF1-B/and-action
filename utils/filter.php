@@ -134,13 +134,11 @@ function getVideoLength($file){
 
 /* Once a user has uploaded a movie, the resolution will be changed here. for a user with a standard subscription this should be 720p
 *
-* Example: changeVideoQuality();
+* Example: changeVideoQuality("test/testmovie.mp4", "200x200", "test/bad-movie.mp4")
 *
 */
 function changeVideoQuality($originalVideo, $resolution, $outputPath){
   system("ffmpeg -i " . $originalVideo . " -s " . $resolution . " " . $outputPath);
 }
-
-changeVideoQuality("test/testmovie.mp4", "200x200", "test/bad-movie.mp4")
 
 ?>
