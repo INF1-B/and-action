@@ -118,7 +118,7 @@ function filterImageResolution($image, $x, $y){
 * Example: getVideoLength("video.mp4") // returns 60 if length of the video is 60 seconds
 *
 */
-function getVideoLengthTest($file){
+function getVideoLength($file){
   $dur = shell_exec("ffmpeg -i ".$file." 2>&1");
   if(preg_match("/: Invalid /", $dur)){
     return false;
