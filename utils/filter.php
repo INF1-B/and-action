@@ -127,14 +127,12 @@ function getVideoLengthTest($file){
   if(!isset($duration[1])){
     return false;
   }
-  $hours = $duration[1];
-  $minutes = $duration[2];
+  // $hours = $duration[1];
+  // $minutes = $duration[2];
   $seconds = $duration[3];
   //  return $seconds + ($minutes*60) + ($hours*60*60);
   echo $seconds;
 }
-
-getVideoLengthTest("test/testmovie.mp4");
 
 /* Once a user has uploaded a movie, the resolution will be changed here. for a user with a standard subscription this should be 720p. Make sure the rights are correctly set!
 *
