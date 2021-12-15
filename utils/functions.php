@@ -8,10 +8,19 @@ functions related to video management and more.
 // this function retrieves an string value as an input, and returns the hashes value back to the user. The hashing algorithm used for this is BCRYPT.
 // the default cost (times the values gets hased) is 10. Therefore we have set the value to 12 which increases some security on the hashes.
 function generateHash($stringValue) {
-  $options = [
-    'cost' => 12,
-  ];    
-  return password_hash($stringValue, PASSWORD_BCRYPT, $options);
+  return password_hash($stringValue, PASSWORD_BCRYPT);
+}
+
+/* verifyPassword(): verifies if a password exists, if so returns true, otherwise returns false;
+*
+* Example: verifyPassword("test", "$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a"); // returns true of false
+*
+*/
+function verifyPassword($password, $hashedpassword){
+  if (password_verify($password, $hashedpassword)) {
+    return true;
+  }
+  return false;
 }
 
 /* getRecaptchaResponse(): verifies whether the user has succesfully filled in the reCaptcha (V2)
@@ -43,16 +52,12 @@ function messageGenerator($id, $page){
     case 'password':
       if ($page == "register"){
       return "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
-      } else if ($page == "login") {
-        return "ERROR: email/ password combination is not recognized!";
       }
       break;
     case 'email':
       if ($page == "register") {
         return "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register </p>";
-      } else if ($page == "login") {
-        return "<p class=\"login-error\"> ERROR: Email/ password combination is not recognized! </p>";
-      }
+      } 
       break;
     case 'password-confirm':
       return "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
@@ -68,6 +73,12 @@ function messageGenerator($id, $page){
       break;
     case 'register-note':
       return "<p class=\"register-note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
+      break;
+    case 'login-note':
+      return "<p class=\"no-account login-note\"> Don't have an account? <a class=\"sign-up\" href=\"signUp.php\"> Sign up </a> </p>";
+      break;
+    case 'login-error':
+      return "<p class=\"login-error\"> ERROR: unable to login with the combination of username and password. </p>";
       break;
     default:
       return "ERROR: contact the administrator of this page for more information";
