@@ -4,11 +4,7 @@ include "../utils/filter.php";
 include "../utils/functions.php";
 include "../utils/database.php";
 
-$message = "
-<p class=\"register-note\">
-  Note that signing up can take some time. You will get a message once registration is succesfull
-</p>";
-
+$message = messageGenerator("register-note", "register");
 
 if (isset($_POST["submit"])) { 
   // filter all user values
@@ -128,7 +124,7 @@ if (isset($_POST["submit"])) {
     ?>
     <p class="no-account">
       Already have an account?
-      <a class="sign-up" href="#">Log in</a>
+      <a class="sign-up" href="login.php">Log in</a>
     </p>
   </div>
 </body>

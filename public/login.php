@@ -32,7 +32,7 @@
     </form>
     <p class="no-account">
       Don't have an account? 
-      <a class="sign-up" href="#"> Sign up</a>
+      <a class="sign-up" href="signUp.php"> Sign up </a>
     </p>
   </div>
 </body>

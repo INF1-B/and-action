@@ -66,6 +66,9 @@ function messageGenerator($id, $page){
     case 'register-failure-db': 
       return "<p class=\"register-error\"> ERROR: Unable to register! Please try registering another email adress </p>";
       break;
+    case 'register-note':
+      return "<p class=\"register-note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
+      break;
     default:
       return "ERROR: contact the administrator of this page for more information";
       break;
