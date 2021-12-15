@@ -41,44 +41,46 @@ function getRecaptchaResponse($recaptchaResponse){
 *
 */
 function messageGenerator($id, $page){
+  $message = "";
   switch ($id) {
     case 'recaptcha':
       if ($page == "register") {
-        return "<p class=\"register-error\"> ERROR: Your recaptcha is incorrect! </p>";
+        $message = "<p class=\"register-error\"> ERROR: Your recaptcha is incorrect! </p>";
       } else if ($page == "login") {
-        return "<p class=\"login-error\"> ERROR: Your recaptcha is incorrect! </p>";
+        $message = "<p class=\"login-error\"> ERROR: Your recaptcha is incorrect! </p>";
       }
       break;
     case 'password':
-      return "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
+      $message = "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
       break;
     case 'email':
-      return "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register </p>";
+      $message = "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register. </p>";
       break;
     case 'password-confirm':
-      return "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
+      $message = "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
       break;
     case 'register-success':
-      return "<p class=\"register-success\"> You have been registered! Please log in at the <a href=\"login.php\"> Login page </a></p>";
+      $message = "<p class=\"register-success\"> You have been registered! Please log in at the <a href=\"login.php\"> Login page. </a></p>";
       break;
     case 'register-failure':
-      return "<p class=\"register-error\"> ERROR: Please double check if all fields were filled in, and if your email is a legitimate email address! </p>";
+      $message = "<p class=\"register-error\"> ERROR: Please double check if all fields were filled in, and if your email is a legitimate email address! </p>";
       break;
     case 'register-failure-db': 
-      return "<p class=\"register-error\"> ERROR: Unable to register! Please try registering another email adress </p>";
+      $message = "<p class=\"register-error\"> ERROR: Unable to register! Please try registering another email adress. </p>";
       break;
     case 'register-note':
-      return "<p class=\"register-note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
+      $message = "<p class=\"register-note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
       break;
     case 'login-note':
-      return "<p class=\"no-account login-note\"> Don't have an account? <a class=\"sign-up\" href=\"signUp.php\"> Sign up </a> </p>";
+      $message = "<p class=\"no-account login-note\"> Don't have an account? <a class=\"sign-up\" href=\"signUp.php\"> Sign up. </a></p>";
       break;
     case 'login-error':
-      return "<p class=\"login-error\"> ERROR: unable to login with the combination of username and password. </p>";
+      $message = "<p class=\"login-error\"> ERROR: incorrect email and/or password. </p>";
       break;
     default:
-      return "ERROR: contact the administrator of this page for more information";
+      $message = "ERROR: contact the administrator of this page for more information.";
       break;
   }
+  return $message;
 }
 ?>

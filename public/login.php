@@ -12,7 +12,7 @@ if (isset($_POST["submit"])){
   $input["g-recaptcha"] = getRecaptchaResponse($_POST['g-recaptcha-response']);
   if ($input["g-recaptcha"]) {
     if (!in_array(false, $input)) {
-      $data = getTableRecord("SELECT * FROM gebruiker WHERE email = ?", 
+      $data = getTableRecord("SELECT email, wachtwoord FROM gebruiker WHERE email = ?", 
                              "s", 
                              array($input["email"]));
       if (array_key_exists("email", $data) && array_key_exists("wachtwoord", $data)){
@@ -60,8 +60,8 @@ if (isset($_POST["submit"])){
         <label for="email">Email address</label>
         <input
           value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' // if form is filled in, prefill same values ?>"
-          type="text" name="email" id="email" placeholder="Email address">
-        <label for="password"> password </label>
+          type="text" name="email" id="email" placeholder="Email">
+        <label for="password"> Password </label>
         <input class="input" type="password" name="password" id="password" placeholder="Password">
       </div>
       <div class="recaptcha-container">
