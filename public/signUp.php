@@ -89,7 +89,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div>
           <label for="password-confirm">Confirm</label>
-          <input type="password" name="password-confirm" id="password-confirm" placeholder="confirm password">
+          <input type="password" name="password-confirm" id="password-confirm" placeholder="Confirm password">
         </div>
       </div>
       <div>
