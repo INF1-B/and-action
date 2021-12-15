@@ -1,13 +1,8 @@
-<?php
+<?php 
 
-//	JPG: image/jpeg, JPEG: image/jpeg , PNG: image/png, GIF:image/gif, MP4:video/mp4
-
-$mimeTypes = array("image/jpeg", "image/png", "image/gif");
-
-$extensions = array(".jpeg",".jpg",".png",".gif");
-
-$mimeTypesVideo = array ("video/mp4","video/mp3");
-
-$extensionsVideo = array (".mp4",".mp3");
+define("IMAGEMIMETYPES", [ "image/jpeg", "image/png", "image/gif"]); 
+define("IMAGEEXTENSIONS",[".jpeg", ".jpg",".png",".gif"]); 
+define("VIDEOMIMETYPES",["video/mp4","video/mp3"]); 
+define("VIDEOEXTENSIONS",[".mp4",".mp3"]); 
 
 ?>
