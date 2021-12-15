@@ -5,6 +5,8 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $descrip
     $genreInput = getTableRecord("SELECT genre.id FROM genre WHERE id = ?", $genre);
     $filmIdInput = getTableRecord("SELECT film.id FROM film WHERE id = ?", $filmId);
     executeQuery("INSERT INTO genre_film (genre_id, film_id) VALUES (?, ?)", "ii", array($genreInput['id'], $filmIdInput['id']));
+    $agerestrictionInput = getTableRecord("SELECT kijkwijzer_geschiktheid.id FROM kijkwijzer_geschiktheid WHERE id = ?", $agerestriction);
+    executeQuery("INSERT INTO film_kijkwijzer_geschiktheid (kijkwijzer_geschiktheid_id, film_id) VALUES (?, ?)", "ii", array($agerestrictionInput['id'], $filmIdInput['id']));
     $message = "Movie uploaded";
     return $message;
 }
