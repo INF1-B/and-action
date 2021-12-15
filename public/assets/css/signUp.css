@@ -57,7 +57,7 @@ form > div > label {
     margin: 0 auto;
     margin-top: 15px;
     padding: 7px 20px 7px 20px;
-    font-size:15px;
+    font-size: 15px;
     background-color:#F9B354;
     color: white;
     border:none;
@@ -99,4 +99,17 @@ form > div > label {
 .subscription {
     width: 100%;
     padding: 2px;
+}
+
+.g-recaptcha {
+    margin-top: 20px;
+}
+
+.form-password {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-password div {
+    width: 49%;
 }

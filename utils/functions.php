@@ -14,6 +14,61 @@ function generateHash($stringValue) {
   return password_hash($stringValue, PASSWORD_BCRYPT, $options);
 }
 
-// echo generateHash("test3");
+/* getRecaptchaResponse(): verifies whether the user has succesfully filled in the reCaptcha (V2)
+*
+* No example can be provided here since this will be the sitekey client side which is the user input.
+*
+*/
+function getRecaptchaResponse($recaptchaResponse){
+  $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode("6LeNjaMdAAAAAJW-AtObAMN7atf4xkuQ3rjvKO-a") .  '&response=' . urlencode($recaptchaResponse);
+  $response = file_get_contents($url);
+  $responseKeys = json_decode($response, true);
+  return $responseKeys["success"];
+} 
 
+/* messageGenerator(): generates error messages based on the $id and $page your giving
+*
+* Example : messageGenerator("recaptcha", "register");
+*
+*/
+function messageGenerator($id, $page){
+  switch ($id) {
+    case 'recaptcha':
+      if ($page == "register") {
+        return "<p class=\"register-error\"> ERROR: Your recaptcha is incorrect! </p>";
+      } else if ($page == "login") {
+        return "<p class=\"login-error\"> ERROR: Your recaptcha is incorrect! </p>";
+      }
+      break;
+    case 'password':
+      if ($page == "register"){
+      return "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
+      } else if ($page == "login") {
+        return "ERROR: email/ password combination is not recognized!";
+      }
+      break;
+    case 'password-confirm':
+      return "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
+      break;
+    case 'email':
+      if ($page == "register") {
+        return "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register </p>";
+      } else if ($page == "login") {
+        return "<p class=\"login-error\"> ERROR: Email/ password combination is not recognized! </p>";
+      }
+      break;
+    case 'register-success':
+      return "<p class=\"register-success\"> You have been registered! Please log in at the <a href=\"login.php\"> Login page </a></p>";
+      break;
+    case 'register-failure':
+      return "<p class=\"register-error\"> ERROR: Please double check if all fields were filled in, and if your email is a legitimate email address! </p>";
+      break;
+    case 'register-failure-db': 
+      return "<p class=\"register-error\"> ERROR: Unable to register! Please try registering another email adress </p>";
+      break;
+    default:
+      return "ERROR: contact the administrator of this page for more information";
+      break;
+  }
+}
 ?>
