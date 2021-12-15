@@ -50,14 +50,10 @@ function messageGenerator($id, $page){
       }
       break;
     case 'password':
-      if ($page == "register"){
-        return "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
-      }
+      return "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
       break;
     case 'email':
-      if ($page == "register") {
-        return "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register </p>";
-      } 
+      return "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register </p>";
       break;
     case 'password-confirm':
       return "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
