@@ -2,8 +2,8 @@
 // Upload movie function
 function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction, $genre, $filmId ){
     executeQuery("INSERT INTO film (gebruiker_id, titel, pad, thumbnail_pad, geaccepteerd, beschrijving, kijkwijzer_leeftijd) VALUES (?, ?, ?, ?, ?, ?, ?)", "isssisi", array($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction));
-    $genreInput = getTableRecord("SELECT genre.naam FROM genre WHERE id = ?", $genre);
-    $filmIdInput = getTableRecord("SELECT film.naam FROM film WHERE id = ?", $filmId);
+    $genreInput = getTableRecord("SELECT genre.id FROM genre WHERE id = ?", $genre);
+    $filmIdInput = getTableRecord("SELECT film.id FROM film WHERE id = ?", $filmId);
     executeQuery("INSERT INTO genre_film (genre_id, film_id) VALUES (?, ?)"), "ii", ($genreInput , $filmIdInput);
     $message = "Movie uploaded";
     return $message;
