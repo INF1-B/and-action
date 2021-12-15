@@ -1,10 +1,10 @@
 <?php 
 // Upload movie function
-function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction, $genre, $filmId ){
+function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction, $genre, $filmId){
     executeQuery("INSERT INTO film (gebruiker_id, titel, pad, thumbnail_pad, geaccepteerd, beschrijving, kijkwijzer_leeftijd) VALUES (?, ?, ?, ?, ?, ?, ?)", "isssisi", array($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction));
     $genreInput = getTableRecord("SELECT genre.id FROM genre WHERE id = ?", $genre);
     $filmIdInput = getTableRecord("SELECT film.id FROM film WHERE id = ?", $filmId);
-    executeQuery("INSERT INTO genre_film (genre_id, film_id) VALUES (?, ?)"), "ii", ($genreInput , $filmIdInput);
+    executeQuery("INSERT INTO genre_film (genre_id, film_id) VALUES (?, ?)", "ii", array($genreInput['id'], $filmIdInput['id']));
     $message = "Movie uploaded";
     return $message;
 }
