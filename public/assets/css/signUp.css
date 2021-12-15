@@ -101,10 +101,6 @@ form > div > label {
     padding: 2px;
 }
 
-.g-recaptcha {
-    margin-top: 20px;
-}
-
 .form-password {
     display: flex;
     justify-content: space-between;

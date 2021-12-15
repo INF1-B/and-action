@@ -116,7 +116,7 @@ if (isset($_POST["submit"])) {
         </select>
       </div>
       <div class="recaptcha-container">
-        <div class="g-recaptcha" data-sitekey="6LeNjaMdAAAAALpdCg3KEFPK8ypBE23Jf3t5gOq5"></div>
+        <div class="g-recaptcha" data-theme="light" data-sitekey="6LeNjaMdAAAAALpdCg3KEFPK8ypBE23Jf3t5gOq5"></div>
       </div>
       <div class="submit-form">
         <input type="submit" name="submit" value="Sign up">

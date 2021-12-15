@@ -47,15 +47,15 @@ function messageGenerator($id, $page){
         return "ERROR: email/ password combination is not recognized!";
       }
       break;
-    case 'password-confirm':
-      return "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
-      break;
     case 'email':
       if ($page == "register") {
         return "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register </p>";
       } else if ($page == "login") {
         return "<p class=\"login-error\"> ERROR: Email/ password combination is not recognized! </p>";
       }
+      break;
+    case 'password-confirm':
+      return "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
       break;
     case 'register-success':
       return "<p class=\"register-success\"> You have been registered! Please log in at the <a href=\"login.php\"> Login page </a></p>";
