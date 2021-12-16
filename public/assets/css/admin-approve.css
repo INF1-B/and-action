@@ -61,3 +61,10 @@
 .form-movie > .approve-movie {
   background-color: #24CD98;
 }
+
+video{
+  margin-top:4%;
+  width:500px;
+  height:300px;
+  background-color:#FFFFFF;
+}

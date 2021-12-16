@@ -6,7 +6,9 @@
     <title>And Action</title>
     <?php include "../templates/head.php" ?>
     <link rel="stylesheet" type="text/css" href="../public/assets/css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/filter.css">
     <link rel="stylesheet" type="text/css" href="../public/assets/css/thumpnail-display.css">
+    <script src="https://kit.fontawesome.com/e187230ac2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,13 +17,14 @@
         <?php include "../templates/navbar.php";?>
     </div>
 
-
+    <?php include "../templates/filter.html"; ?>
+    
     <div class="container container-movies">
 
         <!--Recently watched -->
         <div class="upper">
             <h1>Recently watched</h1>
-            <button type="button"><a href="#">Filter</button>
+            <button id="filter" type="button">Filter</button>
         </div>
 
 
@@ -64,10 +67,9 @@
               }
         ?> 
 
-        
-
+    </div>
+    <script src="./assets/js/filter.js"></script>
     <!-- end main container  -->
-
-</body>
+  </body>
 
 </html>

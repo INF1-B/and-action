@@ -1,25 +1,43 @@
 .uploadtitle{
-    color: white;
     font-size: 30px;
     padding-bottom: 40px;
+    color: white;
 }
 #MovieTitle{
     width: 350px ;
-    height: 30px;
+    height: 40px;
     text-align: center left;
     outline: none;
     padding-left: 10px;
 }
 .styleselect{
-    width: 175px;
-    height: 30px;
-    outline: none;
-}
-textarea{
-    resize: none;
+    width: 225px;
+    height: 40px;
     outline: none;
 }
 
+select option[value=""]{
+    color:gray;
+}
+option {
+    color: black;
+}
+
+option[value=""][disabled] {
+    display: none;
+    color: gray;
+}
+
+
+
+textarea{
+    resize: none;
+    outline: none;
+    font-family:  'Roboto', Arial, Helvetica, sans-serif;
+}
+.graycolor{
+    color: gray;
+}
 /* upload styling */
 .file {
     opacity: 0;
@@ -36,9 +54,9 @@ textarea{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
     font-weight: bold;
     cursor: pointer; 
+    color:white;
 }
 /* end of upload styling */
 textarea{
@@ -49,18 +67,56 @@ textarea{
 .supload{
     background-color:#F9B354 ;
     border: none;
-    color: white;
     padding: 16px 32px;
     margin: 4px 2px;
     cursor: pointer;
     font-weight: bold;
+    color: white;
   }
-  /* generale stuff for upload page*/
+ /* generale stuff for upload page*/
   .spaceupload{
       margin-bottom: 20px;
   }
   .spacetextupload{
       display: block;
-      color: white;
       padding-bottom: 10px;
+      color: white;
   }
+/*style for the drop down */
+input{
+    outline: none;
+    border: none;
+}
+.multi-selector{
+    width: max-content;
+}
+.select-field,.select-fieldFilmguide{
+    border: 1px solid rgb(187, 187, 187);
+}
+.select-field,.task,.list,.listFilmguide,.select-fieldFilmguide{
+    width: 100%;
+    background-color: white;
+    padding: 0.3rem;
+}
+.list,.listFilmguide{
+    display:none
+}
+    .down-arrow{
+    font-size: 1.2rem;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+.task{
+    display: block;
+    padding-left: 0;
+}
+.task:hover{
+    background-color: aliceblue;
+}
+.show{
+    display: block;
+}
+.rotate180{
+    transform: rotate(-60deg);
+}

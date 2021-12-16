@@ -43,6 +43,8 @@ $role = 'admin';
                 }
 
                 ?>
+                <li class="nav_list_item"><a id="open_account" class="nav_link">Account</a></li>
+
                 <li class="nav_list_item"><a class="nav_button" href="#">Sign out</a></li>
 
             <?php
@@ -60,3 +62,7 @@ $role = 'admin';
         <span class="line"></span>
     </div>
 </header>
+
+<?php include "../templates/account.html"; ?>
+
+<script src="../public/assets/js/account.js"></script>
