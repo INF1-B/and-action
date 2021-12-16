@@ -57,7 +57,7 @@ form > div > label {
     margin: 0 auto;
     margin-top: 15px;
     padding: 7px 20px 7px 20px;
-    font-size:15px;
+    font-size: 15px;
     background-color:#F9B354;
     color: white;
     border:none;
@@ -92,11 +92,20 @@ form > div > label {
 }
 
 .register-note {
-    font-size: 10px;
+    font-size: 11px;
     color: white;
 }
 
 .subscription {
     width: 100%;
     padding: 2px;
+}
+
+.form-password {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-password div {
+    width: 49%;
 }
