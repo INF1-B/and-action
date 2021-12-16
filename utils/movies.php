@@ -1,16 +1,19 @@
 <?php 
+require "database.php";
 // Upload movie function
-function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction, $genre, $filmId){
+
+// example: uploadMovie(1, "title", "asdfg", "p" , 1, "asdfg", 1, 3);
+function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction, $genre){
     executeQuery("INSERT INTO film (gebruiker_id, titel, pad, thumbnail_pad, geaccepteerd, beschrijving, kijkwijzer_leeftijd) VALUES (?, ?, ?, ?, ?, ?, ?)", "isssisi", array($userId, $title, $path, $thumbnailPath, $accepted, $description, $agerestriction));
-    $genreInput = getTableRecord("SELECT genre.id FROM genre WHERE id = ?", $genre);
-    $filmIdInput = getTableRecord("SELECT film.id FROM film WHERE id = ?", $filmId);
+    $genreInput = getTableRecord("SELECT genre.id FROM genre WHERE id = ?", "i", array($genre));
+    $filmId = getTableRecords("SELECT MAX(id) FROM film");
+    $filmIdInput = getTableRecord("SELECT film.id FROM film WHERE id = ?", "i", array($filmId[0]['MAX(id)']));
     executeQuery("INSERT INTO genre_film (genre_id, film_id) VALUES (?, ?)", "ii", array($genreInput['id'], $filmIdInput['id']));
-    $agerestrictionInput = getTableRecord("SELECT kijkwijzer_geschiktheid.id FROM kijkwijzer_geschiktheid WHERE id = ?", $agerestriction);
+    $agerestrictionInput = getTableRecord("SELECT kijkwijzer_geschiktheid.id FROM kijkwijzer_geschiktheid WHERE id = ?", "i", array($agerestriction));
     executeQuery("INSERT INTO film_kijkwijzer_geschiktheid (kijkwijzer_geschiktheid_id, film_id) VALUES (?, ?)", "ii", array($agerestrictionInput['id'], $filmIdInput['id']));
     $message = "Movie uploaded";
     return $message;
 }
-
 
 
 //  Function that adds to tumb_up table when liking a video. It will check if the user and film like combination does not already exist. If it exists it will not add otherwise it will.
