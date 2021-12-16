@@ -16,7 +16,7 @@
     flex:1;
 }
 
-.upper > div > h1 {
+.upper > div > h1,h2 {
     margin-left: 50px;
     color:#F9B354;
     padding-top:20px;
