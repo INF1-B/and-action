@@ -11,7 +11,7 @@
 
 }
 
-.account{
+.account-menu{
     background: #3C3B3A;
     width: 25vw;
     float: right;
@@ -21,7 +21,7 @@
     margin-top: 0;
 }
 
-.account h1 {
+.account-menu h1 {
     color: #F9B354;
 }
 
@@ -30,6 +30,7 @@
 }
 
 .close_account{
+    color: white !important;
     font-size: 35px;
     margin-top: 5%;
     margin-bottom: 10%;
@@ -46,4 +47,17 @@
 
 .account-items > *{
     margin-bottom: 10%;
+}
+
+.account-buton{
+    background-color:#F9B354;
+    color:#FFFFFF;
+    border:none;
+    font-size:15px;
+    margin-left:5%; 
+    margin-bottom: 4px;
+    padding: 10px 20px 10px 20px;
+    align-self: end;
+    text-decoration: none;
+    font-weight: bold;
 }

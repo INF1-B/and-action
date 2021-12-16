@@ -44,9 +44,9 @@ include '../src/database/credentials.php';
               <li><i class="fas fa-check"></i>Lorem ipsum</li>
               <li><i class="fas fa-check"></i>Lorem ipsum</li>
               <li><i class="fas fa-check"></i>Lorem ipsum</li>
-              <li><i class="fas fa-times"></i>&nbsp;Lorem ipsum</li>
-              <li><i class="fas fa-times"></i>&nbsp;Lorem ipsum</li>
-              <li><i class="fas fa-times"></i>&nbsp;Lorem ipsum</li>
+              <li><i class="fas cross fa-times"></i>&nbsp;Lorem ipsum</li>
+              <li><i class="fas cross fa-times"></i>&nbsp;Lorem ipsum</li>
+              <li><i class="fas cross fa-times"></i>&nbsp;Lorem ipsum</li>
             </ul>
             <a class="button" href="signup.php?subscription=standard">Select</a>
           </div>
