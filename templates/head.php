@@ -4,3 +4,4 @@
 <link rel="icon" href="assets/images/logo-svg.png" type="image/png">
 <link rel="stylesheet" href="../public/assets/css/reset.css">
 <link rel="stylesheet" href="../public/assets/css/style.css">
+<link rel="stylesheet" href="../public/assets/css/account.css">

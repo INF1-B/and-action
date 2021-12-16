@@ -36,6 +36,11 @@
     margin-top: 5%;
     margin-right: 10%;
 }
+
+.close:hover{
+    color: #F9B354;
+}
+
 .menu_items{
     padding-top: 30%;
     margin-left: 10%;

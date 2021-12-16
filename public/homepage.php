@@ -18,7 +18,7 @@
     </div>
 
     <?php include "../templates/filter.html"; ?>
-
+    
     <div class="container container-movies">
 
         <!--Recently watched -->

@@ -39,6 +39,7 @@ header{
     text-decoration: none;
     letter-spacing: 1px;
     transition: 0.7s;
+    cursor: pointer;
 }
 
 .nav_link:hover{
