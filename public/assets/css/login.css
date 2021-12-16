@@ -31,11 +31,12 @@
 
 input[type="text"], input[type="password"] {
     background-color:#FFFFFF;
-    margin-top: 20px;
     height:30px;
     width: 100%;
     padding:10px;
     border:none;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 form > div {
@@ -45,24 +46,18 @@ form > div {
     margin-top:10px;
 }
 
-.checkbox-form {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
 .submit-form {
     display: flex;
     align-items: center;
 }
 
-.submit-form > input {
+.submit-form > input[type="submit"] {
     margin: 0 auto;
-    padding: 5px 20px 5px 20px;
-    font-size:15px;
     background-color:#F9B354;
+    font-size:15px;
+    padding: 5px 20px 5px 20px;
     color: white;
-    border:none;
-    margin-top:5%;
+    border: none;
 }
 
 .no-account {
@@ -71,11 +66,20 @@ form > div {
     margin-top:5px;
 }
 
-.checkmark{
-   color:#F9B354;
-}
-
 .sign-up {
     text-decoration: none;
     color:#F9B354;
+}
+
+.login-note, .login-error {
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.login-note{
+    font-size: 11px;
+}
+
+.login-error {
+    color: red;
 }

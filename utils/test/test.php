@@ -20,15 +20,15 @@ function testConn($server, $username, $password, $database){
 
 // test if multiple records can be retrieved from the database, if so, it prints it
 function testGetRecords($query){
-    print_r(getTableRecords($query));
+  print_r(getTableRecords($query));
 }
 // testGetRecords("SELECT * FROM table");
 
 // test if a single record can be retrieved from the database, if so, it prints it
-function testGetRecord($query, $id){
-    print_r(getTableRecord($query, $id));
+function testGetRecord($query, $dataTypes, $values){
+  print_r(getTableRecord($query, $dataTypes, $values));
 }
-// testGetRecord("SELECT * FROM table WHERE id = ?", 100);
+// testGetRecord("SELECT * FROM table WHERE id = ?", "i", "4");
 
 // test if a query can be executed
 function testExecuteQuery(){

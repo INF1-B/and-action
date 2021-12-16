@@ -50,16 +50,16 @@ function getTableRecords($sql){
 *  [column1] => "value", [column2] => "value", [column3] => "value"
 * )
 *
-* example : getTableRecord("SELECT * FROM user WHERE id = ?", $id);
+* example : getTableRecord("SELECT * FROM user WHERE email = ? and password = ?", 'ss', array("test@test.nl", "hashedPassword"));
 *
-* NOTE: $id must be an integer (number)!
+* 
 */
-function getTableRecord($sql, $id){
+function getTableRecord($sql, $dataTypes, $values){
     $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     // prepare the query
-    $stmt = prepareQuery($db, $sql);
+    $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt));
     // bind the query & execute the query
-    bindSelectQuery($stmt, $id);
+    $stmt = bindQuery($stmt, $dataTypes, $values);
     executePreparedQuery($stmt);
     // fetch the record
     $result = getResult($stmt);
@@ -67,6 +67,9 @@ function getTableRecord($sql, $id){
     // close the statement & close the connection
     mysqli_stmt_close($stmt);
     mysqli_close($db);
+    if (empty($row)){
+        return array("ERROR" => "unable to fetch record!");
+    }
     return $row;
 }
 
@@ -101,18 +104,12 @@ function prepareQuery($db, $sql){
     return $stmt;
 }
 
-// binds a query to an SQL statement by id. ID must be of type int.
-function bindSelectQuery($stmt, $id){
-    mysqli_stmt_bind_param($stmt, 'i', $id) or die( mysqli_stmt_error($stmt));
-}
-
 // executes a prepared and binded query
 function executePreparedQuery($stmt){
     if (mysqli_stmt_execute($stmt)) {
         return true;
-    } else {
-        return false;
-    }
+    } 
+    return false;
 }
 
 // retrieve a result from a SELECT query, doesn't work if function value is directly returned!
