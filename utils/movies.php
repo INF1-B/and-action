@@ -1,5 +1,8 @@
 <?php 
 require "database.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Upload movie function
 
 // example: uploadMovie(1, "title", "asdfg", "p" , 1, "asdfg", 1, 3);
@@ -15,8 +18,12 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $accepted, $descrip
     return $message;
 }
 
+function getMovie($filmId){
+    $sql = getTableRecord("SELECT id, titel, beschrijving, pad, thumbnail_pad FROM film WHERE id = ?", "i", array($filmId));
+    return $sql;
+}
 
-//  Function that adds to tumb_up table when liking a video. It will check if the user and film like combination does not already exist. If it exists it will not add otherwise it will.
+    //  Function that adds to tumb_up table when liking a video. It will check if the user and film like combination does not already exist. If it exists it will not add otherwise it will.
 function likeMovie($userId, $filmId){
     echo executeQuery("INSERT IGNORE INTO thumb_up (gebruiker_id, film_id) VALUES (?, ?);","ii",array($userId, $filmId));
     $message = "You have liked this movie";
