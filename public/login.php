@@ -18,8 +18,10 @@ if (isset($_POST["submit"])){
       if (array_key_exists("email", $data) && array_key_exists("wachtwoord", $data)){
         if (verifyPassword($input["password"], $data["wachtwoord"]) && $data["email"] == $input["email"]){
             // -- start setting session from this point -- //
-            $_SESSION['loggedIn'] = true;
-            // header('Location: ./homePage.php');
+            executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE email = ?", "s", array($input["email"]));
+            $data = getTableRecord("SELECT ingelogd FROM gebruiker WHERE email = ?", "s", array($input["email"]));
+            $_SESSION['loggedIn'] = $data["ingelogd"];
+            header('Location: ./homePage.php');
           } else {
             $message = messageGenerator("login-error", "login");
         }

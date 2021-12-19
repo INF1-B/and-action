@@ -5,6 +5,6 @@ session_start();
 
 function checkLoggedIn(){
     if(!isset($_SESSION['loggedIn'] )){
-        header('Location: ./index.php');
+        header('Location: ./login.php');
     }
 }
