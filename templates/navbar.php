@@ -1,12 +1,19 @@
 <?php
 
 $loggedIn;
+$role;
 
 // check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
 if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
     include "../utils/database.php";
-    $data = getTableRecord("SELECT ingelogd FROM gebruiker WHERE id = ?", "i", array($_SESSION["id"]));
+    $data = getTableRecord("SELECT ingelogd, rol.naam as rol
+        FROM gebruiker 
+        INNER JOIN rol 
+        ON gebruiker.rol_id = rol.id 
+        WHERE gebruiker.id = ?", "i", array($_SESSION["id"]));
     $loggedIn = $data["ingelogd"];
+    $role = $data["rol"];
+    print_r($data);
 } else {
     $loggedIn = false;
 }
@@ -17,11 +24,6 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
     logOut();
 }
 
-/**
- * admin
- * director
- */
-$role = 'admin';
 
 ?>
 <header class="container">
@@ -46,13 +48,13 @@ $role = 'admin';
             ?>
                 <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
                 <?php
-                if ($role == 'admin') {
+                if ($role == 'Admin') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/admin-dashboard.php">Dashboard</a></li>
 
                 <?php
                 }
-                if ($role == 'director') {
+                if ($role == 'Director') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-my-movie.php">My movies</a></li>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-upload-movie.php">Upload movie</a></li>
