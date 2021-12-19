@@ -13,7 +13,6 @@ if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
         WHERE gebruiker.id = ?", "i", array($_SESSION["id"]));
     $loggedIn = $data["ingelogd"];
     $role = $data["rol"];
-    print_r($data);
 } else {
     $loggedIn = false;
 }
@@ -24,7 +23,7 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
     logOut();
 }
 
-
+//$role = "Admin" // only use if db connection fails
 ?>
 <header class="container">
     <div class="row">
