@@ -2,8 +2,11 @@
 
 $loggedIn;
 
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
-    $loggedIn = true;
+// check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
+if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
+    include "../utils/database.php";
+    $data = getTableRecord("SELECT ingelogd FROM gebruiker WHERE id = ?", "i", array($_SESSION["id"]));
+    $loggedIn = $data["ingelogd"];
 } else {
     $loggedIn = false;
 }
