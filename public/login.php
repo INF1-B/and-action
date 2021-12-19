@@ -17,11 +17,19 @@ if (isset($_POST["submit"])){
                              array($input["email"]));
       if (array_key_exists("email", $data) && array_key_exists("wachtwoord", $data)){
         if (verifyPassword($input["password"], $data["wachtwoord"]) && $data["email"] == $input["email"]){
-            // -- start setting session from this point -- //
-            executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE email = ?", "s", array($input["email"]));
-            $data = getTableRecord("SELECT ingelogd FROM gebruiker WHERE email = ?", "s", array($input["email"]));
-            $_SESSION['loggedIn'] = $data["ingelogd"];
-            header('Location: ./homePage.php');
+            $data = getTableRecord("SELECT id, ingelogd FROM gebruiker WHERE email = ?", "s", array($input["email"]));
+            // set $_SESSION['id'] for getting the correct details of a user
+            $_SESSION['id'] = $data["id"];
+            if ($data["ingelogd"] == 1) {
+              $message = messageGenerator("login-true", "login");
+            } else {
+              // User status is updated in database, user was not loggedin to the database
+              executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE id = ? AND email = ?", "is", array($data["id"], $input["email"]));
+
+              // Set $_SESSION['loggedIn'] for page authentication
+              $_SESSION['loggedIn'] = 1; // 1 equals true
+              header('Location: ./homepage.php');
+            }
           } else {
             $message = messageGenerator("login-error", "login");
         }
@@ -33,6 +41,13 @@ if (isset($_POST["submit"])){
     }
   } else {
     $message = messageGenerator("recaptcha", "login"); // recaptcha error message
+  }
+}
+
+// this part is used once a user has already logged in to the application
+if (isset($_GET["reset"]) == "true"){
+  if (isset($_SESSION["id"]) && is_numeric($_SESSION["id"])){
+    executeQuery("UPDATE gebruiker SET ingelogd = 0 WHERE id = ?", "i", array($_SESSION["id"]));
   }
 }
 

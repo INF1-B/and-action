@@ -6,7 +6,7 @@ This file will contain all functions related to uploading of movies/thumbnails a
 
 // filters text, if not empty it will return the value filtered, if empty it will return false
 function filterInputTextGeneral($value){
-  $value = !empty($value) ? htmlspecialchars($value) : "ERROR: input value is empty, cannot filter!";
+  $value = !empty($value) ? htmlspecialchars($value) : false;
   return $value;
 }
 

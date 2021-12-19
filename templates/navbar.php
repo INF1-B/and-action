@@ -8,6 +8,12 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
     $loggedIn = false;
 }
 
+// check if a user has pressed the logout button
+if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
+    include "authentication.php";
+    logOut();
+}
+
 /**
  * admin
  * director
@@ -53,7 +59,7 @@ $role = 'admin';
                 ?>
                 <li class="nav_list_item"><a id="open_account" class="nav_link">Account</a></li>
 
-                <li class="nav_list_item"><a class="nav_button" href="#">Sign out</a></li>
+                <li class="nav_list_item"><a class="nav_button" href="?logout=true">Sign out</a></li>
 
             <?php
             } else {

@@ -77,6 +77,9 @@ function messageGenerator($id, $page){
     case 'login-error':
       $message = "<p class=\"login-error\"> ERROR: incorrect email and/or password. </p>";
       break;
+    case 'login-true':
+      $message = "<p class=\"login-error\"> ERROR: Your account is already logged in! If you would like to login anyways, click <a href=\"?reset=true\" style=\"color: white\"> here </a> and re-enter your credentials. </p>";
+      break;
     default:
       $message = "ERROR: contact the administrator of this page for more information.";
       break;
