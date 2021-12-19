@@ -75,8 +75,6 @@
             }else{
               echo "Please make sure all fields are filled in.";
             }
-          }else{
-            echo "submit not hit";
           }
           
           ?>
