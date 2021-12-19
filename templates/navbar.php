@@ -19,7 +19,6 @@ if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
 
 // check if a user has pressed the logout button
 if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
-    include "authentication.php";
     logOut();
 }
 
