@@ -1,10 +1,85 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
     <title>template</title>
     <link rel="stylesheet" href="./assets/css/styleupload.css">
-    <?php include "../templates/head.php" ?>
+    <?php include "../templates/head.php";
+          require("../utils/movies.php");
+          //UserId needs to be filtered still
+          $userId = 2;
+          if(!empty($_POST['MovieTitle'])){
+            $title = $_POST['MovieTitle'];
+          }
+
+          if(!empty($_POST['Category'])){
+            $genre = $_POST['Category'];
+          }
+          
+          if(!empty($_POST['AgeRating'])){
+            $ageRating = $_POST['AgeRating'];
+          }
+          
+          if(!empty($_POST['filmGuide'])){
+            $filmGuide = $_POST['filmGuide'];
+          }
+
+          if(!empty($_POST['Description'])){
+            $description = $_POST['Description'];
+          }
+
+          if(isset($_POST['upload'])){
+            if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND !empty($_FILES['Movie']) AND !empty($_FILES['Thumbnail']) AND !empty($_POST['Description'])){
+                $allowed = array('mp4', 'jpg');
+                $moviename = $_FILES['Movie']['name'];
+                echo $moviename;
+                $ext = pathinfo($moviename, PATHINFO_EXTENSION);
+                if(!in_array($ext, $allowed)){
+                    echo "filetype not allowed, must be .mp4";
+                }else{
+                  if(strlen($_FILES['Movie']['name']) < 70){
+                    $upload2_dir = __DIR__."/assets/movies";
+                    $tmp_name = $_FILES['Movie']['tmp_name'];
+                    move_uploaded_file($tmp_name, "$upload2_dir/$moviename");
+                    $path = "$upload2_dir/$moviename";
+                    $movie = TRUE;
+                  }else{
+                    echo "Title too long";
+                    $movie = FALSE;
+                  }
+                }
+                  $allowed = array('png', 'jpeg', 'jpg');
+                  $filename = $_FILES['Thumbnail']['name'];
+                  $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                  if(!in_array($ext, $allowed)){
+                      echo "filetype not allowed, must be .png, ,jpeg or .jpg";
+                  }else{
+                    if(strlen($_FILES['Thumbnail']['name']) < 70){
+                      $upload_dir = __DIR__."/assets/images";
+                      $tmp2_name = $_FILES['Thumbnail']['tmp_name'];
+                      move_uploaded_file($tmp2_name, "$upload_dir/$filename");
+                      $thumbnailPath = "$upload_dir/$filename";
+                      $thumbnail = TRUE;
+                    }else{
+                      echo "Title too long";
+                      $thumbnail = FALSE;
+                    }
+              }
+              if ($movie == TRUE AND $thumbnail == TRUE){
+                uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);  
+              }
+            }else{
+              echo "Please make sure all fields are filled in.";
+            }
+          }else{
+            echo "submit not hit";
+          }
+          
+          ?>
   </head>
 
   <body>
@@ -19,7 +94,7 @@
 
     <div class="container">
         <p class="uploadtitle">Upload movie</p>
-        <form>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
           <div class="spaceupload">
             <label for="MovieTitle" class="spacetextupload">Movie title</label>
             <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title">
@@ -32,18 +107,15 @@
               <span class="down-arrow">&blacktriangledown;</span>
               </div>
               <div class="list">
-                <label for="Action" class="task"><input type="checkbox" name="Category[]" id="Action" value="Action"/> Action</label>
-                <label for="Comedy" class="task"><input type="checkbox" name="Category[]" id="Comedy" value="Comedy"/> Comedy</label>
-                <label for="Drama" class="task"><input type="checkbox" name="Category[]" id="Drama" value="Drama"/> Drama</label>
-                <label for="Documentary" class="task"><input type="checkbox" name="Category[]" id="Documentary" value="Documentary"/> Documentary</label>
-                <label for="Fantasy" class="task"><input type="checkbox" name="Category[]" id="Fantasy" value="Fantasy"/> Fantasy</label>
-                <label for="Horror" class="task"><input type="checkbox" name="Category[]" id="Horror" value="Horror"/> Horror</label>
-                <label for="Mystery" class="task"><input type="checkbox" name="Category[]" id="Mystery" value="Mystery"/> Mystery</label>
-                <label for="Romance" class="task"><input type="checkbox"  name="Category[]" id="Romance" value="Romance"/> Romance</label>
-                <label for="Science-fiction" class="task"><input type="checkbox"  name="Category[]" id="Science-fiction" value="Science-fiction"/> Science fiction</label>
-                <label for="Thriller" class="task"><input type="checkbox" name="Category[]" id="Thriller" value="Thriller"/> Thriller</label>
-                <label for="Western" class="task"><input type="checkbox" name="Category[]" id="Western" value="Western"/> Western</label>
-                <label for="Other" class="task"><input type="checkbox" name="Category[]" id="Other" value="Other"/> Other</label>
+              <?php
+                $genres = getTableRecords("SELECT id, naam FROM genre");
+                foreach($genres as $key => $genre){
+                  echo "<label for=".$genre['naam']." class=\"task\"><input type=\"checkbox\" name=\"Category[]\" id=". $genre['naam']." value='". $genre['id'] ."'/> ".$genre['naam']."</label>";
+                }
+
+
+
+              ?>
               </div>
             </div>
           </div>
@@ -51,7 +123,7 @@
             <label for="AgeRating" class="spacetextupload">Age rating</label>
             <select name="AgeRating" id="AgeRating" class="styleselect">
               <option value="" disabled selected> Select your age </option>
-              <option value="0">ALL</option>
+              <option value="All">ALL</option>
               <option value="6">6</option>
               <option value="9">9</option>
               <option value="12">12</option>
@@ -68,12 +140,12 @@
                 <span class="down-arrow" id="downArrow2"> &blacktriangledown;</span>
               </div>
               <div class="listFilmguide">
-                <label for="Violence" class="task"><input type="checkbox" name="Filmguide[]" id="Violence" value="Violence"> Violence</label>
-                <label for="Sex" class="task"><input type="checkbox" name="Filmguide[]" id="Sex" value="Sex"> Sex</label>
-                <label for="Drugs" class="task"><input type="checkbox" name="Filmguide[]" id="Drugs" value="Horror"> Drugs</label>
-                <label for="Discrimination" class="task"><input type="checkbox" name="Filmguide[]" id="Discrimination" value="Discrimination"> Discrimination</label>
-                <label for="Fear" class="task"><input type="checkbox" name="Filmguide[]" id="Fear" value="Fear"> Fear</label>
-                <label for="Foul-language" class="task"><input type="checkbox" name="Filmguide[]" id="Foul-language" value="Foul-language"> Foul language</label>
+              <?php
+                $filmGuides = getTableRecords("SELECT id, naam FROM kijkwijzer_geschiktheid");
+                foreach($filmGuides as $key => $filmGuide){
+                  echo "<label for=".$filmGuide['naam']." class=\"task\"><input type=\"checkbox\" name=\"filmGuide[]\" id=". $filmGuide['naam']." value='". $filmGuide['id']."'/> ".$filmGuide['naam']."</label>";
+                }
+                ?>
               </div>
             </div>
           </div>
@@ -96,12 +168,12 @@
             <textarea id="Description" name="Description" rows="5" cols="70" placeholder="Type here your description of the movie"></textarea>
           </div>  
           <div class="spaceupload">
-            <input type="submit" value="Upload movie" class="supload">
+            <input type="submit" name='upload' value="upload" class="supload">
           </div>  
         </form>
     </div>
     <!-- end main container  -->
-
+ 
   <!--script for the multiple select-field -->
   <script>
     document.querySelector('.select-field').addEventListener('click',()=>{
