@@ -1,5 +1,13 @@
 <?php
-$loggedIn = true;
+
+$loggedIn;
+
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true) {
+    $loggedIn = true;
+} else {
+    $loggedIn = false;
+}
+
 /**
  * admin
  * director

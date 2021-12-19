@@ -1,5 +1,5 @@
 <?php 
-
+include "../utils/authentication.php";
 include "../utils/filter.php";
 include "../utils/functions.php";
 include "../utils/database.php";
@@ -18,7 +18,8 @@ if (isset($_POST["submit"])){
       if (array_key_exists("email", $data) && array_key_exists("wachtwoord", $data)){
         if (verifyPassword($input["password"], $data["wachtwoord"]) && $data["email"] == $input["email"]){
             // -- start setting session from this point -- //
-            $message = "LOGGEDIN";
+            $_SESSION['loggedIn'] = true;
+            // header('Location: ./homePage.php');
           } else {
             $message = messageGenerator("login-error", "login");
         }

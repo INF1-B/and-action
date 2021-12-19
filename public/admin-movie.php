@@ -1,5 +1,8 @@
 <?php
+include('../utils/authentication.php');
 include '../src/database/credentials.php';
+
+checkLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
