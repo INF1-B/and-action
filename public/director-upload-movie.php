@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,62 +6,95 @@
     <link rel="stylesheet" href="./assets/css/styleupload.css">
     <?php include "../templates/head.php";
           require("../utils/movies.php");
+          define('DS', DIRECTORY_SEPARATOR);
+          ini_set('display_errors', 1);
+          ini_set('display_startup_errors', 1);
+          error_reporting(E_ALL); 
           //UserId needs to be filtered still
           $userId = 2;
-          if(!empty($_POST['MovieTitle'])){
-            $title = $_POST['MovieTitle'];
-          }
+          // if(!empty($_POST['MovieTitle'])){
+          //   $title = $_POST['MovieTitle'];
+          // }else{
+          //   $titlemess = "Please add a title";
+          //   return $titlemess;
+          // }
 
-          if(!empty($_POST['Category'])){
-            $genre = $_POST['Category'];
-          }
+          // if(!empty($_POST['Category'])){
+          //   $genre = $_POST['Category'];
+          // }else{
+          //   $genremess = "Please select genres.";
+          //   return $genremess;
+          // }
           
-          if(!empty($_POST['AgeRating'])){
-            $ageRating = $_POST['AgeRating'];
-          }
+          // if(!empty($_POST['AgeRating'])){
+          //   $ageRating = $_POST['AgeRating'];
+          // }else {
+          //   $ageRatemess = "Please select an age rating.";
+          //   return $ageRatemess;
+          // }
           
-          if(!empty($_POST['filmGuide'])){
-            $filmGuide = $_POST['filmGuide'];
-          }
+          // if(!empty($_POST['filmGuide'])){
+          //   $filmGuide = $_POST['filmGuide'];
+          // } else{
+          //   $filmGuidemess = "Please select film guides.";
+          //   return $filmGuidemess;
+          // }
 
-          if(!empty($_POST['Description'])){
-            $description = $_POST['Description'];
-          }
+          // if(!empty($_POST['Description'])){
+          //   $description = $_POST['Description'];
+          // }else{
+          //   $descriptionmess = "Please add a description.";
+          //   return $descriptionmess;
+          // }
+          // if(!empty($_FILES['Movie'])){
+          //   $moviefile = $_FILES['Movie'];
+          // }else{
+          //   $moviemess = "Please add a movie file.";
+          //   return $moviemess;
+          // }
+
+
+          
 
           if(isset($_POST['upload'])){
             if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND !empty($_FILES['Movie']) AND !empty($_FILES['Thumbnail']) AND !empty($_POST['Description'])){
-                $allowed = array('mp4', 'jpg');
+                $title = $_POST['MovieTitle'];
+                $genre = $_POST['Category'];
+                $ageRating = $_POST['AgeRating'];
+                $filmGuide = $_POST['filmGuide'];
+                $description = $_POST['Description'];
+                $moviefile = $_FILES['Movie'];
+          
+                $allowed = array("mp4","mp3");
                 $moviename = $_FILES['Movie']['name'];
-                echo $moviename;
                 $ext = pathinfo($moviename, PATHINFO_EXTENSION);
                 if(!in_array($ext, $allowed)){
                     echo "filetype not allowed, must be .mp4";
                 }else{
                   if(strlen($_FILES['Movie']['name']) < 70){
-                    $upload2_dir = __DIR__."/assets/movies";
+                    $upload2_dir = __DIR__.DS."assets".DS."movies";
                     $tmp_name = $_FILES['Movie']['tmp_name'];
-                    move_uploaded_file($tmp_name, "$upload2_dir/$moviename");
-                    $path = "$upload2_dir/$moviename";
+                    move_uploaded_file($tmp_name, "$upload2_dir".DS."$moviename");
+                    $path = "$upload2_dir".DS."$moviename";
                     $movie = TRUE;
+                    echo $path;
                   }else{
-                    echo "Title too long";
                     $movie = FALSE;
                   }
                 }
-                  $allowed = array('png', 'jpeg', 'jpg');
+                  $allowed = array("jpeg", "jpg","png","gif");
                   $filename = $_FILES['Thumbnail']['name'];
                   $ext = pathinfo($filename, PATHINFO_EXTENSION);
                   if(!in_array($ext, $allowed)){
                       echo "filetype not allowed, must be .png, ,jpeg or .jpg";
                   }else{
                     if(strlen($_FILES['Thumbnail']['name']) < 70){
-                      $upload_dir = __DIR__."/assets/images";
+                      $upload_dir = __DIR__.DS."assets".DS."images";
                       $tmp2_name = $_FILES['Thumbnail']['tmp_name'];
-                      move_uploaded_file($tmp2_name, "$upload_dir/$filename");
-                      $thumbnailPath = "$upload_dir/$filename";
+                      move_uploaded_file($tmp2_name, "$upload_dir".DS."$filename");
+                      $thumbnailPath = "$upload_dir".DS."$filename";
                       $thumbnail = TRUE;
                     }else{
-                      echo "Title too long";
                       $thumbnail = FALSE;
                     }
               }
@@ -73,7 +102,16 @@
                 uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);  
               }
             }else{
-              echo "Please make sure all fields are filled in.";
+              $titlemess = "Please add a title";
+              $genremess = "Please select genres.";
+              $ageRatemess = "Please select an age rating.";
+              $filmGuidemess = "Please select film guides.";
+              $descriptionmess = "Please add a description.";
+              $moviemess = "Please add a movie file.";
+              $thumbnailmess = "Please add a thumbnail.";
+              $fillmess = "Please make sure all fields are filled in.";
+              $fillmess= array($titlemess, $genremess, $ageRatemess, $filmGuidemess, $descriptionmess, $moviemess, $thumbnailmess);
+              return $fillmess;
             }
           }
           
@@ -121,7 +159,7 @@
             <label for="AgeRating" class="spacetextupload">Age rating</label>
             <select name="AgeRating" id="AgeRating" class="styleselect">
               <option value="" disabled selected> Select your age </option>
-              <option value="All">ALL</option>
+              <option value="0">ALL</option>
               <option value="6">6</option>
               <option value="9">9</option>
               <option value="12">12</option>

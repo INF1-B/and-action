@@ -3,7 +3,7 @@ require "database.php";
 // Upload movie function
 
 // example: uploadMovie(1, "title", "asdfg", "p" , 1, "asdfg", 1, 3);
-function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $agerestrictions, $genres){
+function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuides, $genres){
     $accepted = getTableRecord("SELECT geverifieerd FROM gebruiker WHERE id = ?", "i", array($userId)   );
     executeQuery("INSERT INTO film (gebruiker_id, titel, pad, thumbnail_pad, geaccepteerd, beschrijving, kijkwijzer_leeftijd) VALUES (?, ?, ?, ?, ?, ?, ?)", "isssisi", array($userId, $title, $path, $thumbnailPath, $accepted, $description, $ageRating));
     $filmId = getTableRecords("SELECT MAX(id) FROM film");
@@ -13,9 +13,9 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageR
         $genreInput = getTableRecord("SELECT genre.id FROM genre WHERE id = ?", "i", array($genre));
         executeQuery("INSERT INTO genre_film (genre_id, film_id) VALUES (?, ?)", "ii", array($genreInput['id'], $filmIdInput['id']));
     }
-    foreach($agerestrictions as $agerestriction){
-        $agerestrictionInput = getTableRecord("SELECT kijkwijzer_geschiktheid.id FROM kijkwijzer_geschiktheid WHERE id = ?", "i", array($agerestriction));
-        executeQuery("INSERT INTO film_kijkwijzer_geschiktheid (kijkwijzer_geschiktheid_id, film_id) VALUES (?, ?)", "ii", array($agerestrictionInput['id'], $filmIdInput['id']));
+    foreach($filmGuides as $filmGuide){
+        $filmGuideInput = getTableRecord("SELECT kijkwijzer_geschiktheid.id FROM kijkwijzer_geschiktheid WHERE id = ?", "i", array($filmGuide));
+        executeQuery("INSERT INTO film_kijkwijzer_geschiktheid (kijkwijzer_geschiktheid_id, film_id) VALUES (?, ?)", "ii", array($filmGuideInput['id'], $filmIdInput['id']));
     }
     $message = "Movie uploaded";
     return $message;
