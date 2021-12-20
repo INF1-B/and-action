@@ -1,4 +1,8 @@
+<?php 
+include('../utils/authentication.php');
 
+checkLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 

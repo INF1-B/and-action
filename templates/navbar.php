@@ -1,11 +1,28 @@
 <?php
-$loggedIn = true;
-/**
- * admin
- * director
- */
-$role = 'admin';
 
+$loggedIn;
+$role;
+
+// check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
+if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
+    include "../utils/database.php";
+    $data = getTableRecord("SELECT ingelogd, rol.naam as rol
+        FROM gebruiker 
+        INNER JOIN rol 
+        ON gebruiker.rol_id = rol.id 
+        WHERE gebruiker.id = ?", "i", array($_SESSION["id"]));
+    $loggedIn = $data["ingelogd"];
+    $role = $data["rol"];
+} else {
+    $loggedIn = false;
+}
+
+// check if a user has pressed the logout button
+if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
+    logOut();
+}
+
+//$role = "Admin" // only use if db connection fails
 ?>
 <header class="container">
     <div class="row">
@@ -29,13 +46,13 @@ $role = 'admin';
             ?>
                 <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
                 <?php
-                if ($role == 'admin') {
+                if ($role == 'Admin') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/admin-dashboard.php">Dashboard</a></li>
 
                 <?php
                 }
-                if ($role == 'director') {
+                if ($role == 'Director') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-my-movie.php">My movies</a></li>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-upload-movie.php">Upload movie</a></li>
@@ -45,7 +62,7 @@ $role = 'admin';
                 ?>
                 <li class="nav_list_item"><a id="open_account" class="nav_link">Account</a></li>
 
-                <li class="nav_list_item"><a class="nav_button" href="#">Sign out</a></li>
+                <li class="nav_list_item"><a class="nav_button" href="?logout=true">Sign out</a></li>
 
             <?php
             } else {
