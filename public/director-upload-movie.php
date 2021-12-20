@@ -1,7 +1,7 @@
 <?php
-include('../utils/authentication.php');
+// include('../utils/authentication.php');
 
-checkLoggedIn();
+// checkLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,65 +11,21 @@ checkLoggedIn();
     <link rel="stylesheet" href="./assets/css/styleupload.css">
     <?php include "../templates/head.php";
           require("../utils/movies.php");
-          define('DS', DIRECTORY_SEPARATOR);
-          ini_set('display_errors', 1);
-          ini_set('display_startup_errors', 1);
-          error_reporting(E_ALL); 
           //UserId needs to be filtered still
           $userId = 2;
-          // if(!empty($_POST['MovieTitle'])){
-          //   $title = $_POST['MovieTitle'];
-          // }else{
-          //   $titlemess = "Please add a title";
-          //   return $titlemess;
-          // }
+       
 
-          // if(!empty($_POST['Category'])){
-          //   $genre = $_POST['Category'];
-          // }else{
-          //   $genremess = "Please select genres.";
-          //   return $genremess;
-          // }
-          
-          // if(!empty($_POST['AgeRating'])){
-          //   $ageRating = $_POST['AgeRating'];
-          // }else {
-          //   $ageRatemess = "Please select an age rating.";
-          //   return $ageRatemess;
-          // }
-          
-          // if(!empty($_POST['filmGuide'])){
-          //   $filmGuide = $_POST['filmGuide'];
-          // } else{
-          //   $filmGuidemess = "Please select film guides.";
-          //   return $filmGuidemess;
-          // }
-
-          // if(!empty($_POST['Description'])){
-          //   $description = $_POST['Description'];
-          // }else{
-          //   $descriptionmess = "Please add a description.";
-          //   return $descriptionmess;
-          // }
-          // if(!empty($_FILES['Movie'])){
-          //   $moviefile = $_FILES['Movie'];
-          // }else{
-          //   $moviemess = "Please add a movie file.";
-          //   return $moviemess;
-          // }
-
-
-          
 
           if(isset($_POST['upload'])){
-            if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND !empty($_FILES['Movie']) AND !empty($_FILES['Thumbnail']) AND !empty($_POST['Description'])){
+            if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND  !($_FILES['Movie']['error'] > 0) AND !($_FILES['Thumbnail']['error'] > 0) AND !empty($_POST['Description'])){
                 $title = $_POST['MovieTitle'];
                 $genre = $_POST['Category'];
                 $ageRating = $_POST['AgeRating'];
                 $filmGuide = $_POST['filmGuide'];
                 $description = $_POST['Description'];
                 $moviefile = $_FILES['Movie'];
-          
+                $thumbnailfile = $_FILES['Thumbnail'];
+                print_r($thumbnailfile);
                 $allowed = array("mp4","mp3");
                 $moviename = $_FILES['Movie']['name'];
                 $ext = pathinfo($moviename, PATHINFO_EXTENSION);
@@ -77,7 +33,7 @@ checkLoggedIn();
                     echo "filetype not allowed, must be .mp4";
                 }else{
                   if(strlen($_FILES['Movie']['name']) < 70){
-                    $upload2_dir = __DIR__.DS."assets".DS."movies";
+                    $upload2_dir = __DIR__.DS."uploads".DS."user_".$userId;
                     $tmp_name = $_FILES['Movie']['tmp_name'];
                     move_uploaded_file($tmp_name, "$upload2_dir".DS."$moviename");
                     $path = "$upload2_dir".DS."$moviename";
@@ -94,7 +50,7 @@ checkLoggedIn();
                       echo "filetype not allowed, must be .png, ,jpeg or .jpg";
                   }else{
                     if(strlen($_FILES['Thumbnail']['name']) < 70){
-                      $upload_dir = __DIR__.DS."assets".DS."images";
+                      $upload_dir = __DIR__.DS."uploads".DS."user_".$userId;
                       $tmp2_name = $_FILES['Thumbnail']['tmp_name'];
                       move_uploaded_file($tmp2_name, "$upload_dir".DS."$filename");
                       $thumbnailPath = "$upload_dir".DS."$filename";
@@ -114,12 +70,8 @@ checkLoggedIn();
               $descriptionmess = "Please add a description.";
               $moviemess = "Please add a movie file.";
               $thumbnailmess = "Please add a thumbnail.";
-              $fillmess = "Please make sure all fields are filled in.";
-              $fillmess= array($titlemess, $genremess, $ageRatemess, $filmGuidemess, $descriptionmess, $moviemess, $thumbnailmess);
-              return $fillmess;
             }
           }
-          
           ?>
   </head>
 
@@ -133,13 +85,16 @@ checkLoggedIn();
     <!-- end navbar -->
     <!-- start main container -->
 
-    <div class="container">
+    <div class="container upload">
         <p class="uploadtitle">Upload movie</p>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
           <div class="spaceupload">
             <label for="MovieTitle" class="spacetextupload">Movie title</label>
             <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title">
           </div>
+          <?php if(isset($titlemess)){
+                  echo "<p>".$titlemess."</p>";
+                }?>
           <div class="spaceupload">
           <p class="spacetextupload">Category</p>
             <div class="multi-selector">
@@ -154,12 +109,13 @@ checkLoggedIn();
                   echo "<label for=".$genre['naam']." class=\"task\"><input type=\"checkbox\" name=\"Category[]\" id=". $genre['naam']." value='". $genre['id'] ."'/> ".$genre['naam']."</label>";
                 }
 
-
-
               ?>
               </div>
             </div>
           </div>
+          <?php if(isset($genremess)){
+                  echo "<p>".$genremess."</p>";
+                }?>
           <div class="spaceupload">
             <label for="AgeRating" class="spacetextupload">Age rating</label>
             <select name="AgeRating" id="AgeRating" class="styleselect">
@@ -172,6 +128,12 @@ checkLoggedIn();
               <option value="16">16</option>
               <option value="18">18</option>
             </select> 
+
+            <?php 
+               if(isset($ageRatemess)){
+                echo "<p>".$ageRatemess."</p>";
+              }
+            ?>
           </div>  
           <div class="spaceupload">
           <p class="spacetextupload">Film guide</p>
@@ -186,16 +148,26 @@ checkLoggedIn();
                 foreach($filmGuides as $key => $filmGuide){
                   echo "<label for=".$filmGuide['naam']." class=\"task\"><input type=\"checkbox\" name=\"filmGuide[]\" id=". $filmGuide['naam']." value='". $filmGuide['id']."'/> ".$filmGuide['naam']."</label>";
                 }
+
                 ?>
               </div>
             </div>
           </div>
+          <?php
+          if(isset($filmGuidemess)){
+                  echo "<p>".$filmGuidemess."</p>";
+                } ?>
           <div class="spaceupload">
             <p class="spacetextupload">Movie</p>
             <div class="file-upload">
                <label for="Movie">Select movie</label>
                <input type="file" id="Movie" name="Movie" class="file" >
             </div>
+            <?php 
+                 if(isset($moviemess)){
+                  echo "<p>".$moviemess."</p>";
+                }
+            ?>
           </div>
           <div class="spaceupload">
             <p class="spacetextupload">Thumbnail</p>
@@ -203,11 +175,21 @@ checkLoggedIn();
               <label for="Thumbnail">Thumbnail</label>
               <input type="file" id="Thumbnail" name="Thumbnail" class="file">
             </div>
+            <?php 
+                 if(isset($thumbnailmess)){
+                  echo "<p>".$thumbnailmess."</p>";
+                }
+            ?>
           </div> 
           <div class="spaceupload">
             <label for="Description" class="spacetextupload">Description</label>
             <textarea id="Description" name="Description" rows="5" cols="70" placeholder="Type here your description of the movie"></textarea>
           </div>  
+          <?php 
+                 if(isset($descriptionmess)){
+                  echo "<p>".$descriptionmess."</p>";
+                }
+            ?>
           <div class="spaceupload">
             <input type="submit" name='upload' value="upload" class="supload">
           </div>  
