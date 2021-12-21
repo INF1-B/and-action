@@ -11,53 +11,51 @@
     <link rel="stylesheet" href="./assets/css/styleupload.css">
     <?php include "../templates/head.php";
           require("../utils/movies.php");
-          //UserId needs to be filtered still
+          require("../utils/filter.php");
+          DEFINE('DS', DIRECTORY_SEPARATOR); 
+          
           $userId = 2;
-       
-
 
           if(isset($_POST['upload'])){
-            if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND  !($_FILES['Movie']['error'] > 0) AND !($_FILES['Thumbnail']['error'] > 0) AND !empty($_POST['Description'])){
-                $title = $_POST['MovieTitle'];
-                $genre = $_POST['Category'];
-                $ageRating = $_POST['AgeRating'];
-                $filmGuide = $_POST['filmGuide'];
-                $description = $_POST['Description'];
-                $moviefile = $_FILES['Movie'];
-                $thumbnailfile = $_FILES['Thumbnail'];
-                print_r($thumbnailfile);
-                $allowed = array("mp4","mp3");
-                $moviename = $_FILES['Movie']['name'];
-                $ext = pathinfo($moviename, PATHINFO_EXTENSION);
-                if(!in_array($ext, $allowed)){
-                    echo "filetype not allowed, must be .mp4";
+            if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND  !($_FILES['Movie']['error'] > 0) AND !($_FILES['Thumbnail']['error'] > 0) AND !empty($_POST['Description'])){  
+              $title = $_POST['MovieTitle'];
+              $genre = $_POST['Category'];
+              $ageRating = $_POST['AgeRating'];
+              $filmGuide = $_POST['filmGuide'];
+              $description = $_POST['Description'];
+              $moviefile = $_FILES['Movie'];
+              $thumbnailfile = $_FILES['Thumbnail'];
+              $allowed = array("mp4","mp3");
+              $moviename = $_FILES['Movie']['name'];
+              $ext = pathinfo($moviename, PATHINFO_EXTENSION);
+              if(!in_array($ext, $allowed)){
+                  echo "filetype not allowed, must be .mp4";
+              }else{
+                if(strlen($_FILES['Movie']['name']) < 70){
+                  $upload2_dir = __DIR__.DS."uploads".DS."user_".$userId;
+                  $tmpFileName = $_FILES['Movie']['tmp_name'];
+                  moveUploadedFile($upload2_dir, $tmpFileName, $moviename);
+                  $path = "$upload2_dir".DS."$moviename";
+                  $movie = TRUE;
                 }else{
-                  if(strlen($_FILES['Movie']['name']) < 70){
-                    $upload2_dir = __DIR__.DS."uploads".DS."user_".$userId;
-                    $tmp_name = $_FILES['Movie']['tmp_name'];
-                    move_uploaded_file($tmp_name, "$upload2_dir".DS."$moviename");
-                    $path = "$upload2_dir".DS."$moviename";
-                    $movie = TRUE;
-                    echo $path;
-                  }else{
-                    $movie = FALSE;
-                  }
+                  $movie = FALSE;
                 }
-                  $allowed = array("jpeg", "jpg","png","gif");
-                  $filename = $_FILES['Thumbnail']['name'];
-                  $ext = pathinfo($filename, PATHINFO_EXTENSION);
-                  if(!in_array($ext, $allowed)){
-                      echo "filetype not allowed, must be .png, ,jpeg or .jpg";
-                  }else{
-                    if(strlen($_FILES['Thumbnail']['name']) < 70){
-                      $upload_dir = __DIR__.DS."uploads".DS."user_".$userId;
-                      $tmp2_name = $_FILES['Thumbnail']['tmp_name'];
-                      move_uploaded_file($tmp2_name, "$upload_dir".DS."$filename");
-                      $thumbnailPath = "$upload_dir".DS."$filename";
-                      $thumbnail = TRUE;
-                    }else{
-                      $thumbnail = FALSE;
-                    }
+              }
+              $allowed = array("jpeg", "jpg","png","gif");
+              $thumbnailname = $_FILES['Thumbnail']['name'];
+              $ext = pathinfo($thumbnailname, PATHINFO_EXTENSION);
+              if(!in_array($ext, $allowed)){
+                  echo "filetype not allowed, must be .png, ,jpeg or .jpg";
+              }else{
+                if(strlen($_FILES['Thumbnail']['name']) < 70){
+                  $upload_dir = __DIR__.DS."uploads".DS."user_".$userId;
+                  $tmpFileName = $_FILES['Thumbnail']['tmp_name'];
+                  moveUploadedFile($upload_dir, $tmpFileName, $thumbnailname);
+                  $thumbnailPath = "$upload_dir".DS."$thumbnailname";
+                  $thumbnail = TRUE;
+                }else{
+                  $thumbnail = FALSE;
+                }
               }
               if ($movie == TRUE AND $thumbnail == TRUE){
                 uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);  
