@@ -43,6 +43,33 @@ function getTableRecords($sql){
     return $rows;
 }
 
+/* Execute a select query on the database and return the results, this will retrieve multiple records.
+* Result will be as follows:
+*
+* array
+*  (
+*  [0] => Array([column1] => "value", [column2] => "value", [column3] => "value"),
+*  [1] => Array([column1] => "value", [column2] => "value", [column3] => "value"),
+* )
+* the [0], [1] represent the rows of the table.
+*
+* example : getTableRecordsFiltered("SELECT * FROM user WHERE rol_id = ? and abbonement = ?", "ii", array(1, 2);
+*/
+function getTableRecordsFiltered($sql, $dataTypes, $values){
+    $db = dbConnect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $stmt = prepareQuery($db, $sql);
+    $stmt = bindQuery($stmt, $dataTypes, $values);
+    executePreparedQuery($stmt);
+    $result = getResult($stmt);
+    $rows = array();
+    while($row = mysqli_fetch_assoc($result)) {
+        array_push($rows, $row);
+    }
+    mysqli_stmt_close($stmt);
+    mysqli_close($db);
+    return $rows;
+}
+
 /* execute a select query on the database and return a specific record, this will retrieve 1 single record.
 * Result will be as follows:
 *

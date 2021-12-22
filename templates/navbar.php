@@ -2,6 +2,7 @@
 
 $loggedIn;
 $role;
+$movies;
 
 // check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
 if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
@@ -21,7 +22,25 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
     logOut();
 }
 
-//$role = "Admin" // only use if db connection fails
+// search for a movie. This will search for a movie title, a description of a movie or the director/user that has created the movie
+if (isset($_GET["search-movie"])){
+    $movies = getTableRecordsFiltered("SELECT gebruiker.gebruikersnaam, film.titel, film.pad, film.thumbnail_pad, film.geaccepteerd, film.beschrijving, film.kijkwijzer_leeftijd 
+                                    FROM film 
+                                    INNER JOIN gebruiker 
+                                    ON film.gebruiker_id = gebruiker.id
+                                    WHERE titel 
+                                    LIKE CONCAT('%',?,'%')
+                                    OR beschrijving 
+                                    LIKE CONCAT('%',?,'%')
+                                    OR gebruikersnaam 
+                                    LIKE CONCAT('%',?,'%')
+                                    AND geaccepteerd = 1",
+                                     "sss",
+                                     array($_GET["search-movie"], $_GET["search-movie"], $_GET["search-movie"]));
+}
+
+
+// $role = "Admin" // only use if db connection fails
 ?>
 <header class="container">
     <div class="row">
@@ -32,8 +51,8 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
         if ($loggedIn) {
         ?>
             <div class="search_bar">
-                <form action="#" method="POST">
-                    <input type="text" id="search" placeholder="Search movie">
+                <form action="<?php $_SERVER["PHP_SELF"]?>" method="GET">
+                    <input type="text" id="search" placeholder="search..." name="search-movie">
                 </form>
             </div>
         <?php
