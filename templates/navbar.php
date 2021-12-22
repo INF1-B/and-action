@@ -6,7 +6,6 @@ $movies;
 
 // check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
 if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
-    include "../utils/database.php";
     $data = getTableRecord("SELECT ingelogd, rol.naam as rol
         FROM gebruiker 
         INNER JOIN rol 
@@ -25,7 +24,7 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
 
 // search for a movie. This will search for a movie title, a description of a movie or the director/user that has created the movie
 if (isset($_GET["search-movie"])){
-    $movies = getTableRecordsFiltered("SELECT gebruiker.gebruikersnaam, film.titel, film.pad, film.thumbnail_pad, film.geaccepteerd, film.beschrijving, film.kijkwijzer_leeftijd 
+    $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
                                     FROM film 
                                     INNER JOIN gebruiker 
                                     ON film.gebruiker_id = gebruiker.id
@@ -63,7 +62,7 @@ if (isset($_GET["search-movie"])){
             <?php
             if ($loggedIn) {
             ?>
-                <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
+                <li class="nav_list_item"><a class="nav_link" href="../public/homepage.php">Home</a></li>
                 <?php
                 if ($role == 'Admin') {
                 ?>
@@ -71,6 +70,7 @@ if (isset($_GET["search-movie"])){
 
                 <?php
                 }
+
                 if ($role == 'Director') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-my-movie.php">My movies</a></li>

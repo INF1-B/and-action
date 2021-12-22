@@ -121,6 +121,25 @@ function executeQuery($sql, $dataTypes, $values){
     return $result;
 }
 
+/* return a multi dimensional associative array containing the amount of values and the datatypes
+*
+*
+*
+*/
+function setInsert($filteredValue, $id){
+    $tmpArray = array("questionMarks" => array(), "values" => array());
+    for ($value=0; $value < count($filteredValue); $value++) { 
+       if ($value == count($filteredValue)-1) {
+            array_push($tmpArray["questionMarks"], "(?, ?)");
+            array_push($tmpArray["values"], $filteredValue[$value], $id);
+       } else {
+            array_push($tmpArray["questionMarks"], "(?, ?),");
+            array_push($tmpArray["values"], $filteredValue[$value], $id);
+       }
+   }
+   return $tmpArray;
+}
+
 // ------------------------------------------- //
 /* this part is reserved for the sub functions */
 // ------------------------------------------- //

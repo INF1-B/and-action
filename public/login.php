@@ -1,9 +1,12 @@
 <?php 
-include "../utils/authentication.php";
-include "../utils/filter.php";
-include "../utils/functions.php";
-include "../utils/database.php";
+  require_once("../utils/database.php");
+  require_once("../utils/authentication.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+?>
 
+<?php 
 $message = messageGenerator("login-note", "login");
 
 if (isset($_POST["submit"])){
@@ -57,13 +60,12 @@ if (isset($_GET["reset"]) == "true"){
 <html lang="en">
 
 <head>
-  <title>Log in</title>
+  <title>And action - login</title>
   <?php include "../templates/head.php" ?>
   <link rel="stylesheet" href="../public/assets/css/login.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <body>
-
   <div class="container container-login">
     <div class="upper">
       <div>

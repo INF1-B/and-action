@@ -1,35 +1,38 @@
 <?php 
-include('../utils/authentication.php');
-
-checkLoggedIn();
+  require_once("../utils/database.php");
+  require_once("../utils/authentication.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+  checkLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>And action</title>
-    <?php include "../templates/head.php" ?>
-    <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
+  <title>And action</title>
+  <?php include "../templates/head.php" ?>
+  <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
 </head>
 
 <body>
-    <!-- start navbar -->
+  <!-- start navbar -->
 
-    <div class="navbar">
-        <?php include "../templates/navbar.php"; ?>
+  <div class="navbar">
+    <?php include "../templates/navbar.php"; ?>
+  </div>
+
+  <!-- end navbar -->
+  <div class="container container-movies">
+
+    <!--Recently watched -->
+    <div class="upper">
+      <h1>Under review</h1>
     </div>
 
-    <!-- end navbar -->
-    <div class="container container-movies">
-
-<!--Recently watched -->
-<div class="upper">
-    <h1>Under review</h1>
-</div>
 
 
-
-<?php 
+    <?php 
     for ($row=0; $row < 1; $row++) { 
         echo "<div class=\"movie-row\">";
         for ($movie=0; $movie < 6; $movie++) { 
@@ -45,9 +48,9 @@ checkLoggedIn();
         }
         echo "</div>";
       }
-?> 
+?>
 
-<!-- end main container  -->
+    <!-- end main container  -->
 
 </body>
 
