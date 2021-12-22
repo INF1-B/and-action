@@ -30,6 +30,23 @@ function filterInputPost($postVariable, $parameterName){
   return $filteredValue;
 }
 
+/* filterIntMultiple(): filter multiple integer values
+*
+* Example : $filteredValues = filterIntMultiple(array(0, 2, 4));
+*
+*/
+function filterIntMultiple($postVariableArray){
+  $filteredValues = array();
+  foreach($postVariableArray as $key => $value){
+    $filteredValue = is_numeric($value) ? filter_var($value, FILTER_SANITIZE_NUMBER_INT) : "X";
+    array_push($filteredValues, $filteredValue);
+  }
+  if (in_array("X", $filteredValues)){
+    return false;
+  }
+  return $filteredValues;
+}
+
 /* filterEmail(): returns true if an email address is valid, if not it will return an error message
 *
 * Example 1 : filterEmail("michel.disbergen@test.com"); // returns true
@@ -66,7 +83,7 @@ function filterFileMimeType($file, $allowedMimeTypes){
   if (in_array($uploadedMimeType, $allowedMimeTypes)) {
     return true;
   }
-  return "ERROR: MIME TYPE not supported";
+  return false;
 }
 
 /* moveUploadedFile(): returns true if a file can be uploaded, then uploads a file, and a error string if the uploaded file can't be moved

@@ -5,7 +5,6 @@ $role;
 
 // check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
 if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
-    include "../utils/database.php";
     $data = getTableRecord("SELECT ingelogd, rol.naam as rol
         FROM gebruiker 
         INNER JOIN rol 
