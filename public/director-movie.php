@@ -31,13 +31,13 @@
     <div class="text-wrapper">
       <div class="description">
         <h1>Narcos: Mexico</h1>
-        <p> 
+        <p>
           lorem ipsum dolor sit amet lorem ipsum
           lorem ipsum dolor sit amet lorem ipsum
           lorem ipsum dolor sit amet lorem ipsum
           lorem ipsum dolor sit amet lorem ipsum
         </p>
-        <p class="movie-likes"> 
+        <p class="movie-likes">
           <a href="#">
             <i class="fas fa-thumbs-up" style="font-size: 36px;"></i>
           </a>
@@ -76,13 +76,15 @@
     <div class="movie-wrapper">
       <a href="#">
         <div class="movie">
-          <img src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg" alt="movie-title">
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg"
+            alt="movie-title">
         </div>
       </a>
-      <div class="form-delete-movie"> 
+      <div class="form-delete-movie">
         <a href="#" class="delete-movie">
-        Delete movie
-          
+          Delete movie
+
         </a>
       </div>
     </div>

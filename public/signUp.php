@@ -6,7 +6,7 @@ include "../utils/database.php";
 
 $message = messageGenerator("register-note", "register");
 
-if (isset($_POST["submit"])) { 
+if (isset($_POST["submit"])) {
   // filter all user values
   $input["username"] = filterInputPost($_POST["username"], "username");
   $input["password"] = filterInputPost($_POST["password"], "password");
@@ -16,15 +16,17 @@ if (isset($_POST["submit"])) {
   $input["g-recaptcha"] = getRecaptchaResponse($_POST['g-recaptcha-response']);
 
   if ($input["g-recaptcha"]) {
-    if (filterPassword($input["password"])){
-      if ($_POST["password"] == $_POST["password-confirm"]){
+    if (filterPassword($input["password"])) {
+      if ($_POST["password"] == $_POST["password-confirm"]) {
         if (!in_array(false, $input)) {
-          if (executeQuery("INSERT INTO gebruiker (rol_id, abonnement_id, geverifieerd, ingelogd, gebruikersnaam, wachtwoord, email) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?)", 
-                            "iiiisss",
-                            array(3,  $input["subscription"], 0, 0, $input["username"], generateHash($input["password"]), $input["email"]))) {
-              $message = messageGenerator("register-success", "register");
-            } else {
+          if (executeQuery(
+            "INSERT INTO gebruiker (rol_id, abonnement_id, geverifieerd, ingelogd, gebruikersnaam, wachtwoord, email) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "iiiisss",
+            array(3,  $input["subscription"], 0, 0, $input["username"], generateHash($input["password"]), $input["email"])
+          )) {
+            $message = messageGenerator("register-success", "register");
+          } else {
             $message = messageGenerator("register-failure-db", "register");
           }
         } else {
@@ -47,9 +49,9 @@ if (isset($_POST["submit"])) {
 <html lang="en">
 
 <head>
-  <title>Sign up director</title>
+  <title>And action - signup</title>
   <?php
-    include "../templates/head.php";
+  include "../templates/head.php";
   ?>
   <link rel="stylesheet" href="assets/css/signup.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -70,13 +72,11 @@ if (isset($_POST["submit"])) {
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
       <div>
         <label for="email">Email address</label>
-        <input
-          value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' // if form is filled in, prefill same values ?>"
-          type="text" name="email" id="email" placeholder="Type here your email address">
+        <input value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' // if form is filled in, prefill same values 
+                      ?>" type="text" name="email" id="email" placeholder="Type here your email address">
         <label for="username">Username</label>
-        <input
-          value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' // if form is filled in, prefill same values ?>"
-          type="text" name="username" id="username" placeholder="Type here your username">
+        <input value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' // if form is filled in, prefill same values 
+                      ?>" type="text" name="username" id="username" placeholder="Type here your username">
       </div>
       <div class="form-password">
         <div>
@@ -93,19 +93,19 @@ if (isset($_POST["submit"])) {
         <select id="subscription" class="subscription" name="subscription">
 
           <!-- start subscription types, people can have this field prefilled from the index.php page - subscriptions -->
-          <?php 
-            $subscriptions = getTableRecords("SELECT id, naam FROM abonnement");
-            if (!isset($_GET["subscription"])) {
-              echo "<option value=\"0\" selected hidden> Please pick your subscription </option>";
-            } 
-            
-            foreach ($subscriptions as $key => $subscription) {
-              if (isset($_GET["subscription"]) && strtolower($_GET["subscription"]) == strtolower($subscription["naam"])) {
-                echo "<option value=" . $subscription["id"] . " selected>" . $subscription["naam"] . "</option>";
-              } else {
-                echo "<option value=" . $subscription["id"] . " >" . $subscription["naam"] . "</option>";
-              }
+          <?php
+          $subscriptions = getTableRecords("SELECT id, naam FROM abonnement");
+          if (!isset($_GET["subscription"])) {
+            echo "<option value=\"0\" selected hidden> Please pick your subscription </option>";
+          }
+
+          foreach ($subscriptions as $key => $subscription) {
+            if (isset($_GET["subscription"]) && strtolower($_GET["subscription"]) == strtolower($subscription["naam"])) {
+              echo "<option value=" . $subscription["id"] . " selected>" . $subscription["naam"] . "</option>";
+            } else {
+              echo "<option value=" . $subscription["id"] . " >" . $subscription["naam"] . "</option>";
             }
+          }
           ?>
           <!-- end subscription types -->
 
@@ -120,7 +120,7 @@ if (isset($_POST["submit"])) {
     </form>
 
     <?php
-      echo $message;
+    echo $message;
     ?>
     <p class="no-account">
       Already have an account?

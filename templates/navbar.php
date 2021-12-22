@@ -62,7 +62,7 @@ if (isset($_GET["search-movie"])){
             <?php
             if ($loggedIn) {
             ?>
-                <li class="nav_list_item"><a class="nav_link" href="#">Home</a></li>
+                <li class="nav_list_item"><a class="nav_link" href="../public/homepage.php">Home</a></li>
                 <?php
                 if ($role == 'Admin') {
                 ?>
@@ -70,6 +70,7 @@ if (isset($_GET["search-movie"])){
 
                 <?php
                 }
+
                 if ($role == 'Director') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-my-movie.php">My movies</a></li>

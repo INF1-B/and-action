@@ -32,15 +32,21 @@
         <h1 class="title">Approved movies</h1>
         <div class="movies">
           <div class="movie">
-            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+            <img class="movie_thumbnail"
+              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
+              alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+            <img class="movie_thumbnail"
+              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
+              alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+            <img class="movie_thumbnail"
+              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
+              alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
         </div>
@@ -53,7 +59,7 @@
           <p class="account_info"><span class="bold">Status:</span> verified</p>
         </div>
         <div class="button_container">
-        <a href="#" class="button">Approve user</a>
+          <a href="#" class="button">Approve user</a>
         </div>
       </div>
     </div>
@@ -63,15 +69,21 @@
 
         <div class="movies">
           <div class="movie">
-            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+            <img class="movie_thumbnail"
+              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
+              alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+            <img class="movie_thumbnail"
+              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
+              alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
+            <img class="movie_thumbnail"
+              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
+              alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
         </div>

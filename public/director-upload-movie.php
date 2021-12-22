@@ -6,12 +6,15 @@
   require_once("../utils/functions.php");
   checkLoggedIn();
 ?>
-<?
+<?php
   require("../src/database/constants.php");
 
   $userId = $_SESSION["id"];
+  $uploadDir = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
+  $frontEndPath = "/and-action/public/uploads/user_" . $userId;
 
   if (isset($_POST['upload'])) {
+    // text values
     if (!empty($_POST['MovieTitle'])) {
       $title = $_POST['MovieTitle'];
     } else {
@@ -32,21 +35,20 @@
     } else {
       $filmGuidemess = "Please select film guides.";
     }
+    // movie
     if (!($_FILES['Movie']['error'] > 0)) {
       $allowedext = VIDEOEXTENSIONS;
       $moviename = $_FILES['Movie']['name'];
       $ext = "." . pathinfo($moviename, PATHINFO_EXTENSION);
-      // michel
       $videoMimeType = filterFileMimeType($_FILES["Movie"]["tmp_name"], VIDEOMIMETYPES);
       if (!in_array($ext, $allowedext) or !$videoMimeType) {
         $filetypemoviemess = "filetype not allowed, must be .mp4";
         $movie = FALSE;
       } else {
         if (strlen($_FILES['Movie']['name']) < 70) {
-          $upload_dir = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
           $tmpFileName = $_FILES['Movie']['tmp_name'];
-          $path = "$upload_dir" . DS . "$moviename";
-          $movie = TRUE;
+          $path = $frontEndPath . "/" . $moviename;
+          $movie = true;
         }
       }
     } else {
@@ -55,7 +57,6 @@
     }
 
     if (!($_FILES['Thumbnail']['error'] > 0)) {
-
       $allowedext = IMAGEEXTENSIONS;
       $thumbnailname = $_FILES['Thumbnail']['name'];
       $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
@@ -65,10 +66,9 @@
         $thumbnail = FALSE;
       } else {
         if (strlen($_FILES['Thumbnail']['name']) < 70) {
-          $upload2_dir = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
           $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
-          $thumbnailPath = "$upload2_dir" . DS . "$thumbnailname";
-          $thumbnail = TRUE;
+          $thumbnailPath = $frontEndPath . "/" . $thumbnailname;
+          $thumbnail = true;
         }
       }
     } else {
@@ -80,20 +80,17 @@
     } else {
       $descriptionmess = "Please add a description.";
     }
-    if (isset($title) and isset($genre) and isset($ageRating) and isset($filmGuide) and $movie === TRUE and $thumbnail === TRUE and isset($description)) {
-
-      $directory = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
-      if (!file_exists($directory)) {
-        mkdir($directory, 0777, true);
-        moveUploadedFile($upload_dir, $tmpFileName, $moviename);
+    if (isset($title) and isset($genre) and isset($ageRating) and isset($filmGuide) and $movie and $thumbnail and isset($description)) {
+      if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+        moveUploadedFile($uploadDir, $tmpFileName, $moviename);
         //thumbnail
-        moveUploadedFile($upload2_dir, $tmpFileName2, $thumbnailname);
+        moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
       } else {
-        moveUploadedFile($upload2_dir, $tmpFileName, $moviename);
+        moveUploadedFile($uploadDir, $tmpFileName, $moviename);
         //thumbnail
-        moveUploadedFile($upload2_dir, $tmpFileName2, $thumbnailname);
+        moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
       }
-
       uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
     }
   }
@@ -102,7 +99,7 @@
 <html lang="en">
 
 <head>
-  <title>template</title>
+  <title>And action</title>
   <?php include "../templates/head.php";?>
   <link rel="stylesheet" href="./assets/css/styleupload.css">
 </head>

@@ -2,10 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>And-Action</title>
+  <title>And Action</title>
   <link href="assets/css/landingpage.css" rel="stylesheet">
   <?php include "../templates/head.php" ?>
-  <script src="https://kit.fontawesome.com/e187230ac2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -18,10 +17,10 @@
   <!-- end navbar -->
   <!-- start main container -->
   <div class="image-container">
-      <div class="container">
-        <img src="assets/images/logo.svg" alt="logo">
-        <h1>Show your show!</h1>
-      </div>
+    <div class="container">
+      <img src="assets/images/logo.svg" alt="logo">
+      <h1>Show your show!</h1>
+    </div>
   </div>
   <div class="container">
     <div class="row">

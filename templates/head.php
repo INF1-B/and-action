@@ -5,3 +5,5 @@
 <link rel="stylesheet" href="../public/assets/css/reset.css">
 <link rel="stylesheet" href="../public/assets/css/style.css">
 <link rel="stylesheet" href="../public/assets/css/account.css">
+<script src="https://kit.fontawesome.com/e187230ac2.js" crossorigin="anonymous"></script>
+

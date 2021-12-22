@@ -60,13 +60,12 @@ if (isset($_GET["reset"]) == "true"){
 <html lang="en">
 
 <head>
-  <title>Log in</title>
+  <title>And action - login</title>
   <?php include "../templates/head.php" ?>
   <link rel="stylesheet" href="../public/assets/css/login.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <body>
-
   <div class="container container-login">
     <div class="upper">
       <div>

@@ -31,13 +31,13 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageR
     return $message;
 }
 
-// retrieve all movies, limited by 50
+// retrieve all movies, limited by 50 movies
 function getMovies(){
-    $movies = getTableRecords("SELECT id, title, thumbnail_pad FROM film LIMIT 50");
+    $movies = getTableRecords("SELECT id, titel, thumbnail_pad FROM film LIMIT 50");
     return $movies;
 }
 
-// 
+// retrieve a specific movie, used when the user is clicking on a specific movie
 function getMovie($filmId){
     $sql = getTableRecord("SELECT id, titel, beschrijving, pad, thumbnail_pad FROM film WHERE id = ?", "i", array($filmId));
     return $sql;
