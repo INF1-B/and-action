@@ -12,62 +12,102 @@
     <?php include "../templates/head.php";
           require("../utils/movies.php");
           require("../utils/filter.php");
+          require("../src/database/contants.php");
           DEFINE('DS', DIRECTORY_SEPARATOR); 
-          
+          ini_set('display_errors', 1);
+          ini_set('display_startup_errors', 1);
+          error_reporting(E_ALL);
           $userId = 2;
 
+
+
+
+
           if(isset($_POST['upload'])){
-            if(!empty($_POST['MovieTitle']) AND !empty($_POST['Category']) AND !empty($_POST['AgeRating']) AND !empty($_POST['filmGuide'])  AND  !($_FILES['Movie']['error'] > 0) AND !($_FILES['Thumbnail']['error'] > 0) AND !empty($_POST['Description'])){  
+            if(!empty($_POST['MovieTitle'])){
               $title = $_POST['MovieTitle'];
-              $genre = $_POST['Category'];
-              $ageRating = $_POST['AgeRating'];
-              $filmGuide = $_POST['filmGuide'];
-              $description = $_POST['Description'];
-              $moviefile = $_FILES['Movie'];
-              $thumbnailfile = $_FILES['Thumbnail'];
-              $allowed = array("mp4","mp3");
-              $moviename = $_FILES['Movie']['name'];
-              $ext = pathinfo($moviename, PATHINFO_EXTENSION);
-              if(!in_array($ext, $allowed)){
-                  echo "filetype not allowed, must be .mp4";
-              }else{
-                if(strlen($_FILES['Movie']['name']) < 70){
-                  $upload2_dir = __DIR__.DS."uploads".DS."user_".$userId;
-                  $tmpFileName = $_FILES['Movie']['tmp_name'];
-                  moveUploadedFile($upload2_dir, $tmpFileName, $moviename);
-                  $path = "$upload2_dir".DS."$moviename";
-                  $movie = TRUE;
-                }else{
-                  $movie = FALSE;
-                }
-              }
-              $allowed = array("jpeg", "jpg","png","gif");
-              $thumbnailname = $_FILES['Thumbnail']['name'];
-              $ext = pathinfo($thumbnailname, PATHINFO_EXTENSION);
-              if(!in_array($ext, $allowed)){
-                  echo "filetype not allowed, must be .png, ,jpeg or .jpg";
-              }else{
-                if(strlen($_FILES['Thumbnail']['name']) < 70){
-                  $upload_dir = __DIR__.DS."uploads".DS."user_".$userId;
-                  $tmpFileName = $_FILES['Thumbnail']['tmp_name'];
-                  moveUploadedFile($upload_dir, $tmpFileName, $thumbnailname);
-                  $thumbnailPath = "$upload_dir".DS."$thumbnailname";
-                  $thumbnail = TRUE;
-                }else{
-                  $thumbnail = FALSE;
-                }
-              }
-              if ($movie == TRUE AND $thumbnail == TRUE){
-                uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);  
-              }
             }else{
               $titlemess = "Please add a title";
+            }
+            if(!empty($_POST['Category'])){
+              $genre = $_POST['Category'];
+            }else{
               $genremess = "Please select genres.";
+            }
+            if(!empty($_POST['AgeRating'])){
+              $ageRating = $_POST['AgeRating'];
+            }else{
               $ageRatemess = "Please select an age rating.";
+            }
+            if(!empty($_POST['filmGuide'])){
+              $filmGuide = $_POST['filmGuide'];
+            }else{
               $filmGuidemess = "Please select film guides.";
-              $descriptionmess = "Please add a description.";
+            }
+            if(!($_FILES['Movie']['error'] > 0)){
+              $allowedext = VIDEOEXTENSIONS;
+              $moviename = $_FILES['Movie']['name'];
+              $ext = ".".pathinfo($moviename, PATHINFO_EXTENSION);
+              // $mime = filterFileMimeType($_FILES["Movie"]["tmp_name"], IMAGEMIMETYPES);
+              // echo $_FILES['Movie']['tmp_name';]
+              if(!in_array($ext, $allowedext)){
+                  $filetypemoviemess = "filetype not allowed, must be .mp4";
+              }else{
+                if(strlen($_FILES['Movie']['name']) < 70){
+                    $upload_dir = __DIR__.DS."uploads".DS."user_".$userId;
+                    $tmpFileName = $_FILES['Movie']['tmp_name'];
+                    $path = "$upload_dir".DS."$moviename"; 
+                    $movie = TRUE;
+                }
+              }
+
+            }else{
               $moviemess = "Please add a movie file.";
+              $movie = FALSE;
+            }
+
+            if(!($_FILES['Thumbnail']['error'] > 0)){
+
+              $allowedext = IMAGEEXTENSIONS;
+              $thumbnailname = $_FILES['Thumbnail']['name'];
+              $ext = ".".pathinfo($thumbnailname, PATHINFO_EXTENSION);
+              // $mime = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
+              // echo $mime;
+              if(!in_array($ext, $allowedext)){
+                  $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
+              }else{
+                if(strlen($_FILES['Thumbnail']['name']) < 70){
+                  $upload2_dir = __DIR__.DS."uploads".DS."user_".$userId;
+                  $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
+                  $thumbnailPath = "$upload2_dir".DS."$thumbnailname";
+                  $thumbnail = TRUE;
+                }
+              }
+
+            }else{
               $thumbnailmess = "Please add a thumbnail.";
+              $thumbnail = FALSE;
+            }
+            if(!empty($_POST['Description'])){
+              $description = $_POST['Description'];
+            }else{
+              $descriptionmess = "Please add a description.";
+            }
+            if(isset($title) AND isset($genre) AND isset($ageRating) AND isset($filmGuide) AND $movie === TRUE AND $thumbnail === TRUE AND isset($description)){
+              
+              $directory = __DIR__.DS."uploads".DS."user_".$userId;
+              if(!file_exists($directory)){
+                mkdir($directory, 0777, true);
+                moveUploadedFile($upload_dir, $tmpFileName, $moviename);
+                //thumbnail
+                moveUploadedFile($upload2_dir, $tmpFileName2, $thumbnailname);
+              }else{
+                moveUploadedFile($upload2_dir, $tmpFileName, $moviename);   
+                //thumbnail
+                moveUploadedFile($upload2_dir, $tmpFileName2, $thumbnailname);
+              }
+              
+              uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre); 
             }
           }
           ?>
@@ -165,6 +205,9 @@
                  if(isset($moviemess)){
                   echo "<p>".$moviemess."</p>";
                 }
+                if(isset($filetypemoviemess)){
+                  echo "<p>". $filetypemoviemess."</p>";
+                }
             ?>
           </div>
           <div class="spaceupload">
@@ -176,6 +219,9 @@
             <?php 
                  if(isset($thumbnailmess)){
                   echo "<p>".$thumbnailmess."</p>";
+                }
+                if(isset($filetypethumbmess)){
+                  echo "<p>". $filetypethumbmess."</p>";
                 }
             ?>
           </div> 
