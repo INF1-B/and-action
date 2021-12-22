@@ -8,8 +8,8 @@
 
   <head>
     <title>template</title>
-    <link rel="stylesheet" href="./assets/css/styleupload.css">
-    <?php include "../templates/head.php";
+    <!-- <link rel="stylesheet" href="./assets/css/styleupload.css"> -->
+    <?php //include "../templates/head.php";
           require("../utils/movies.php");
           require("../utils/filter.php");
           require("../src/database/contants.php");
@@ -48,12 +48,13 @@
               $allowedext = VIDEOEXTENSIONS;
               $moviename = $_FILES['Movie']['name'];
               $ext = ".".pathinfo($moviename, PATHINFO_EXTENSION);
-              // $mime = filterFileMimeType($_FILES["Movie"]["tmp_name"], IMAGEMIMETYPES);
-              // echo $_FILES['Movie']['tmp_name';]
-              if(!in_array($ext, $allowedext)){
+              $mime = filterFileMimeType($_FILES["Movie"]["tmp_name"], VIDEOMIMETYPES);
+              if(!in_array($ext, $allowedext) OR $mime !== 1){
                   $filetypemoviemess = "filetype not allowed, must be .mp4";
+                  $movie = FALSE;
               }else{
                 if(strlen($_FILES['Movie']['name']) < 70){
+                  echo "d";
                     $upload_dir = __DIR__.DS."uploads".DS."user_".$userId;
                     $tmpFileName = $_FILES['Movie']['tmp_name'];
                     $path = "$upload_dir".DS."$moviename"; 
@@ -71,10 +72,10 @@
               $allowedext = IMAGEEXTENSIONS;
               $thumbnailname = $_FILES['Thumbnail']['name'];
               $ext = ".".pathinfo($thumbnailname, PATHINFO_EXTENSION);
-              // $mime = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
-              // echo $mime;
-              if(!in_array($ext, $allowedext)){
+              $mime = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
+              if(!in_array($ext, $allowedext) OR $mime !== 1){
                   $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
+                  $thumbnail = FALSE;
               }else{
                 if(strlen($_FILES['Thumbnail']['name']) < 70){
                   $upload2_dir = __DIR__.DS."uploads".DS."user_".$userId;
@@ -117,7 +118,7 @@
     <!-- start navbar -->
 
     <div class="navbar">
-      <?php include "../templates/navbar.php";?>
+      <?php //include "../templates/navbar.php";?>
     </div>
 
     <!-- end navbar -->
