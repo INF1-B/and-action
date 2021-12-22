@@ -1,6 +1,4 @@
 <?php 
-require "database.php";
-// Upload movie function
 
 // example: uploadMovie(1, "title", "asdfg", "p" , 1, "asdfg", 1, 3);
 function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuides, $genres){

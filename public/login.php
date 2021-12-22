@@ -1,9 +1,12 @@
 <?php 
-include "../utils/authentication.php";
-include "../utils/filter.php";
-include "../utils/functions.php";
-include "../utils/database.php";
+  require_once("../utils/database.php");
+  require_once("../utils/authentication.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+?>
 
+<?php 
 $message = messageGenerator("login-note", "login");
 
 if (isset($_POST["submit"])){

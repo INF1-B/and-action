@@ -1,6 +1,3 @@
-<?php
-include '../src/database/credentials.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 

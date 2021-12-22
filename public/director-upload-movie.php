@@ -1,11 +1,12 @@
-<?php
-include('../utils/authentication.php');
-checkLoggedIn();
+<?php 
+  require_once("../utils/database.php");
+  require_once("../utils/authentication.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+  checkLoggedIn();
 ?>
-
-<?php include "../templates/head.php";
-  require("../utils/movies.php");
-  require("../utils/filter.php");
+<?
   require("../src/database/constants.php");
 
   $userId = $_SESSION["id"];
@@ -42,7 +43,6 @@ checkLoggedIn();
         $movie = FALSE;
       } else {
         if (strlen($_FILES['Movie']['name']) < 70) {
-          echo "d";
           $upload_dir = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
           $tmpFileName = $_FILES['Movie']['tmp_name'];
           $path = "$upload_dir" . DS . "$moviename";
@@ -103,6 +103,7 @@ checkLoggedIn();
 
 <head>
   <title>template</title>
+  <?php include "../templates/head.php";?>
   <link rel="stylesheet" href="./assets/css/styleupload.css">
 </head>
 
