@@ -37,7 +37,7 @@ include '../src/database/credentials.php';
              lorem ipsum dolor sit amet lorem ipsum
              </p>
              <div class="subdescription">
-                <p><strong>Category:</strong</p>
+                <p><strong>Category:</strong></p>
                 <p><strong>Author:</strong></p>
                 <p><strong>Age:</strong></p>
                 <p><strong>Film guide:</strong></p>
@@ -59,8 +59,12 @@ include '../src/database/credentials.php';
           <img src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg" alt="movie-title">
         </div>
       </a>
+      <p class="movie-likes"> 
+          <a href="#">
+            <i class="fas fa-thumbs-up" style="font-size: 36px;"></i>
+          </a>
+        </p>
       </div>
-    </div>
   </div>
 
   <!-- end main container  -->
