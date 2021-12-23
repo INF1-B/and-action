@@ -79,3 +79,8 @@ door footer met standard hoogte waardoor er ruimte onder aan de pagina zit
 .movie_title{
     font-weight: normal;
 }
+
+.error{
+    color: red;
+    margin-top: 5%;
+}
