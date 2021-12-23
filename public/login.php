@@ -1,40 +1,39 @@
-<?php 
-  require_once("../utils/database.php");
-  require_once("../utils/authentication.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
-?>
-
-<?php 
+<?php
+require_once("../utils/database.php");
+require_once("../utils/authentication.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 $message = messageGenerator("login-note", "login");
 
-if (isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
   $input["email"] = filterInputPost($_POST["email"], "email");
   $input["password"] = filterInputPost($_POST["password"], "password");
   $input["g-recaptcha"] = getRecaptchaResponse($_POST['g-recaptcha-response']);
   if ($input["g-recaptcha"]) {
     if (!in_array(false, $input)) {
-      $data = getTableRecord("SELECT email, wachtwoord FROM gebruiker WHERE email = ?", 
-                             "s", 
-                             array($input["email"]));
-      if (array_key_exists("email", $data) && array_key_exists("wachtwoord", $data)){
-        if (verifyPassword($input["password"], $data["wachtwoord"]) && $data["email"] == $input["email"]){
-            $data = getTableRecord("SELECT id, ingelogd FROM gebruiker WHERE email = ?", "s", array($input["email"]));
-            // set $_SESSION['id'] for getting the correct details of a user
-            $_SESSION['id'] = $data["id"];
-            if ($data["ingelogd"] == 1) {
-              $message = messageGenerator("login-true", "login");
-            } else {
-              // User status is updated in database, user was not loggedin to the database
-              executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE id = ? AND email = ?", "is", array($data["id"], $input["email"]));
-
-              // Set $_SESSION['loggedIn'] for page authentication
-              $_SESSION['loggedIn'] = 1; // 1 equals true
-              header('Location: ./homepage.php');
-            }
+      $data = getTableRecord(
+        "SELECT id, email, wachtwoord FROM gebruiker WHERE email = ?",
+        "s",
+        array($input["email"])
+      );
+      if (array_key_exists("email", $data) && array_key_exists("wachtwoord", $data)) {
+        if (verifyPassword($input["password"], $data["wachtwoord"]) && $data["email"] == $input["email"]) {
+          // set $_SESSION['id'] for getting the correct details of a user
+          $_SESSION['id'] = $data["id"];
+          if (checkDatabaseLoggedIn($input['email'])) {
+            $message = messageGenerator("login-true", "login");
           } else {
-            $message = messageGenerator("login-error", "login");
+            // User status is updated in database, user was not loggedin to the database
+            executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE id = ? AND email = ?", "is", array($data["id"], $input["email"]));
+
+            // Set $_SESSION['loggedIn'] for page authentication
+            $_SESSION['loggedIn'] = 1; // 1 equals true
+            $_SESSION['email'] = $data['email'];
+            header('Location: ./homepage.php');
+          }
+        } else {
+          $message = messageGenerator("login-error", "login");
         }
       } else {
         $message = messageGenerator("login-error", "login");
@@ -48,8 +47,8 @@ if (isset($_POST["submit"])){
 }
 
 // this part is used once a user has already logged in to the application
-if (isset($_GET["reset"]) == "true"){
-  if (isset($_SESSION["id"]) && is_numeric($_SESSION["id"])){
+if (isset($_GET["reset"]) == "true") {
+  if (isset($_SESSION["id"]) && is_numeric($_SESSION["id"])) {
     executeQuery("UPDATE gebruiker SET ingelogd = 0 WHERE id = ?", "i", array($_SESSION["id"]));
   }
 }
@@ -78,9 +77,8 @@ if (isset($_GET["reset"]) == "true"){
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
       <div class="input-login-text">
         <label for="email">Email address</label>
-        <input
-          value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' // if form is filled in, prefill same values ?>"
-          type="text" name="email" id="email" placeholder="Email">
+        <input value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' // if form is filled in, prefill same values 
+                      ?>" type="text" name="email" id="email" placeholder="Email">
         <label for="password"> Password </label>
         <input class="input" type="password" name="password" id="password" placeholder="Password">
       </div>
@@ -91,8 +89,8 @@ if (isset($_GET["reset"]) == "true"){
         <input type="submit" name="submit" value="login">
       </div>
     </form>
-    <?php 
-      print_r($message);
+    <?php
+    print_r($message);
     ?>
   </div>
 </body>

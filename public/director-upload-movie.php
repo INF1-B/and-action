@@ -4,7 +4,11 @@
   require_once("../utils/filter.php");
   require_once("../utils/movies.php");
   require_once("../utils/functions.php");
-  checkLoggedIn();
+  checkSessionLoggedIn();
+
+  if(!checkDatabaseLoggedIn($_SESSION['email'])){
+    header('Location: ./login.php');
+  }
 ?>
 <?php
   require("../src/database/constants.php");
