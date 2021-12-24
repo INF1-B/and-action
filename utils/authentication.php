@@ -1,23 +1,19 @@
 <?php
 session_start();
 
-require_once("../utils/database.php");
-
-
 function checkSessionLoggedIn(){
     if (!isset($_SESSION['loggedIn'])) {
         header('Location: ./login.php');
     }
 }
 
-function checkDatabaseLoggedIn($email){
-    $user = getTableRecord("SELECT id, ingelogd FROM gebruiker WHERE email = ?", "s", array($email));
+function checkDatabaseLoggedIn($id){
+    $user = getTableRecord("SELECT ingelogd FROM gebruiker WHERE id = ?", "i", array($id));
     
     if($user['ingelogd'] == 1){
         return true;
-    }else{
-        return false;
     }
+    return false;
 }
 
 function logOut()
