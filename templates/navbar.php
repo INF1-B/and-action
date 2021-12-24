@@ -82,6 +82,6 @@ if (isset($_GET["search-movie"])){
     </div>
 </header>
 
-<?php include "../templates/account.html"; ?>
+<?php include "../templates/account.php"; ?>
 
 <script src="../public/assets/js/account.js"></script>
