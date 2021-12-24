@@ -8,6 +8,10 @@
 ?>
 
 <?php
+if (isset($_SESSION['id']) && is_numeric($_SESSION['id']) && $_SESSION["loggedIn"]) {
+  header("Location: homepage.php"); // redirect if user is already logged in
+}
+
 $message = messageGenerator("login-note", "login");
 
 if (isset($_POST["submit"])) {
