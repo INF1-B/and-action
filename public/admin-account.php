@@ -18,7 +18,7 @@ if (isset($_GET['approve-user'])) {
   $user = getTableRecord('SELECT * FROM gebruiker WHERE id = ?', 'i', array($input['id']));
   if (!isset($user['ERROR'])) {
     if ($user['geverifieerd'] == 0) {
-      executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['approve-user']));
+      executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['id']));
     }
   } else {
     $error = 'User does not exist';
