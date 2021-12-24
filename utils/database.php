@@ -1,6 +1,5 @@
 <?php
-
-require_once "../src/database/credentials.php";
+require_once "..//src/database/credentials.php";
 
 /* 
 This file will contain everything that is related to databases. Think about a database
