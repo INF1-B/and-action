@@ -1,10 +1,14 @@
-<?php
-require_once("../utils/database.php");
-require_once("../utils/authentication.php");
-require_once("../utils/filter.php");
-require_once("../utils/movies.php");
-require_once("../utils/functions.php");
-checkLoggedIn();
+<?php 
+  require_once("../utils/database.php");
+  require_once("../utils/authentication.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+  checkSessionLoggedIn();
+
+  if(!checkDatabaseLoggedIn($_SESSION['email'])){
+    header('Location: ./login.php');
+  }
 
 $error = '';
 
