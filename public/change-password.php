@@ -4,21 +4,13 @@ include "../utils/filter.php";
 include "../utils/functions.php";
 include "../utils/database.php";
 
-$message = "
-<p class=\"register-note\">
-  Note that signing up can take some time. You will get a message once password is succesfull changed
-</p>";
 
 if (isset($_POST["submit"])) { 
   // filter all user values
   $input["Newpassword"] = filterInputPost($_POST["Newpassword"], "Newpassword");
   $input["Confirmpassword"] = filterInputPost($_POST["Confirmpassword"], "Confirmpassword");
 }
-  // check if any values were false, if so return an
- //if (in_array(false, $input)) {
- //   $message = "  <p class=\"register-error\">please double check if all fields were filled in!</p>";
-  //  if(in_array(true, $input)){
-  //      } 
+  
 
 ?>
 
@@ -26,7 +18,7 @@ if (isset($_POST["submit"])) {
 <html lang="en">
 
 <head>
-  <title>Sign up director</title>
+  <title>Change password</title>
   <?php
   include "../templates/head.php";
   ?>
@@ -34,8 +26,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-
-  <div class="container container-login">
+  <div class="container container-changepassword">
     <div class="upper">
       <div>
         <h2>Change password</h2>
@@ -56,9 +47,6 @@ if (isset($_POST["submit"])) {
       </div>
     </form>
 
-    <?php
-    echo $message;
-    ?>
   </div>
 </body>
 </html>
