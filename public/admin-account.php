@@ -1,10 +1,26 @@
-<?php 
-  require_once("../utils/database.php");
-  require_once("../utils/authentication.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
-  checkLoggedIn();
+<?php
+require_once("../utils/database.php");
+require_once("../utils/authentication.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
+checkLoggedIn();
+
+$error = '';
+
+if (isset($_GET['approve-user'])) {
+  $input["id"] = filterInputGet($_GET["approve-user"], "approve-user");
+
+  $user = getTableRecord('SELECT * FROM gebruiker WHERE id = ?', 'i', array($input['id']));
+  if (!isset($user['ERROR'])) {
+    if ($user['geverifieerd'] == 0) {
+      executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['approve-user']));
+    }
+  } else {
+    $error = 'User does not exist';
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,21 +48,15 @@
         <h1 class="title">Approved movies</h1>
         <div class="movies">
           <div class="movie">
-            <img class="movie_thumbnail"
-              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
-              alt="movie_name">
+            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail"
-              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
-              alt="movie_name">
+            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail"
-              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
-              alt="movie_name">
+            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
         </div>
@@ -59,7 +69,16 @@
           <p class="account_info"><span class="bold">Status:</span> verified</p>
         </div>
         <div class="button_container">
-          <a href="#" class="button">Approve user</a>
+          <!-- ID moet nog dynamisch -->
+          <a href="./admin-account.php?approve-user=22" class="button">Approve user</a>
+          <?php 
+            if($error){
+              ?> 
+          <p class="error"><?php echo $error ?></p>
+
+              <?php
+            }
+          ?>
         </div>
       </div>
     </div>
@@ -69,21 +88,15 @@
 
         <div class="movies">
           <div class="movie">
-            <img class="movie_thumbnail"
-              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
-              alt="movie_name">
+            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail"
-              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
-              alt="movie_name">
+            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
           <div class="movie">
-            <img class="movie_thumbnail"
-              src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg"
-              alt="movie_name">
+            <img class="movie_thumbnail" src="https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/the_boss_baby_56164684_ps_1_s-high.jpg" alt="movie_name">
             <h2 class="movie_title">Boss baby</h2>
           </div>
         </div>
