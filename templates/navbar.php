@@ -1,21 +1,5 @@
 <?php
-
-$loggedIn;
-$role;
 $movies;
-
-// check if the id is set of a user, if so, set the value of 'ingelogd' column in the 'gebruiker' table to be true (1) or false (0)
-if (isset($_SESSION['id']) && is_numeric($_SESSION["id"])) {
-    $data = getTableRecord("SELECT ingelogd, rol.naam as rol
-        FROM gebruiker 
-        INNER JOIN rol 
-        ON gebruiker.rol_id = rol.id 
-        WHERE gebruiker.id = ?", "i", array($_SESSION["id"]));
-    $loggedIn = $data["ingelogd"];
-    $role = $data["rol"];
-} else {
-    $loggedIn = false;
-}
 
 // check if a user has pressed the logout button
 if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
@@ -40,7 +24,6 @@ if (isset($_GET["search-movie"])){
 }
 
 
-// $role = "Admin" // only use if db connection fails
 ?>
 <header class="container">
     <div class="row">
@@ -48,7 +31,7 @@ if (isset($_GET["search-movie"])){
             <img src="../public/assets/img/logo.png" alt="Logo And action" class="logo">
         </div>
         <?php
-        if ($loggedIn) {
+        if ($_SESSION['loggedIn']) {
         ?>
             <div class="search_bar">
                 <form action="<?php $_SERVER["PHP_SELF"]?>" method="GET">
@@ -60,18 +43,18 @@ if (isset($_GET["search-movie"])){
         ?>
         <ul class="nav_list">
             <?php
-            if ($loggedIn) {
+            if ($_SESSION['loggedIn']) {
             ?>
                 <li class="nav_list_item"><a class="nav_link" href="../public/homepage.php">Home</a></li>
                 <?php
-                if ($role == 'Admin') {
+                if ($_SESSION['rol'] == 'Admin') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/admin-dashboard.php">Dashboard</a></li>
 
                 <?php
                 }
 
-                if ($role == 'Director') {
+                if ($_SESSION['rol'] == 'Director') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-my-movie.php">My movies</a></li>
                     <li class="nav_list_item"><a class="nav_link" href="../public/director-upload-movie.php">Upload movie</a></li>

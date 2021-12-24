@@ -8,7 +8,8 @@
 ?>
 
 <?php
-if (isset($_SESSION['id']) && is_numeric($_SESSION['id']) && $_SESSION["loggedIn"]) {
+
+if (isset($_SESSION['id']) && is_numeric($_SESSION['id']) && isset($_SESSION["loggedIn"]) && $_SESSION['loggedIn']) {
   header("Location: homepage.php"); // redirect if user is already logged in
 }
 
@@ -21,7 +22,10 @@ if (isset($_POST["submit"])) {
   if ($input["g-recaptcha"]) {
     if (!in_array(false, $input)) {
       $data = getTableRecord(
-        "SELECT id, email, wachtwoord FROM gebruiker WHERE email = ?",
+        "SELECT gebruiker.id as id, email, wachtwoord, ingelogd, rol.naam as rol 
+              FROM gebruiker 
+              INNER JOIN rol ON gebruiker.rol_id = rol.id 
+              WHERE email = ?",
         "s",
         array($input["email"])
       );
@@ -29,13 +33,14 @@ if (isset($_POST["submit"])) {
         if (verifyPassword($input["password"], $data["wachtwoord"]) && $data["email"] == $input["email"]) {
           // set $_SESSION['id'] for getting the correct details of a user
           $_SESSION['id'] = $data["id"];
-          if (checkDatabaseLoggedIn($input['email'])) {
+          if ($data["ingelogd"]) {
             $message = messageGenerator("login-true", "login");
           } else {
             // User status is updated in database, user was not loggedin to the database
             executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE id = ? AND email = ?", "is", array($data["id"], $input["email"]));
 
             // Set $_SESSION['loggedIn'] for page authentication
+            $_SESSION['rol'] = $input["rol"];
             $_SESSION['loggedIn'] = 1; // 1 equals true
             header('Location: ./homepage.php');
           }

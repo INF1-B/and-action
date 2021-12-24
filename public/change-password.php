@@ -26,7 +26,7 @@
       if ($input["new-pw"] == $input["confirm-new-pw"]){
         $data = getTableRecord("SELECT wachtwoord FROM gebruiker WHERE id = ?", "i", array($_SESSION["id"]));
         if (verifyPassword($input["current-pw"], $data["wachtwoord"])) {
-          executeQuery("UPDATE gebruiker SET wachtwoord = ? WHERE id = ?", "si", array(generateHash($input["new-pw"]), $_SESSION["id"]));
+          executeQuery("UPDATE gebruiker SET wachtwoord = ?, ingelogd = 0 WHERE id = ?", "si", array(generateHash($input["new-pw"]), $_SESSION["id"]));
           $message = messageGenerator("pw-change-success", "change-password");
           session_destroy();
         } else {
