@@ -26,7 +26,7 @@ include '../src/database/credentials.php';
   <div class="container container-movie-specific">
     <div class="text-wrapper">
         <div class="movie">
-            <iframe src="" title="placeholder" height="300" width="600"></iframe>
+            <iframe src="" title="placeholder" height="480" width="720"></iframe>
         </div>
         <div class="description">
             <h1>Narcos: Mexico</h1>
