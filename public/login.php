@@ -64,7 +64,7 @@ if (isset($_GET["reset"]) == "true") {
 <head>
   <title>And Action - login</title>
   <?php include "../templates/head.php" ?>
-  <link rel="stylesheet" href="../public/assets/css/login.css">
+  <link rel="stylesheet" href="assets/css/login-changepw.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <body>
@@ -93,7 +93,7 @@ if (isset($_GET["reset"]) == "true") {
       </div>
     </form>
     <?php
-    print_r($message);
+    echo $message;
     ?>
   </div>
 </body>

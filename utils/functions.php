@@ -80,6 +80,21 @@ function messageGenerator($id, $page){
     case 'login-true':
       $message = "<p class=\"login-error\"> ERROR: Your account is already logged in! If you would like to login anyways, click <a href=\"?reset=true\" style=\"color: white\"> here </a> and re-enter your credentials. </p>";
       break;
+    case 'current-pw-error':
+      $message = "<p class=\"change-pw-error\"> ERROR: Your current password does not match our records! </p>";
+      break;
+    case 'new-pw-match-error':
+      $message = "<p class=\"change-pw-error\"> ERROR: Your new password and confirmed password do not match! </p>";
+      break;
+    case 'password-min':
+      $message = "<p class=\"change-pw-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
+      break;
+    case 'pw-change-success':
+      $message = "<p class=\"change-pw-success\"> Your password has been changed! Please login again <a href=\"login.php\"> here </a> </p>";
+      break;
+    case 'return-ch-pw':
+      $message = "<p class=\"change-pw-note\">Click <a href=\"javascript:history.back()\"> here </a> to go back</p>";
+      break;
     default:
       $message = "ERROR: contact the administrator of this page for more information.";
       break;

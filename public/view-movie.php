@@ -8,11 +8,11 @@
 ?>
 
 <?php
-  // checkSessionLoggedIn();
+  checkSessionLoggedIn();
   
-  // if(!checkDatabaseLoggedIn($_SESSION['id'])){
-  //   header('Location: ./login.php');
-  // }
+  if(!checkDatabaseLoggedIn($_SESSION['id'])){
+    header('Location: ./login.php');
+  }
 ?>
 
 <!DOCTYPE html>

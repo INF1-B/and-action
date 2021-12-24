@@ -49,17 +49,17 @@ if (isset($_POST["submit"])) {
 <html lang="en">
 
 <head>
-  <title>And Action - signup</title>
+  <title>And action - signup</title>
   <?php
   include "../templates/head.php";
   ?>
-  <link rel="stylesheet" href="assets/css/signup.css">
+  <link rel="stylesheet" href="assets/css/sign-up.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
 
-  <div class="container container-signup">
+  <div class="container container-login">
     <div class="upper">
       <div>
         <h1>Sign up</h1>

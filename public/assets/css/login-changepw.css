@@ -1,4 +1,4 @@
-.container-signup, .container-changepassword {
+.container-login, .container-change-password {
     background-color:#2D2C2C;
     margin-top:10%;
     width: 33% !important;
@@ -17,7 +17,7 @@
     flex:1;
 }
 
-.upper > div > h1,h2 {
+.upper > div > h1 {
     margin-left: 50px;
     color:#F9B354;
     padding-top:20px;
@@ -31,22 +31,19 @@
 
 input[type="text"], input[type="password"] {
     background-color:#FFFFFF;
-    color:black;
     height:30px;
     width: 100%;
     padding:10px;
-    margin: 2px 0px 10px 0px;
     border:none;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 form > div {
-    width: 85%;
+    width: 80%;
     margin: 0 auto;
     display: block;
-}
-
-form > div > label {
-    margin-top: 20px;
+    margin-top:10px;
 }
 
 .submit-form {
@@ -54,20 +51,19 @@ form > div > label {
     align-items: center;
 }
 
-.submit-form > input {
+.submit-form > input[type="submit"] {
     margin: 0 auto;
-    margin-top: 15px;
-    padding: 7px 20px 7px 20px;
-    font-size: 15px;
     background-color:#F9B354;
+    font-size:15px;
+    padding: 5px 20px 5px 20px;
     color: white;
-    border:none;
+    border: none;
 }
 
 .no-account {
     text-align: center;
     font-size: 12px;
-    margin-top:10px;
+    margin-top:5px;
 }
 
 .sign-up {
@@ -75,38 +71,27 @@ form > div > label {
     color:#F9B354;
 }
 
-.register-error, .register-success, .register-note {
+.login-note, .login-error, .change-pw-error, .change-pw-success, .change-pw-note {
     text-align: center;
     padding: 10px 0px 10px 0px;
 }
 
-.register-error {
+.login-note, .change-pw-note{
+    font-size: 11px;
+}
+
+.login-error, .change-pw-error {
     color: red;
 }
 
-.register-success {
+.change-pw-success {
     color: lightgreen;
 }
 
-.register-success > a {
+.change-pw-success > a {
     color: white;
 }
 
-.register-note {
-    font-size: 11px;
-    color: white;
-}
-
-.subscription {
-    width: 100%;
-    padding: 8px 2px 8px 2px;
-}
-
-.form-password {
-    display: flex;
-    justify-content: space-between;
-}
-
-.form-password div {
-    width: 49%;
+.change-pw-note > a {
+    color:#F9B354;
 }
