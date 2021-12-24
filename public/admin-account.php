@@ -1,38 +1,41 @@
 <?php 
-  require_once("../utils/database.php");
+  // imports
   require_once("../utils/authentication.php");
+  require_once("../utils/database.php");
   require_once("../utils/filter.php");
   require_once("../utils/movies.php");
   require_once("../utils/functions.php");
+?>
+
+<?php
   checkSessionLoggedIn();
 
-  if(!checkDatabaseLoggedIn($_SESSION['email'])){
+  if(!checkDatabaseLoggedIn($_SESSION['id'])){
     header('Location: ./login.php');
   }
 
-$error = '';
+  $error = '';
 
-if (isset($_GET['approve-user'])) {
-  $input["id"] = filterInputGet($_GET["approve-user"], "approve-user");
+  if (isset($_GET['approve-user'])) {
+    $input["id"] = filterInputGet($_GET["approve-user"], "approve-user");
 
-  $user = getTableRecord('SELECT * FROM gebruiker WHERE id = ?', 'i', array($input['id']));
-  if (!isset($user['ERROR'])) {
-    if ($user['geverifieerd'] == 0) {
-      executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['approve-user']));
+    $user = getTableRecord('SELECT * FROM gebruiker WHERE id = ?', 'i', array($input['id']));
+    if (!isset($user['ERROR'])) {
+      if ($user['geverifieerd'] == 0) {
+        executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['approve-user']));
+      }
+    } else {
+      $error = 'User does not exist';
     }
-  } else {
-    $error = 'User does not exist';
   }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>And action</title>
+  <title>And Action</title>
   <link rel="stylesheet" href="./assets/css/account-admin.css">
-  <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
+  <link rel="stylesheet" href="./assets/css/thumbnail-display.css">
   <?php include "../templates/head.php" ?>
 </head>
 

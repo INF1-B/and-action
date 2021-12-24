@@ -1,9 +1,13 @@
+<?php 
+  // imports
+  require_once("../utils/authentication.php");
+  require_once("../utils/database.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+?>
+
 <?php
-require_once("../utils/database.php");
-require_once("../utils/authentication.php");
-require_once("../utils/filter.php");
-require_once("../utils/movies.php");
-require_once("../utils/functions.php");
 $message = messageGenerator("login-note", "login");
 
 if (isset($_POST["submit"])) {
@@ -29,7 +33,6 @@ if (isset($_POST["submit"])) {
 
             // Set $_SESSION['loggedIn'] for page authentication
             $_SESSION['loggedIn'] = 1; // 1 equals true
-            $_SESSION['email'] = $data['email'];
             header('Location: ./homepage.php');
           }
         } else {
@@ -59,7 +62,7 @@ if (isset($_GET["reset"]) == "true") {
 <html lang="en">
 
 <head>
-  <title>And action - login</title>
+  <title>And Action - login</title>
   <?php include "../templates/head.php" ?>
   <link rel="stylesheet" href="../public/assets/css/login.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>

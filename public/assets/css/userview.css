@@ -1,10 +1,51 @@
-p{
+body {
+    color: white;
+}
+
+p {
     margin-bottom:8px;
 }
-.subdescription{
+
+label {
+    display: block;
+}
+
+form > div > textarea {
+    width: 100%;
+    height: 250px;
+    resize: none;
+}
+
+.description > p {
+    width: 600px;
+}
+
+.sub-description {
     padding-top:15px;
     padding-bottom:15px;
 }
-.movie-likes{
-    padding-top: 30px;
+
+.submit-feedback {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    background-color:#F9B354;
 }
+
+.container-comment-description {
+    margin: 20px 0px 50px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.movie-likes > a {
+    color : white;
+}
+
+.movie-likes > a:hover {
+    color: #F9B354;
+}
+
+.movie-likes > span {
+    margin-left: 10px;
+  }

@@ -1,7 +1,8 @@
-.container-login .container-changepassword {
+.container-signup, .container-changepassword {
     background-color:#2D2C2C;
-    margin-top:7%;
+    margin-top:10%;
     width: 33% !important;
+    height:40%;
     padding: 50px 30px 30px 30px;
     overflow: hidden;
     color: white;

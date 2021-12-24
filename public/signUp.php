@@ -49,7 +49,7 @@ if (isset($_POST["submit"])) {
 <html lang="en">
 
 <head>
-  <title>And action - signup</title>
+  <title>And Action - signup</title>
   <?php
   include "../templates/head.php";
   ?>
@@ -59,7 +59,7 @@ if (isset($_POST["submit"])) {
 
 <body>
 
-  <div class="container container-login">
+  <div class="container container-signup">
     <div class="upper">
       <div>
         <h1>Sign up</h1>

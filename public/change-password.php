@@ -1,24 +1,25 @@
+<?php 
+  // imports
+  require_once("../utils/authentication.php");
+  require_once("../utils/database.php");
+  require_once("../utils/filter.php");
+  require_once("../utils/movies.php");
+  require_once("../utils/functions.php");
+?>
+
 <?php
-
-include "../utils/filter.php";
-include "../utils/functions.php";
-include "../utils/database.php";
-
-
-if (isset($_POST["submit"])) { 
-  // filter all user values
-  $input["Newpassword"] = filterInputPost($_POST["Newpassword"], "Newpassword");
-  $input["Confirmpassword"] = filterInputPost($_POST["Confirmpassword"], "Confirmpassword");
-}
+  checkSessionLoggedIn();
   
-
+  if(!checkDatabaseLoggedIn($_SESSION['id'])){
+    header('Location: ./login.php');
+  }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Change password</title>
+  <title>And Action - Change password</title>
   <?php
   include "../templates/head.php";
   ?>

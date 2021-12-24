@@ -1,12 +1,16 @@
 <?php 
-  require_once("../utils/database.php");
+  // imports
   require_once("../utils/authentication.php");
+  require_once("../utils/database.php");
   require_once("../utils/filter.php");
   require_once("../utils/movies.php");
   require_once("../utils/functions.php");
-  checkSessionLoggedIn();
+?>
 
-  if(!checkDatabaseLoggedIn($_SESSION['email'])){
+<?php
+  checkSessionLoggedIn();
+  
+  if(!checkDatabaseLoggedIn($_SESSION['id'])){
     header('Location: ./login.php');
   }
 ?>
@@ -14,7 +18,7 @@
 <html lang="en">
 
 <head>
-  <title>And action</title>
+  <title>And Action</title>
   <?php include "../templates/head.php" ?>
   <link rel="stylesheet" href="./assets/css/dissaprovePageStyle.css">
 </head>
