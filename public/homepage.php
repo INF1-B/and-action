@@ -26,6 +26,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 </head>
 
 <body>
+  <?php $movies = getMovies(); ?>
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
   </div>

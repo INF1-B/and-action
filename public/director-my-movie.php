@@ -14,6 +14,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 ?>
+
+<?php $movies = getMoviesById($_SESSION['id']); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,40 +41,19 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
     </div>
 
 
-
     <?php
     for ($row = 0; $row < 1; $row++) {
       echo "<div class=\"movie-row\">";
-      for ($movie = 0; $movie < 6; $movie++) {
+      for ($movie = 0; $movie < count($movies); $movie++) {
         echo "
-          <div class=\"movie\">
-            <a href=\"#\">
-              <div class=\"thumbnail\" title=\"test\">
-              </div>
-              <p> scary moveh </p>
-            </a>
-          </div>
-          ";
-      }
-      echo "</div>";
-    }
-    ?>
-
-    <h1>Under review</h1>
-
-    <?php
-    for ($row = 0; $row < 1; $row++) {
-      echo "<div class=\"movie-row\">";
-      for ($movie = 0; $movie < 6; $movie++) {
-        echo "
-          <div class=\"movie\">
-            <a href=\"#\">
-              <div class=\"thumbnail\" title=\"test\">
-              </div>
-              <p> scary moveh </p>
-            </a>
-          </div>
-          ";
+                <div class=\"movie\">
+                  <a href=" . "director-movie.php?id=" . $movies[$movie]["id"] . ">
+                    <div class=\"thumbnail\" title=" . $movies[$movie]["titel"] . " style=\"background-image:url('" . $movies[$movie]["thumbnail_pad"] . "')\">
+                    </div>
+                    <p> " . $movies[$movie]["titel"] . " </p>
+                  </a>
+                </div>
+                ";
       }
       echo "</div>";
     }

@@ -36,9 +36,7 @@ if (isset($_GET['genres'])){
                                             AND geaccepteerd = 1",
                                      "sss",
                                      array($_GET["search-movie"], $_GET["search-movie"], $_GET["search-movie"]));
-} else {
-    $movies = getMovies();
-}
+} 
 
 
 ?>
@@ -74,7 +72,7 @@ if (isset($_GET['genres'])){
                 if ($_SESSION['rol'] == 'Admin') {
                 ?>
                     <li class="nav_list_item"><a class="nav_link" href="../public/admin-dashboard.php">Dashboard</a></li>
-
+                    <li class="nav_list_item"><a class="nav_link" href="../public/admin-cpanel.php">Control panel</a></li>
                 <?php
                 }
 
