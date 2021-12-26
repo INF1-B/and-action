@@ -7,7 +7,7 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
 }
 
 // search for a movie. This will search for a movie title, a description of a movie or the director/user that has created the movie
-if (isset($_GET["search-movie"])){
+if (isset($_GET["search-movie"]) || isset($_GET['genres'])){
     $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
                                     FROM film 
                                     INNER JOIN gebruiker 
@@ -36,6 +36,13 @@ if (isset($_GET["search-movie"])){
             <div class="search_bar">
                 <form action="<?php $_SERVER["PHP_SELF"]?>" method="GET">
                     <input type="text" id="search" placeholder="search..." name="search-movie">
+                    <?php 
+                    if (isset($_GET['genres'])){
+                        foreach ($_GET['genres'] as $genre) {
+                            echo "<input type=\"hidden\" value=\"" . $genre . "\" name=\"genres[]\">";
+                        }
+                    }
+                    ?>
                 </form>
             </div>
         <?php

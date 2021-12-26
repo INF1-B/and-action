@@ -4,16 +4,30 @@
         <div class="menu_items">
             <h1>Filter</h1>
             <h2>Category</h2>
-            <form action="POST">
+            <form action="homepage.php" method="GET">
 
                 <ul class="list">
-                    <li><label> <input type="checkbox"> Action</label></li>
-                    <li><label> <input type="checkbox"> Action</label></li>
-                    <li><label> <input type="checkbox"> Action</label></li>
-                    <li><label> <input type="checkbox"> Action</label></li>
-                    <li><label> <input type="checkbox"> Action</label></li>
-                    <li><label> <input type="checkbox"> Action</label></li>
-                </ul>
+                <?php 
+                
+                $genres = getTableRecords("SELECT naam FROM genre");
+                foreach ($genres as $genre) {
+                    if (count($_GET['genres']) > 0) {
+                        
+                    }
+                    echo "
+                    <li>
+                        <label> 
+                            <input name=\"genres[]\" type=\"checkbox\" value=\"".$genre["naam"]."\">
+                            ".$genre["naam"]." 
+                        </label> 
+                    </li>";
+                }
+
+                if (isset($_GET['search-movie'])){
+                    echo "<input type=\"hidden\" value=\"" . $_GET['search-movie'] . "\" name=\"search-movie\">";
+                }
+
+                ?>
 
                 <input type="submit" class="button" value="Filter">
             </form>

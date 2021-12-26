@@ -49,7 +49,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       for ($movie = 0; $movie < count($movies); $movie++) {
         echo "
                 <div class=\"movie\">
-                  <a href=\"#\">
+                  <a href=" . "view-movie.php?id=" . $movies[$movie]["id"] . ">
                     <div class=\"thumbnail\" title=" . $movies[$movie]["titel"] . " style=\"background-image:url('" . $movies[$movie]["thumbnail_pad"] . "')\">
                     </div>
                     <p> " . $movies[$movie]["titel"] . " </p>
