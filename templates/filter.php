@@ -8,21 +8,31 @@
 
                 <ul class="list">
                 <?php 
-                
-                $genres = getTableRecords("SELECT naam FROM genre");
-                foreach ($genres as $genre) {
-                    echo "
-                    <li>
-                        <label> 
-                            <input name=\"genres[]\" type=\"checkbox\" value=\"".$genre["naam"]."\">
-                            ".$genre["naam"]." 
-                        </label> 
-                    </li>";
-                }
+                    $genres = getTableRecords("SELECT naam FROM genre");
+                    $selectedGenres = isset($_GET['genres']) ? $_GET['genres'] : array();
+                    foreach ($genres as $genre) {
+                        if (in_array($genre['naam'], $selectedGenres)){
+                            echo "
+                            <li>
+                                <label> 
+                                    <input name=\"genres[]\" type=\"checkbox\" value=\"".$genre["naam"]."\" checked>
+                                    ".$genre["naam"]." 
+                                </label> 
+                            </li>";
+                        } else {
+                            echo "
+                            <li>
+                                <label> 
+                                    <input name=\"genres[]\" type=\"checkbox\" value=\"".$genre["naam"]."\">
+                                    ".$genre["naam"]." 
+                                </label> 
+                            </li>";
+                        }
+                    }
 
-                if (isset($_GET['search-movie'])){
-                    echo "<li><input type=\"hidden\" value=\"" . $_GET['search-movie'] . "\" name=\"search-movie\"></li>";
-                }
+                    if (isset($_GET['search-movie'])){
+                        echo "<li><input type=\"hidden\" value=\"" . $_GET['search-movie'] . "\" name=\"search-movie\"></li>";
+                    }
 
                 ?>
                 </ul>

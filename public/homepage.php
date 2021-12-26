@@ -26,7 +26,6 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 </head>
 
 <body>
-  <?php $movies = getMovies() ?>
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
   </div>
@@ -40,8 +39,6 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       <h1>Movies</h1>
       <button id="filter" type="button">Filter</button>
     </div>
-
-
 
     <?php
     for ($row = 0; $row < 1; $row++) {
@@ -61,7 +58,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
     }
     ?>
 
-  </div> -->
+  </div> 
   <script src="./assets/js/filter.js"></script>
   <!-- end main container  -->
 </body>

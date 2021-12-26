@@ -28,8 +28,8 @@ if (isset($_POST['upload'])) {
   } else {
     $titlemess = "Please add a title";
   }
-  if (!empty($_POST['Category'])) {
-    $genre = $_POST['Category'];
+  if (!empty($_POST['genres'])) {
+    $genre = $_POST['genres'];
   } else {
     $genremess = "Please select genres.";
   }
@@ -38,8 +38,8 @@ if (isset($_POST['upload'])) {
   } else {
     $ageRatemess = "Please select an age rating.";
   }
-  if (!empty($_POST['filmGuide'])) {
-    $filmGuide = $_POST['filmGuide'];
+  if (!empty($_POST['filmguides'])) {
+    $filmGuide = $_POST['filmguides'];
   } else {
     $filmGuidemess = "Please select film guides.";
   }
