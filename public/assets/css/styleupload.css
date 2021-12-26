@@ -48,6 +48,7 @@ textarea{
     height: 0.1px;
     position: absolute;
   }
+
 .file-upload label{
     display: block;
     position: relative;
@@ -96,12 +97,12 @@ input{
 .select-field,.select-fieldFilmguide{
     border: 1px solid rgb(187, 187, 187);
 }
-.select-field,.task,.list,.listFilmguide,.select-fieldFilmguide{
+.select-field, .task, .listFilmguide, .select-fieldFilmguide{
     width: 100%;
     background-color: white;
     padding: 0.3rem;
 }
-.list,.listFilmguide{
+.listFilmguide{
     display:none
 }
     .down-arrow{
