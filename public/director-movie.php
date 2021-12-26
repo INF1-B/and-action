@@ -1,25 +1,25 @@
-<?php 
-  // imports
-  require_once("../utils/authentication.php");
-  require_once("../utils/database.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
+<?php
+// imports
+require_once("../utils/authentication.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 ?>
 
 <?php
-  checkSessionLoggedIn();
-  
-  if(!checkDatabaseLoggedIn($_SESSION['id'])){
-    header('Location: ./login.php');
-  }
+checkSessionLoggedIn();
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>And Action</title>
-  <?php include "../templates/head.php"?>
+  <?php include "../templates/head.php" ?>
   <link rel="stylesheet" href="./assets/css/director-movie-specific.css">
   <link rel="stylesheet" href="./assets/css/thumbnail-display.css">
 </head>
@@ -28,7 +28,7 @@
   <!-- start navbar -->
 
   <div class="navbar">
-    <?php include "../templates/navbar.php";?>
+    <?php include "../templates/navbar.php"; ?>
   </div>
 
   <!-- end navbar -->
@@ -55,8 +55,8 @@
       <div class="feedback">
         <h2>Feedback</h2>
         <?php
-          for ($comment = 0; $comment < 2; $comment++) {
-            echo "
+        for ($comment = 0; $comment < 2; $comment++) {
+          echo "
             <div class=\"comment-wrapper\"> 
               <p> 
               lorem ipsum dolor sit amet lorem ipsum
@@ -76,7 +76,7 @@
                   <a href=\"#\">X</a>
               </div> 
             </div>";
-          }
+        }
         ?>
       </div>
     </div>
@@ -84,9 +84,7 @@
     <div class="movie-wrapper">
       <a href="#">
         <div class="movie">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg"
-            alt="movie-title">
+          <img src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg" alt="movie-title">
         </div>
       </a>
       <div class="form-delete-movie">

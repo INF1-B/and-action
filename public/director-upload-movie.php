@@ -1,114 +1,114 @@
-<?php 
-  // imports
-  require_once("../utils/authentication.php");
-  require_once("../utils/database.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
+<?php
+// imports
+require_once("../utils/authentication.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 ?>
 
 <?php
-  checkSessionLoggedIn();
-  
-  if(!checkDatabaseLoggedIn($_SESSION['id'])){
-    header('Location: ./login.php');
+checkSessionLoggedIn();
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
+?>
+<?php
+require("../src/database/constants.php");
+
+$userId = $_SESSION["id"];
+$uploadDir = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
+$frontEndPath = "/and-action/public/uploads/user_" . $userId;
+
+if (isset($_POST['upload'])) {
+  // text values
+  if (!empty($_POST['MovieTitle'])) {
+    $title = $_POST['MovieTitle'];
+  } else {
+    $titlemess = "Please add a title";
   }
-?>
-<?php
-  require("../src/database/constants.php");
-
-  $userId = $_SESSION["id"];
-  $uploadDir = __DIR__ . DS . "uploads" . DS . "user_" . $userId;
-  $frontEndPath = "/and-action/public/uploads/user_" . $userId;
-
-  if (isset($_POST['upload'])) {
-    // text values
-    if (!empty($_POST['MovieTitle'])) {
-      $title = $_POST['MovieTitle'];
-    } else {
-      $titlemess = "Please add a title";
-    }
-    if (!empty($_POST['Category'])) {
-      $genre = $_POST['Category'];
-    } else {
-      $genremess = "Please select genres.";
-    }
-    if (!empty($_POST['AgeRating'])) {
-      $ageRating = $_POST['AgeRating'];
-    } else {
-      $ageRatemess = "Please select an age rating.";
-    }
-    if (!empty($_POST['filmGuide'])) {
-      $filmGuide = $_POST['filmGuide'];
-    } else {
-      $filmGuidemess = "Please select film guides.";
-    }
-    // movie
-    if (!($_FILES['Movie']['error'] > 0)) {
-      $allowedext = VIDEOEXTENSIONS;
-      $moviename = $_FILES['Movie']['name'];
-      $ext = "." . pathinfo($moviename, PATHINFO_EXTENSION);
-      $videoMimeType = filterFileMimeType($_FILES["Movie"]["tmp_name"], VIDEOMIMETYPES);
-      if (!in_array($ext, $allowedext) or !$videoMimeType) {
-        $filetypemoviemess = "filetype not allowed, must be .mp4";
-        $movie = FALSE;
-      } else {
-        if (strlen($_FILES['Movie']['name']) < 70) {
-          $tmpFileName = $_FILES['Movie']['tmp_name'];
-          $path = $frontEndPath . "/" . $moviename;
-          $movie = true;
-        }
-      }
-    } else {
-      $moviemess = "Please add a movie file.";
+  if (!empty($_POST['Category'])) {
+    $genre = $_POST['Category'];
+  } else {
+    $genremess = "Please select genres.";
+  }
+  if (!empty($_POST['AgeRating'])) {
+    $ageRating = $_POST['AgeRating'];
+  } else {
+    $ageRatemess = "Please select an age rating.";
+  }
+  if (!empty($_POST['filmGuide'])) {
+    $filmGuide = $_POST['filmGuide'];
+  } else {
+    $filmGuidemess = "Please select film guides.";
+  }
+  // movie
+  if (!($_FILES['Movie']['error'] > 0)) {
+    $allowedext = VIDEOEXTENSIONS;
+    $moviename = $_FILES['Movie']['name'];
+    $ext = "." . pathinfo($moviename, PATHINFO_EXTENSION);
+    $videoMimeType = filterFileMimeType($_FILES["Movie"]["tmp_name"], VIDEOMIMETYPES);
+    if (!in_array($ext, $allowedext) or !$videoMimeType) {
+      $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
-    }
-
-    if (!($_FILES['Thumbnail']['error'] > 0)) {
-      $allowedext = IMAGEEXTENSIONS;
-      $thumbnailname = $_FILES['Thumbnail']['name'];
-      $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
-      $imageMimeType = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
-      if (!in_array($ext, $allowedext) or !$imageMimeType) {
-        $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
-        $thumbnail = FALSE;
-      } else {
-        if (strlen($_FILES['Thumbnail']['name']) < 70) {
-          $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
-          $thumbnailPath = $frontEndPath . "/" . $thumbnailname;
-          $thumbnail = true;
-        }
-      }
     } else {
-      $thumbnailmess = "Please add a thumbnail.";
-      $thumbnail = FALSE;
-    }
-    if (!empty($_POST['Description'])) {
-      $description = $_POST['Description'];
-    } else {
-      $descriptionmess = "Please add a description.";
-    }
-    if (isset($title) and isset($genre) and isset($ageRating) and isset($filmGuide) and $movie and $thumbnail and isset($description)) {
-      if (!file_exists($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-        moveUploadedFile($uploadDir, $tmpFileName, $moviename);
-        //thumbnail
-        moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
-      } else {
-        moveUploadedFile($uploadDir, $tmpFileName, $moviename);
-        //thumbnail
-        moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+      if (strlen($_FILES['Movie']['name']) < 70) {
+        $tmpFileName = $_FILES['Movie']['tmp_name'];
+        $path = $frontEndPath . "/" . $moviename;
+        $movie = true;
       }
-      uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
     }
+  } else {
+    $moviemess = "Please add a movie file.";
+    $movie = FALSE;
   }
+
+  if (!($_FILES['Thumbnail']['error'] > 0)) {
+    $allowedext = IMAGEEXTENSIONS;
+    $thumbnailname = $_FILES['Thumbnail']['name'];
+    $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
+    $imageMimeType = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
+    if (!in_array($ext, $allowedext) or !$imageMimeType) {
+      $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
+      $thumbnail = FALSE;
+    } else {
+      if (strlen($_FILES['Thumbnail']['name']) < 70) {
+        $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
+        $thumbnailPath = $frontEndPath . "/" . $thumbnailname;
+        $thumbnail = true;
+      }
+    }
+  } else {
+    $thumbnailmess = "Please add a thumbnail.";
+    $thumbnail = FALSE;
+  }
+  if (!empty($_POST['Description'])) {
+    $description = $_POST['Description'];
+  } else {
+    $descriptionmess = "Please add a description.";
+  }
+  if (isset($title) and isset($genre) and isset($ageRating) and isset($filmGuide) and $movie and $thumbnail and isset($description)) {
+    if (!file_exists($uploadDir)) {
+      mkdir($uploadDir, 0777, true);
+      moveUploadedFile($uploadDir, $tmpFileName, $moviename);
+      //thumbnail
+      moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+    } else {
+      moveUploadedFile($uploadDir, $tmpFileName, $moviename);
+      //thumbnail
+      moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+    }
+    uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>And Action</title>
-  <?php include "../templates/head.php";?>
+  <?php include "../templates/head.php"; ?>
   <link rel="stylesheet" href="./assets/css/styleupload.css">
 </head>
 

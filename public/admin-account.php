@@ -1,33 +1,33 @@
-<?php 
-  // imports
-  require_once("../utils/authentication.php");
-  require_once("../utils/database.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
+<?php
+// imports
+require_once("../utils/authentication.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 ?>
 
 <?php
-  checkSessionLoggedIn();
+checkSessionLoggedIn();
 
-  if(!checkDatabaseLoggedIn($_SESSION['id'])){
-    header('Location: ./login.php');
-  }
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
 
-  $error = '';
+$error = '';
 
-  if (isset($_GET['approve-user'])) {
-    $input["id"] = filterInputGet($_GET["approve-user"], "approve-user");
+if (isset($_GET['approve-user'])) {
+  $input["id"] = filterInputGet($_GET["approve-user"], "approve-user");
 
-    $user = getTableRecord('SELECT * FROM gebruiker WHERE id = ?', 'i', array($input['id']));
-    if (!isset($user['ERROR'])) {
-      if ($user['geverifieerd'] == 0) {
-        executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['approve-user']));
-      }
-    } else {
-      $error = 'User does not exist';
+  $user = getTableRecord('SELECT * FROM gebruiker WHERE id = ?', 'i', array($input['id']));
+  if (!isset($user['ERROR'])) {
+    if ($user['geverifieerd'] == 0) {
+      executeQuery('UPDATE gebruiker SET geverifieerd = ? WHERE id = ?', 'ii', array(1, $input['approve-user']));
     }
+  } else {
+    $error = 'User does not exist';
   }
+}
 ?>
 
 <!DOCTYPE html>
@@ -79,13 +79,13 @@
         <div class="button_container">
           <!-- ID moet nog dynamisch -->
           <a href="./admin-account.php?approve-user=22" class="button">Approve user</a>
-          <?php 
-            if($error){
-              ?> 
-          <p class="error"><?php echo $error ?></p>
+          <?php
+          if ($error) {
+          ?>
+            <p class="error"><?php echo $error ?></p>
 
-              <?php
-            }
+          <?php
+          }
           ?>
         </div>
       </div>

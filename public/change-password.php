@@ -1,45 +1,45 @@
-<?php 
-  // imports
-  require_once("../utils/authentication.php");
-  require_once("../utils/database.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
+<?php
+// imports
+require_once("../utils/authentication.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 ?>
 
 <?php
-  checkSessionLoggedIn();
-  
-  if(!checkDatabaseLoggedIn($_SESSION['id'])){
-    header('Location: ./login.php');
-  }
+checkSessionLoggedIn();
 
-  $message = messageGenerator("return-ch-pw", "change-password");
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
 
-  if (isset($_POST["submit"])) {
-    // filter all user values
-    $input["current-pw"] = filterInputPost($_POST["current-pw"], "current-pw");
-    $input["new-pw"] = filterInputPost($_POST["new-pw"], "new-pw");
-    $input["confirm-new-pw"] = filterInputPost($_POST["confirm-new-pw"], "confirm-new-pw");
+$message = messageGenerator("return-ch-pw", "change-password");
 
-    if (filterPassword($input["new-pw"])) {
-      if ($input["new-pw"] == $input["confirm-new-pw"]){
-        $data = getTableRecord("SELECT wachtwoord FROM gebruiker WHERE id = ?", "i", array($_SESSION["id"]));
-        if (verifyPassword($input["current-pw"], $data["wachtwoord"])) {
-          executeQuery("UPDATE gebruiker SET wachtwoord = ?, ingelogd = 0 WHERE id = ?", "si", array(generateHash($input["new-pw"]), $_SESSION["id"]));
-          $message = messageGenerator("pw-change-success", "change-password");
-          session_destroy();
-        } else {
-          $message = messageGenerator("current-pw-error", "change-password");
-        }
+if (isset($_POST["submit"])) {
+  // filter all user values
+  $input["current-pw"] = filterInputPost($_POST["current-pw"], "current-pw");
+  $input["new-pw"] = filterInputPost($_POST["new-pw"], "new-pw");
+  $input["confirm-new-pw"] = filterInputPost($_POST["confirm-new-pw"], "confirm-new-pw");
+
+  if (filterPassword($input["new-pw"])) {
+    if ($input["new-pw"] == $input["confirm-new-pw"]) {
+      $data = getTableRecord("SELECT wachtwoord FROM gebruiker WHERE id = ?", "i", array($_SESSION["id"]));
+      if (verifyPassword($input["current-pw"], $data["wachtwoord"])) {
+        executeQuery("UPDATE gebruiker SET wachtwoord = ?, ingelogd = 0 WHERE id = ?", "si", array(generateHash($input["new-pw"]), $_SESSION["id"]));
+        $message = messageGenerator("pw-change-success", "change-password");
+        session_destroy();
       } else {
-        $message = messageGenerator("new-pw-match-error", "change-password");
+        $message = messageGenerator("current-pw-error", "change-password");
       }
     } else {
-      $message = messageGenerator("password-min", "change-password");
+      $message = messageGenerator("new-pw-match-error", "change-password");
     }
+  } else {
+    $message = messageGenerator("password-min", "change-password");
   }
-    
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,11 +75,11 @@
         <input type="submit" name="submit" value="Change password">
       </div>
     </form>
-      <?php 
-        if (isset($message)) {
-          echo $message;
-        }
-      ?>
+    <?php
+    if (isset($message)) {
+      echo $message;
+    }
+    ?>
   </div>
 </body>
 

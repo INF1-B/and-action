@@ -1,18 +1,18 @@
-<?php 
-  // imports
-  require_once("../utils/authentication.php");
-  require_once("../utils/database.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
+<?php
+// imports
+require_once("../utils/authentication.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 ?>
 
 <?php
-  checkSessionLoggedIn();
-  
-  if(!checkDatabaseLoggedIn($_SESSION['id'])){
-    header('Location: ./login.php');
-  }
+checkSessionLoggedIn();
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +28,10 @@
 <body>
   <?php $movies = getMovies() ?>
   <div class="navbar">
-    <?php include "../templates/navbar.php";?>
+    <?php include "../templates/navbar.php"; ?>
   </div>
 
-  <?php include "../templates/filter.html"; ?>
+  <?php include "../templates/filter.php"; ?>
 
   <div class="container container-movies">
 
@@ -44,22 +44,22 @@
 
 
     <?php
-          for ($row=0; $row < 1; $row++) { 
-              echo "<div class=\"movie-row\">";
-              for ($movie=0; $movie < count($movies); $movie++) { 
-                echo "
+    for ($row = 0; $row < 1; $row++) {
+      echo "<div class=\"movie-row\">";
+      for ($movie = 0; $movie < count($movies); $movie++) {
+        echo "
                 <div class=\"movie\">
                   <a href=\"#\">
-                    <div class=\"thumbnail\" title=".$movies[$movie]["titel"]." style=\"background-image:url('". $movies[$movie]["thumbnail_pad"] ."')\">
+                    <div class=\"thumbnail\" title=" . $movies[$movie]["titel"] . " style=\"background-image:url('" . $movies[$movie]["thumbnail_pad"] . "')\">
                     </div>
-                    <p> ". $movies[$movie]["titel"] ." </p>
+                    <p> " . $movies[$movie]["titel"] . " </p>
                   </a>
                 </div>
                 ";
-              }
-              echo "</div>";
-            }
-        ?>
+      }
+      echo "</div>";
+    }
+    ?>
 
   </div>
   <script src="./assets/js/filter.js"></script>

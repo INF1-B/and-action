@@ -121,7 +121,7 @@ if (isset($_POST["submit"])) {
       </div>
     </form>
     <?php
-    if (isset($message)){
+    if (isset($message)) {
       echo $message;
     }
     ?>
