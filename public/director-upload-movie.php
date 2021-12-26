@@ -157,7 +157,7 @@ if (isset($_POST['upload'])) {
           </div>
         </div>
       </div>
-      <!-- <div class="upload-error-message">aanpassen! -->
+      <div class="upload-error-message">
         <?php 
         if (isset($genremess)) {
           echo "<p>" . $genremess . "</p>";

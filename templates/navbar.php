@@ -7,7 +7,7 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
 }
 
 // search for a movie. This will search for a movie title, a description of a movie or the director/user that has created the movie
-if (isset($_GET["search-movie"]) || isset($_GET['genres'])){
+if (isset($_GET["search-movie"])){
     $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
                                     FROM film 
                                     INNER JOIN gebruiker 

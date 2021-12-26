@@ -11,9 +11,6 @@
                 
                 $genres = getTableRecords("SELECT naam FROM genre");
                 foreach ($genres as $genre) {
-                    if (count($_GET['genres']) > 0) {
-                        
-                    }
                     echo "
                     <li>
                         <label> 
@@ -24,11 +21,11 @@
                 }
 
                 if (isset($_GET['search-movie'])){
-                    echo "<input type=\"hidden\" value=\"" . $_GET['search-movie'] . "\" name=\"search-movie\">";
+                    echo "<li><input type=\"hidden\" value=\"" . $_GET['search-movie'] . "\" name=\"search-movie\"></li>";
                 }
 
                 ?>
-
+                </ul>
                 <input type="submit" class="button" value="Filter">
             </form>
 

@@ -61,7 +61,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
     }
     ?>
 
-  </div>
+  </div> -->
   <script src="./assets/js/filter.js"></script>
   <!-- end main container  -->
 </body>
