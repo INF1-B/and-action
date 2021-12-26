@@ -52,6 +52,9 @@ if (isset($_POST['upload'])) {
     if (!in_array($ext, $allowedext) or !$videoMimeType) {
       $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
+    } else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
+      $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!"; // to be tested on server
+      $movie = FALSE;
     } else {
       if (strlen($_FILES['Movie']['name']) < 70) {
         $tmpFileName = $_FILES['Movie']['tmp_name'];
