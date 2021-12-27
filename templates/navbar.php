@@ -6,6 +6,10 @@ if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
     logOut();
 }
 
+if (isset($_GET["update-subscription"]) && $_GET['update-subscription'] == "true") {
+    updateSubscription($_SESSION['id']);
+}
+
 // search for a movie. This will search for a movie title, a description of a movie or the director/user that has created the movie
 if (isset($_GET['genres'])){
     $orStatements = str_repeat(" OR genre.naam = ? ", count($_GET['genres'])-1);

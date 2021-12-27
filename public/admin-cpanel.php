@@ -33,10 +33,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
     <!-- start main container -->
 
     <div class="container">
-
       <div></div>
       <div></div>
-
     </div>
 
     <!-- end main container  -->

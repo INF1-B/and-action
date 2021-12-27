@@ -35,6 +35,16 @@ function getRecaptchaResponse($recaptchaResponse){
   return $responseKeys["success"];
 } 
 
+/* activateSubscription(): extends the subscription of a user with 1 year, updates the record into the database
+*
+* Example: activateSubscription($_SESSION['id']) // abonnement_eind attribute is updated
+*
+*/
+function updateSubscription($userId) {
+  $timestamp = (date('Y')+1).date('-m-d H:i:s'); 
+  executeQuery("UPDATE gebruiker SET abonnement_eind = ? WHERE id = ?", "ss", array($timestamp, $userId));
+}
+
 /* messageGenerator(): generates error messages based on the $id and $page your giving
 *
 * Example : messageGenerator("recaptcha", "register");

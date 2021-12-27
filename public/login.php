@@ -22,9 +22,10 @@ if (isset($_POST["submit"])) {
   if ($input["g-recaptcha"]) {
     if (!in_array(false, $input)) {
       $data = getTableRecord(
-        "SELECT gebruiker.id as id, email, wachtwoord, ingelogd, geverifieerd, rol.naam as rol
+        "SELECT gebruiker.id as id, email, gebruikersnaam, wachtwoord, ingelogd, geverifieerd, abonnement_eind, abonnement.naam as abonnement, rol.naam as rol
               FROM gebruiker 
               INNER JOIN rol ON gebruiker.rol_id = rol.id 
+              INNER JOIN abonnement ON gebruiker.abonnement_id = abonnement.id
               WHERE email = ?",
         "s",
         array($input["email"])
@@ -40,9 +41,14 @@ if (isset($_POST["submit"])) {
             executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE id = ? AND email = ?", "is", array($data["id"], $input["email"]));
 
             // Set $_SESSION['loggedIn'] for page authentication
+            $_SESSION['gebruikersnaam'] = $data['gebruikersnaam'];
+            $_SESSION['email'] = $data['email'];
+            $_SESSION['abonnement'] = $data['abonnement'];
+            $_SESSION['abonnement_eind'] = $data['abonnement_eind'];
             $_SESSION['geverifieerd'] = $data['geverifieerd'];
             $_SESSION['rol'] = $data["rol"];
             $_SESSION['loggedIn'] = 1; // 1 equals true
+
             header('Location: ./homepage.php');
           }
         } else {

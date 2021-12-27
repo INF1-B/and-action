@@ -21,6 +21,19 @@
     margin-top: 0;
 }
 
+.account-table > table {
+    margin: 0 auto;
+    text-align: left;
+}
+
+.account-td {
+    padding: 2px 10px 2px 0px;
+}
+
+.account-detail-end {
+    margin-bottom: 20px;
+}
+
 .account-menu h1 {
     color: #F9B354;
 }
@@ -49,7 +62,12 @@
     margin-bottom: 10%;
 }
 
-.account-buton{
+.account-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.account-button{
     background-color:#F9B354;
     color:#FFFFFF;
     border:none;
@@ -57,7 +75,7 @@
     margin-left:5%; 
     margin-bottom: 4px;
     padding: 10px 20px 10px 20px;
-    align-self: end;
+    width: 185px;
     text-decoration: none;
     font-weight: bold;
 }
