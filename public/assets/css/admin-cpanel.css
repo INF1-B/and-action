@@ -28,7 +28,7 @@
   background-color: #f2f2f2;
 }
 
-#admin-account-table tr:hover {
+#admin-account-table tr:nth-child(odd){
   background-color: #ddd;
 }
 
@@ -37,4 +37,36 @@
   padding-bottom: 12px;
   background-color: #F9B354;;
   color: white;
+}
+
+.search-user-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.search-user {
+  width: 100%;
+  border-right: none;
+  padding: 5px;
+  height: 40px;
+  outline: none;
+  color: lightgray;
+  border-radius: 2px 0 0 2px;
+}
+
+.search-user:focus{
+  color: black;
+}
+
+.search-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background: black;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 0 2px 2px 0;
 }
