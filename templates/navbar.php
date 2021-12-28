@@ -1,17 +1,37 @@
 <?php
 
 $movies;
-// check if a user has pressed the logout button
+
+// check if a user has pressed the "sign out" button, if so execute the logout function which is listed in utils/authentication.php
 if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
     logOut();
 }
 
+// check if a user has pressed the 'update subscription' button which can be found in account.php, if so, execute the updateSubscription function
 if (isset($_GET["update-subscription"]) && $_GET['update-subscription'] == "true") {
     updateSubscription($_SESSION['id']);
 }
 
-// search for a movie. This will search for a movie title, a description of a movie or the director/user that has created the movie
-if (isset($_GET['genres'])){
+/* search for a movie. 
+* The search-movie parameter represents the search bar which can be found on multiple pages in the navbar. 
+* The genres parameter represents the genre to which a movie is bound.
+*/
+if (isset($_GET['search-movie'])) {
+    $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
+                                            FROM film 
+                                            INNER JOIN gebruiker 
+                                            ON film.gebruiker_id = gebruiker.id
+                                            WHERE titel 
+                                            LIKE CONCAT('%',?,'%')
+                                            OR beschrijving 
+                                            LIKE CONCAT('%',?,'%')
+                                            OR gebruikersnaam 
+                                            LIKE CONCAT('%',?,'%')
+                                            AND geaccepteerd = 1",
+                                     "sss",
+                                     array($_GET["search-movie"], $_GET["search-movie"], $_GET["search-movie"]));
+
+} else if (isset($_GET['genres'])){
     $orStatements = str_repeat(" OR genre.naam = ? ", count($_GET['genres'])-1);
     $dataTypes = str_repeat("s", count($_GET['genres']));
     $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
@@ -26,21 +46,7 @@ if (isset($_GET['genres'])){
                                             GROUP BY film.id" , 
                                             $dataTypes, 
                                             $_GET['genres']);
-} else if (isset($_GET['search-movie'])) {
-    $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
-                                            FROM film 
-                                            INNER JOIN gebruiker 
-                                            ON film.gebruiker_id = gebruiker.id
-                                            WHERE titel 
-                                            LIKE CONCAT('%',?,'%')
-                                            OR beschrijving 
-                                            LIKE CONCAT('%',?,'%')
-                                            OR gebruikersnaam 
-                                            LIKE CONCAT('%',?,'%')
-                                            AND geaccepteerd = 1",
-                                     "sss",
-                                     array($_GET["search-movie"], $_GET["search-movie"], $_GET["search-movie"]));
-} 
+}
 
 
 ?>

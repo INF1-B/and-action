@@ -30,7 +30,7 @@
           <tr>
             <td class="account-td"> Account status </td>
             <td class="account-td">
-              <?php echo isset($_SESSION['geverifieerd']) && $_SESSION['geverifieerd'] ? "<span style=\"color: green\"> Verified </span>" : "<span style=\"color: red\"> unverified </span>"; ?>
+              <?php echo isset($_SESSION['geverifieerd']) && $_SESSION['geverifieerd'] ? "<span style=\"color: green\"> Verified </span>" : "<span style=\"color: red\"> Unverified </span>"; ?>
             </td>
           </tr>
           <tr>
@@ -48,7 +48,7 @@
         </table>
       </div>
       <div class="account-buttons">
-        <a class="account-button" href="?update-subscription=true" onclick="window.alert('Your subscription will be updated with 1 year! Please login to see the changes')">Update subscription</a> 
+        <a class="account-button" href="?update-subscription=true" onclick="window.alert('Your subscription will be updated with 1 year! Please login again to see the changes')">Update subscription</a> 
         <a class="account-button" href="change-password.php">Change password</a>
       </div>
     </div>
