@@ -1,43 +1,32 @@
+.container-movie-upload {
+    display: flex;
+    justify-content: space-between;
+}
+
 .upload p {
     color:white;
 }
+
 .uploadtitle{
     font-size: 30px;
     padding-bottom: 40px;
     color: white;
 }
+
 #MovieTitle{
-    width: 350px ;
+    width: 400px;
     height: 40px;
     text-align: center left;
     outline: none;
     padding-left: 10px;
 }
+
 .styleselect{
-    width: 225px;
+    width: 400px;
     height: 40px;
     outline: none;
 }
 
-select option[value=""]{
-    color:gray;
-}
-option {
-    color: black;
-}
-
-option[value=""][disabled] {
-    display: none;
-    color: gray;
-}
-
-
-
-textarea{
-    resize: none;
-    outline: none;
-    font-family:  'Roboto', Arial, Helvetica, sans-serif;
-}
 .graycolor{
     color: gray;
 }
@@ -52,7 +41,7 @@ textarea{
 .file-upload label{
     display: block;
     position: relative;
-    width: 150px;
+    width: 180px;
     height: 40px;
     background: #F9B354;
     display: flex;
@@ -63,11 +52,7 @@ textarea{
     color:white;
 }
 /* end of upload styling */
-textarea{
-    resize: none;
-    padding-left: 10px;
-    padding-top: 5px;
-}
+
 .supload{
     background-color:#F9B354 ;
     border: none;
@@ -78,49 +63,39 @@ textarea{
     color: white;
   }
  /* generale stuff for upload page*/
-  .spaceupload{
-      margin-bottom: 20px;
-  }
-  .spacetextupload{
-      display: block;
-      padding-bottom: 10px;
-      color: white;
-  }
-/*style for the drop down */
-input{
-    outline: none;
-    border: none;
+.spaceupload{
+    margin-bottom: 20px;
 }
-.multi-selector{
-    width: max-content;
-}
-.select-field,.select-fieldFilmguide{
-    border: 1px solid rgb(187, 187, 187);
-}
-.select-field, .task, .listFilmguide, .select-fieldFilmguide{
-    width: 100%;
-    background-color: white;
-    padding: 0.3rem;
-}
-.listFilmguide{
-    display:none
-}
-    .down-arrow{
-    font-size: 1.2rem;
-    display: inline-block;
-    cursor: pointer;
-    transition: 0.2s linear;
-}
-.task{
+
+.spacetextupload{
     display: block;
-    padding-left: 0;
+    padding-bottom: 10px;
+    color: white;
 }
-.task:hover{
-    background-color: aliceblue;
+
+textarea {
+    resize: none;
+    width: 400px;
+    height: 150px;
 }
-.show{
-    display: block;
+
+.upload-error-message {
+    color: #dc3545 !important;
+    font-weight: bold;
 }
-.rotate180{
-    transform: rotate(-60deg);
+
+.flexbox-upload-container {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.director-image {
+    justify-content: center;
+}
+
+.director-image > img {
+    margin-right: 100px;
+    height: 400px;
+    width: 400px;
 }

@@ -23,7 +23,7 @@ checkAuthorization($_SESSION['rol'], array("Admin"));
 <head>
   <title>And Action</title>
   <?php include "../templates/head.php" ?>
-  <link rel="stylesheet" href="./assets/css/dissaprovePageStyle.css">
+  <link rel="stylesheet" href="./assets/css/admin-dissaprove.css">
 </head>
 
 <body>

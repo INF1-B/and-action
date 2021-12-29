@@ -39,7 +39,8 @@ checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
 
   <div class="container">
     <div class="movie">
-      <iframe src="" title="placeholder" height="500vh" width="100%"></iframe>
+      <!-- aanpassen naar <video element> -->
+      <iframe src="https://www.w3schools.com/html/mov_bbb.mp4" title="placeholder" height="600vh" width="100%"></iframe> 
     </div>
     <div class="container-comment-description">
       <div class="text-wrapper">
@@ -62,6 +63,7 @@ checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
           <a href="#">
             <i class="fas fa-thumbs-up" style="font-size: 36px"></i>
           </a>
+          
           <span> 120.231.41 </span>
         </p>
       </div>

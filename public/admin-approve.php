@@ -22,7 +22,7 @@ checkAuthorization($_SESSION['rol'], array("Admin"));
 
 <head>
   <title>And Action</title>
-  <link rel="stylesheet" href="./assets/css/approve_warning.css">
+  <link rel="stylesheet" href="./assets/css/admin-approve_warning.css">
   <?php include "../templates/head.php" ?>
 </head>
 

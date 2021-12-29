@@ -61,20 +61,20 @@
 	overflow-x: hidden;
 }
 
-	.multiselect-wrapper ul li {
-		padding-right: 20px;
-		display: block;
+.multiselect-wrapper ul li {
+	padding-right: 20px;
+	display: block;
+}
+
+	.multiselect-wrapper ul li.active {
+		background-color: rgb(0, 102, 255);
+		color: white;
 	}
 
-		.multiselect-wrapper ul li.active {
-			background-color: rgb(0, 102, 255);
-			color: white;
-		}
-
-		.multiselect-wrapper ul li:hover {
-			background-color: rgb(0, 102, 255);
-			color: white;
-		}
+	.multiselect-wrapper ul li:hover {
+		background-color: rgb(0, 102, 255);
+		color: white;
+	}
 
 .multiselect-input-div {
 	height: 34px;
