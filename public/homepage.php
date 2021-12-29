@@ -10,6 +10,8 @@ require_once("../utils/functions.php");
 <?php
 checkSessionLoggedIn();
 
+checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
+
 if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }

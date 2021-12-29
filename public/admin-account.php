@@ -10,11 +10,11 @@ require_once("../utils/functions.php");
 <?php
 checkSessionLoggedIn();
 
+checkAuthorization($_SESSION['rol'], array("Admin"));
+
 if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
-
-checkAuthorization($_SESSION['rol'], array("Admin"));
 
 $error = '';
 
