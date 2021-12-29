@@ -1,6 +1,6 @@
 <?php
 // imports
-require_once("../utils/authentication.php");
+require_once("../utils/auth.php");
 require_once("../utils/database.php");
 require_once("../utils/filter.php");
 require_once("../utils/movies.php");
