@@ -22,7 +22,7 @@ $subscriptions = getTableRecords("SELECT * FROM abonnement");
 
 // retrieve all data from the users table, if the $_GET['search-user'] variable is set, then the query will be adjusted. If not, all users will be retrieved
 if (isset($_GET['search-user'])) {
-  $user = filterInputGet($_GET['search-user'], "search-user");
+  $userId = filterInputGet($_GET['search-user'], "search-user");
   $users = getTableRecordsFiltered(
     "SELECT gebruiker.id AS id, gebruikersnaam, email, abonnement_eind, geverifieerd, rol.naam AS rol, abonnement.naam AS abonnement 
                                         FROM gebruiker
@@ -39,7 +39,7 @@ if (isset($_GET['search-user'])) {
                                         OR abonnement.naam 
                                         LIKE CONCAT('%',?,'%')",
     "ssss",
-    array($user, $user, $user, $user)
+    array($userId, $userId, $userId, $userId)
   );
 } else {
   $users = getTableRecords(
@@ -56,23 +56,23 @@ if (isset($_GET['search-user'])) {
 if (isset($_GET['user-role']) && is_numeric($_GET['user-role']) && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
   $roleId = filterInputGet($_GET['user-role'], "user-role");
   $userId = filterInputGet($_GET['user-id'], "user-id");
-  echo $_SESSION['id'] == $userId ? "<script> window.alert('Changes on your own account will take effect after logging in again ')</script>" : "";
   executeQuery("UPDATE gebruiker SET rol_id = ? WHERE id = ?", "ii", array($roleId, $userId));
+  header("Location: admin-cpanel.php");
 }
 
 // if a user-subscription is selected in a column, the subscription will be updated in the database. Changes will take effect after logging in again
 if (isset($_GET['user-subscription']) && is_numeric($_GET['user-subscription']) && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
   $subId = filterInputGet($_GET['user-subscription'], "user-subscription");
   $userId = filterInputGet($_GET['user-id'], "user-id");
-  echo $_SESSION['id'] == $userId ? "<script> window.alert('Changes on your own account will take effect after logging in again ')</script>" : "";
   executeQuery("UPDATE gebruiker SET abonnement_id = ? WHERE id = ?", "ii", array($subId, $userId));
+  header("Location: admin-cpanel.php");
 }
 
 // if the 'update-subscription' tile is pressed at a user, the subscription will be extended with 1 year
 if (isset($_GET["update-subscription-admin"]) && $_GET['update-subscription-admin'] == "true" && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
   $id = filterInputGet($_GET['user-id'], "user-id");
   updateSubscription($id);
-  echo "<script> window.alert('Account with ID " . $id . " subscription has been extended with 1 year!') </script>";
+  header("Location: admin-cpanel.php");
 }
 
 // if the 'Delete' tile is pressed at a user, the user will be deleted from the database. This will delete all movies attached to the users if there are any, and finally delete the user from the gebruiker table
@@ -83,7 +83,7 @@ if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" &&
   } else {
     if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id))){
       if (executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id))) {
-       echo "<script> window.alert('user with id " . $id . " has been deleted') </script>";
+       header("Location: admin-cpanel.php");
       }
     } else {
       echo "<script> window.alert('ERROR trying to delete user with id " . $id . "') </script>";
@@ -181,12 +181,12 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
           echo "<td>" . $user['abonnement_eind'] . "</td>";
           echo "<td> $verified </td>";
           echo "<td>
-                  <a class=\"update-subscription-button\" href=\"?update-subscription-admin=true&user-id=" . $user["id"] . "\">
+                  <a class=\"update-subscription-button\" onclick=\"window.alert('Account with email " . $user['email'] . " subscription has been extended with 1 year!')\" href=\"?update-subscription-admin=true&user-id=" . $user["id"] . "\">
                     Update subscription
                   </a>
                 </td>";
           echo "<td>
-                  <a class=\"delete-user-button\"  onclick=\"return window.confirm('Are you certain that you want to delete user with id " . $user['id'] . "?')\" href=\"?delete-user-admin=true&user-id=" . $user["id"] . "\">
+                  <a class=\"delete-user-button\"  onclick=\"return window.confirm('Are you certain that you want to delete user with email " . $user['email'] . "?')\" href=\"?delete-user-admin=true&user-id=" . $user["id"] . "\">
                     Delete
                   </a>
                 </td>";
