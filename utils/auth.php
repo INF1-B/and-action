@@ -17,15 +17,20 @@ function checkSessionLoggedIn(){
 *
 */
 function checkAuthorization($userRole, $allowedRoles) {
-    if (!in_array($userRole, $allowedRoles)) {
-        header('Location: ./403.php');
+    if (!empty($userRole)){
+        if (!in_array($userRole, $allowedRoles)) {
+            header('Location: ./403.php');
+        }
+    } else {
+        session_destroy();
+        header('Location: ./login.php');
     }
 }
 
 // checks whether the user has the attribute "ingelogd" set to 1 (true). If so, the user can continue. Otherwise the user won't be allowed to continue and gets redirected to the login page
 function checkDatabaseLoggedIn($id){
     $user = getTableRecord("SELECT ingelogd FROM gebruiker WHERE id = ?", "i", array($id));
-    if($user['ingelogd'] == 1){
+    if ($user['ingelogd'] == 1){
         return true;
     }
     session_destroy();

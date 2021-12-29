@@ -16,11 +16,13 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
-
 $users;
+$roles = getTableRecords("SELECT * FROM rol");
+$subscriptions = getTableRecords("SELECT * FROM abonnement");
 
 // retrieve all data from the users table, if the $_GET['search-user'] variable is set, then the query will be adjusted. If not, all users will be retrieved
 if (isset($_GET['search-user'])) {
+  $user = filterInputGet($_GET['search-user'], "search-user");
   $users = getTableRecordsFiltered(
     "SELECT gebruiker.id AS id, gebruikersnaam, email, abonnement_eind, geverifieerd, rol.naam AS rol, abonnement.naam AS abonnement 
                                         FROM gebruiker
@@ -37,7 +39,7 @@ if (isset($_GET['search-user'])) {
                                         OR abonnement.naam 
                                         LIKE CONCAT('%',?,'%')",
     "ssss",
-    array($_GET['search-user'], $_GET['search-user'], $_GET['search-user'], $_GET['search-user'])
+    array($user, $user, $user, $user)
   );
 } else {
   $users = getTableRecords(
@@ -50,32 +52,54 @@ if (isset($_GET['search-user'])) {
   );
 }
 
+// if a user-role is selected in a column, the subscription will be updated in the database. Changes will take effect after logging in again
+if (isset($_GET['user-role']) && is_numeric($_GET['user-role']) && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
+  $roleId = filterInputGet($_GET['user-role'], "user-role");
+  $userId = filterInputGet($_GET['user-id'], "user-id");
+  echo $_SESSION['id'] == $userId ? "<script> window.alert('Changes on your own account will take effect after logging in again ')</script>" : "";
+  executeQuery("UPDATE gebruiker SET rol_id = ? WHERE id = ?", "ii", array($roleId, $userId));
+}
+
+// if a user-subscription is selected in a column, the subscription will be updated in the database. Changes will take effect after logging in again
+if (isset($_GET['user-subscription']) && is_numeric($_GET['user-subscription']) && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
+  $subId = filterInputGet($_GET['user-subscription'], "user-subscription");
+  $userId = filterInputGet($_GET['user-id'], "user-id");
+  echo $_SESSION['id'] == $userId ? "<script> window.alert('Changes on your own account will take effect after logging in again ')</script>" : "";
+  executeQuery("UPDATE gebruiker SET abonnement_id = ? WHERE id = ?", "ii", array($subId, $userId));
+}
+
 // if the 'update-subscription' tile is pressed at a user, the subscription will be extended with 1 year
 if (isset($_GET["update-subscription-admin"]) && $_GET['update-subscription-admin'] == "true" && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
-  updateSubscription($_GET['user-id']);
-  echo "<script> window.alert('Account with ID " . $_GET['user-id'] . " subscription has been extended with 1 year!') </script>";
+  $id = filterInputGet($_GET['user-id'], "user-id");
+  updateSubscription($id);
+  echo "<script> window.alert('Account with ID " . $id . " subscription has been extended with 1 year!') </script>";
 }
 
 // if the 'Delete' tile is pressed at a user, the user will be deleted from the database. This will delete all movies attached to the users if there are any, and finally delete the user from the gebruiker table
 if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
-  if ($_GET['user-id'] == $_SESSION['id']) {
+  $id = filterInputGet($_GET['user-id'], "user-id");
+  if ($id == $_SESSION['id']) {
     echo "<script> window.alert('Can not delete your own account!') </script>";
   } else {
-    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($_GET['user-id']))){
-      if (executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($_GET['user-id']))) {
-       echo "<script> window.alert('user with id " . $_GET['user-id'] . " has been deleted') </script>";
+    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id))){
+      if (executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id))) {
+       echo "<script> window.alert('user with id " . $id . " has been deleted') </script>";
       }
     } else {
-      echo "<script> window.alert('ERROR trying to delete user with id " . $_GET['user-id'] . "') </script>";
+      echo "<script> window.alert('ERROR trying to delete user with id " . $id . "') </script>";
     }
   }
 }
 
 // if the verify user tile is clicked in the 'verified' column, the user will be verified or unverified. Depending on the current verification state of the user
 if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
-  executeQuery("UPDATE gebruiker SET geverifieerd = 1 WHERE id = ?", "i", array($_GET['user-id']));
+  $id = filterInputGet($_GET['user-id'], "user-id");
+  executeQuery("UPDATE gebruiker SET geverifieerd = 1 WHERE id = ?", "i", array($id));
+  header("Location: admin-cpanel.php");
 } else if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "false" && isset($_GET['user-id']) && is_numeric($_GET['user-id'])) {
-  executeQuery("UPDATE gebruiker SET geverifieerd = 0 WHERE id = ?", "i", array($_GET['user-id']));
+  $id = filterInputGet($_GET['user-id'], "user-id");
+  executeQuery("UPDATE gebruiker SET geverifieerd = 0 WHERE id = ?", "i", array($id));
+  header("Location: admin-cpanel.php");
 }
 
 ?>
@@ -101,7 +125,8 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
   <div class="container">
     <div class="admin-account-table-wrapper">
       <form class="search-user-container" action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
-        <input class="search-user" type="text" placeholder="Search by username, email, role or subscription" name="search-user" value="<?php echo isset($_GET['search-user']) ? $_GET['search-user'] : "" ?>">
+        <input class="search-user" type="text" placeholder="Search by username, email, role or subscription"
+          name="search-user" value="<?php echo isset($_GET['search-user']) ? $_GET['search-user'] : "" ?>">
         <button type="submit" class="search-button">
           <i class="fa fa-search"></i>
         </button>
@@ -125,8 +150,34 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
           echo "<td>" . $key + 1 . "</td>";
           echo "<td>" . $user['gebruikersnaam'] . "</td>";
           echo "<td>" . $user['email'] . "</td>";
-          echo "<td>" . $user['rol'] . "</td>";
-          echo "<td>" . $user['abonnement'] . "</td>";
+          echo "<td>"; 
+          echo "<form action=\"$_SERVER[PHP_SELF] \"method=\"GET\">";
+            echo "<select name=\"user-role\" onchange=\"this.form.submit()\">";
+                      foreach ($roles as $role) {
+                          if ($role["naam"] == $user['rol']){
+                              echo "<option value=\"$role[id]\" selected> $role[naam] </option>";
+                        } else {
+                          echo "<option value=\"$role[id]\"> $role[naam] </option>";
+                        }
+                      }
+            echo "</select>";
+            echo "<input type=\"hidden\" value=\"$user[id]\" name=\"user-id\">";
+          echo "</form>";
+          echo "</td>";
+          echo "<td>"; 
+          echo "<form action=\"$_SERVER[PHP_SELF] \"method=\"GET\">";
+            echo "<select name=\"user-subscription\" onchange=\"this.form.submit()\">";
+                      foreach ($subscriptions as $sub) {
+                          if ($sub["naam"] == $user['abonnement']){
+                              echo "<option value=\"$sub[id]\" selected> $sub[naam] </option>";
+                        } else {
+                          echo "<option value=\"$sub[id]\"> $sub[naam] </option>";
+                        }
+                      }
+            echo "</select>";
+            echo "<input type=\"hidden\" value=\"$user[id]\" name=\"user-id\">";
+          echo "</form>";
+          echo "</td>";
           echo "<td>" . $user['abonnement_eind'] . "</td>";
           echo "<td> $verified </td>";
           echo "<td>
@@ -143,7 +194,8 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
         }
         ?>
       </table>
-        <a href="?refresh=true"><button onclick="window.location.reload();"> <i class="fa refresh-button"> Refresh &#xf021;</i> </button></a>
+      <a href="?refresh=true"><button onclick="window.location.reload();"> <i class="fa refresh-button"> &#xf021;</i>
+        </button></a>
     </div>
   </div>
 
