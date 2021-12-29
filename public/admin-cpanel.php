@@ -14,6 +14,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
+checkAuthorization($_SESSION['rol'], array("Admin"));
+
 $users;
 
 // retrieve all data from the users table, if the $_GET['search-user'] variable is set, then the query will be adjusted. If not, all users will be retrieved

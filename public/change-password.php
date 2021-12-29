@@ -14,6 +14,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
+checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
+
 $message = messageGenerator("return-ch-pw", "change-password");
 
 if (isset($_POST["submit"])) {

@@ -8,11 +8,14 @@ require_once("../utils/functions.php");
 ?>
 
 <?php
-  // checkSessionLoggedIn();
-  
-  // if(!checkDatabaseLoggedIn($_SESSION['id'])){
-  //   header('Location: ./login.php');
-  // }
+checkSessionLoggedIn();
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
+
+checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
+
 ?>
 <?php
 require("../src/database/constants.php");
@@ -111,12 +114,12 @@ if (isset($_POST['upload'])) {
 
 <head>
   <title>And Action</title>
-  <?php include "../templates/head.php";?>
+  <?php include "../templates/head.php"; ?>
   <link rel="stylesheet" href="./assets/css/multiselect.css">
   <link rel="stylesheet" href="./assets/css/styleupload.css">
   <script src="assets/js/multiselect.min.js">
     document.multiselect('#genre-select').setIsEnabled(true);;
-    document.multiselect('#filmguide-select').setIsEnabled(true);;  
+    document.multiselect('#filmguide-select').setIsEnabled(true);;
   </script>
 </head>
 
@@ -138,10 +141,10 @@ if (isset($_POST['upload'])) {
         <input type="text" id="MovieTitle" name="MovieTitle" placeholder="Type here your movie title">
       </div>
       <div class="upload-error-message">
-        <?php 
+        <?php
         if (isset($titlemess)) {
           echo "<p>" . $titlemess . "</p>";
-        } 
+        }
         ?>
       </div>
       <div class="spaceupload">
@@ -152,19 +155,21 @@ if (isset($_POST['upload'])) {
             $genres = getTableRecords("SELECT id, naam FROM genre");
             echo "<select id=\"genre-select\" name=\"genres[]\" multiple placeholder=\"category\">";
             foreach ($genres as $genre) {
-              echo "<option value=".$genre['id'].">". $genre["naam"] ."</option>";
+              echo "<option value=" . $genre['id'] . ">" . $genre["naam"] . "</option>";
             }
             echo "</select>";
             ?>
-            <script> document.multiselect('#genre-select').setCheckBoxClick();</script>
+            <script>
+              document.multiselect('#genre-select').setCheckBoxClick();
+            </script>
           </div>
         </div>
       </div>
       <div class="upload-error-message">
-        <?php 
+        <?php
         if (isset($genremess)) {
           echo "<p>" . $genremess . "</p>";
-        } 
+        }
         ?>
       </div>
       <div class="spaceupload">
@@ -182,9 +187,9 @@ if (isset($_POST['upload'])) {
       </div>
       <div class="upload-error-message">
         <?php
-          if (isset($ageRatemess)) {
-            echo "<p>" . $ageRatemess . "</p>";
-          }
+        if (isset($ageRatemess)) {
+          echo "<p>" . $ageRatemess . "</p>";
+        }
         ?>
       </div>
       <div class="spaceupload">
@@ -192,21 +197,23 @@ if (isset($_POST['upload'])) {
         <div class="multi-selector">
 
           <?php
-            $filmGuides = getTableRecords("SELECT id, naam FROM kijkwijzer_geschiktheid");
-            echo "<select id=\"filmguide-select\" name=\"filmguides[]\" multiple>";
-            foreach ($filmGuides as $filmguide) {
-              echo "<option value=".$filmguide['id'].">". $filmguide["naam"] ."</option>";
-            }
-            echo "</select>";
-            ?>
-            <script> document.multiselect('#filmguide-select').setCheckBoxClick();</script>
+          $filmGuides = getTableRecords("SELECT id, naam FROM kijkwijzer_geschiktheid");
+          echo "<select id=\"filmguide-select\" name=\"filmguides[]\" multiple>";
+          foreach ($filmGuides as $filmguide) {
+            echo "<option value=" . $filmguide['id'] . ">" . $filmguide["naam"] . "</option>";
+          }
+          echo "</select>";
+          ?>
+          <script>
+            document.multiselect('#filmguide-select').setCheckBoxClick();
+          </script>
         </div>
       </div>
       <div class="upload-error-message">
         <?php
         if (isset($filmGuidemess)) {
           echo "<p>" . $filmGuidemess . "</p>";
-        } 
+        }
         ?>
       </div>
       <div class="spaceupload">
@@ -221,7 +228,7 @@ if (isset($_POST['upload'])) {
         if (isset($moviemess)) {
           echo "<p>" . $moviemess . "</p>";
         }
-        
+
         if (isset($filetypemoviemess)) {
           echo "<p>" . $filetypemoviemess . "</p>";
         }
@@ -254,10 +261,10 @@ if (isset($_POST['upload'])) {
           echo "<p>" . $descriptionmess . "</p>";
         }
         ?>
-      <div class="upload-error-message">
-      <div class="spaceupload">
-        <input type="submit" name='upload' value="upload" class="supload">
-      </div>
+        <div class="upload-error-message">
+          <div class="spaceupload">
+            <input type="submit" name='upload' value="upload" class="supload">
+          </div>
     </form>
   </div>
 </body>

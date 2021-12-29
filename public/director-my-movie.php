@@ -13,6 +13,9 @@ checkSessionLoggedIn();
 if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
+
+checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
+
 ?>
 
 <?php $movies = getMoviesById($_SESSION['id']); ?>

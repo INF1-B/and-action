@@ -14,6 +14,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
+checkAuthorization($_SESSION['rol'], array("Admin"));
+
 $error = '';
 
 if (isset($_GET['approve-user'])) {
