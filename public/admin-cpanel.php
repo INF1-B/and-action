@@ -58,19 +58,10 @@ if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" &&
   if ($_GET['user-id'] == $_SESSION['id']) {
     echo "<script> window.alert('Can not delete your own account!') </script>";
   } else {
-    if (executeQuery(
-      "DELETE FROM film WHERE gebruiker_id = ?   
-            ",
-      "i",
-      array($_GET['user-id'])
-        &&  executeQuery(
-          "DELETE FROM gebruiker WHERE id = ?   
-              ",
-          "i",
-          array($_GET['user-id'])
-        )
-    )) {
-      echo "<script> window.alert('user with id " . $_GET['user-id'] . " has been deleted') </script>";
+    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($_GET['user-id']))){
+      if (executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($_GET['user-id']))) {
+       echo "<script> window.alert('user with id " . $_GET['user-id'] . " has been deleted') </script>";
+      }
     } else {
       echo "<script> window.alert('ERROR trying to delete user with id " . $_GET['user-id'] . "') </script>";
     }
@@ -141,7 +132,7 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
                   </a>
                 </td>";
           echo "<td>
-                  <a class=\"delete-user-button\"  onclick=\"window.confirm('Are you certain that you want to delete user with id')" . $user['id'] . "\" href=\"?delete-user-admin=true&user-id=" . $user["id"] . "\">
+                  <a class=\"delete-user-button\"  onclick=\"return window.confirm('Are you certain that you want to delete user with id " . $user['id'] . "?')\" href=\"?delete-user-admin=true&user-id=" . $user["id"] . "\">
                     Delete
                   </a>
                 </td>";
@@ -149,6 +140,7 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
         }
         ?>
       </table>
+        <a href="?refresh=true"><button onclick="window.location.reload();"> <i class="fa refresh-button"> Refresh &#xf021;</i> </button></a>
     </div>
   </div>
 

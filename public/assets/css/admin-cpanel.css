@@ -15,6 +15,7 @@
 #admin-account-table {
   border-collapse: collapse;
   width: 100%;
+  margin: 10px 0px 10px 0px;
 }
 
 #admin-account-table td, #admin-account-table th {
@@ -42,7 +43,6 @@
 .search-user-container {
   width: 100%;
   display: flex;
-  margin-bottom: 10px;
 }
 
 .search-user {
@@ -69,4 +69,9 @@
   cursor: pointer;
   font-size: 20px;
   border-radius: 0 2px 2px 0;
+}
+
+.refresh-button {
+  font-size:24px; 
+  padding: 2px 5px 2px 5px;
 }
