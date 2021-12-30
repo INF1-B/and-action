@@ -1,29 +1,36 @@
-<?php 
-  require_once("../utils/database.php");
-  require_once("../utils/authentication.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
-  checkSessionLoggedIn();
+<?php
+// imports
+require_once("../utils/auth.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
+?>
 
-  if(!checkDatabaseLoggedIn($_SESSION['email'])){
-    header('Location: ./login.php');
-  }
+<?php
+checkSessionLoggedIn();
+
+checkAuthorization($_SESSION['rol'], array("Admin"));
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>And action</title>
+  <title>And Action</title>
   <?php include "../templates/head.php" ?>
-  <link rel="stylesheet" href="./assets/css/dissaprovePageStyle.css">
+  <link rel="stylesheet" href="./assets/css/admin-dissaprove.css">
 </head>
 
 <body>
   <!-- start navbar -->
 
   <div class="navbar">
-    <?php include "../templates/navbar.php";?>
+    <?php include "../templates/navbar.php"; ?>
   </div>
 
   <!-- end navbar -->
@@ -36,8 +43,7 @@
       <div class="formWrapper">
         <form action="" method="POST">
           <label for="reasonDissaprove">Reason</label>
-          <textarea id="reasonDissaprove" name="reason" rows="6"
-            placeholder="Type here your reason why the movie is not approved"></textarea>
+          <textarea id="reasonDissaprove" name="reason" rows="6" placeholder="Type here your reason why the movie is not approved"></textarea>
           <div class="submitButtons">
             <input type="submit" name="approve" id="approve" value="Approve">
             <input type="submit" name="cancel" id="cancel" value="Cancel">
@@ -51,7 +57,7 @@
   <!-- start footer -->
 
   <div class="footer">
-    <?php include "../templates/footer.php";?>
+    <?php include "../templates/footer.php"; ?>
   </div>
   <!-- end footer -->
 

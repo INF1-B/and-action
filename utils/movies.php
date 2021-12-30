@@ -37,6 +37,16 @@ function getMovies(){
     return $movies;
 }
 
+// returns movie by user ID
+function getMoviesById($id) {
+    $movies = getTableRecordsFiltered("SELECT film.id, titel, thumbnail_pad 
+                                            FROM film 
+                                            INNER JOIN gebruiker 
+                                            ON film.gebruiker_id = gebruiker.id 
+                                            WHERE gebruiker.id = ?", "i", array($id));
+    return $movies;
+}
+
 // retrieve a specific movie, used when the user is clicking on a specific movie
 function getMovie($filmId){
     $sql = getTableRecord("SELECT id, titel, beschrijving, pad, thumbnail_pad FROM film WHERE id = ?", "i", array($filmId));

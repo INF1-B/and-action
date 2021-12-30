@@ -1,8 +1,10 @@
 <?php
-
+// imports
 include "../utils/filter.php";
 include "../utils/functions.php";
 include "../utils/database.php";
+?>
+<?php
 
 $message = messageGenerator("register-note", "register");
 
@@ -53,7 +55,7 @@ if (isset($_POST["submit"])) {
   <?php
   include "../templates/head.php";
   ?>
-  <link rel="stylesheet" href="assets/css/signup.css">
+  <link rel="stylesheet" href="assets/css/sign-up.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
@@ -118,9 +120,10 @@ if (isset($_POST["submit"])) {
         <input type="submit" name="submit" value="Sign up">
       </div>
     </form>
-
     <?php
-    echo $message;
+    if (isset($message)) {
+      echo $message;
+    }
     ?>
     <p class="no-account">
       Already have an account?

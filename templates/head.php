@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="assets/images/logo-svg.png" type="image/png">
 <link rel="stylesheet" href="../public/assets/css/reset.css">
-<link rel="stylesheet" href="../public/assets/css/style.css">
 <link rel="stylesheet" href="../public/assets/css/account.css">
+<link rel="stylesheet" href="../public/assets/css/style.css">
 <script src="https://kit.fontawesome.com/e187230ac2.js" crossorigin="anonymous"></script>
 

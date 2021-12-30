@@ -1,21 +1,28 @@
-<?php 
-  require_once("../utils/database.php");
-  require_once("../utils/authentication.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
-  checkSessionLoggedIn();
-  
-  if(!checkDatabaseLoggedIn($_SESSION['email'])){
-    header('Location: ./login.php');
-  }
+<?php
+// imports
+require_once("../utils/auth.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
+?>
+
+<?php
+checkSessionLoggedIn();
+
+checkAuthorization($_SESSION['rol'], array("Admin"));
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>And action</title>
-  <link rel="stylesheet" href="./assets/css/approve_warning.css">
+  <title>And Action</title>
+  <link rel="stylesheet" href="./assets/css/admin-approve_warning.css">
   <?php include "../templates/head.php" ?>
 </head>
 
@@ -23,7 +30,7 @@
   <!-- start navbar -->
 
   <div class="navbar">
-    <?php include "../templates/navbar.php";?>
+    <?php include "../templates/navbar.php"; ?>
   </div>
 
   <!-- end navbar -->

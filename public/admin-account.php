@@ -1,14 +1,20 @@
-<?php 
-  require_once("../utils/database.php");
-  require_once("../utils/authentication.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
-  checkSessionLoggedIn();
+<?php
+// imports
+require_once("../utils/auth.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
+?>
 
-  if(!checkDatabaseLoggedIn($_SESSION['email'])){
-    header('Location: ./login.php');
-  }
+<?php
+checkSessionLoggedIn();
+
+checkAuthorization($_SESSION['rol'], array("Admin"));
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
 
 $error = '';
 
@@ -24,15 +30,15 @@ if (isset($_GET['approve-user'])) {
     $error = 'User does not exist';
   }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>And action</title>
+  <title>And Action</title>
   <link rel="stylesheet" href="./assets/css/account-admin.css">
-  <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
+  <link rel="stylesheet" href="./assets/css/thumbnail-display.css">
   <?php include "../templates/head.php" ?>
 </head>
 
@@ -75,13 +81,13 @@ if (isset($_GET['approve-user'])) {
         <div class="button_container">
           <!-- ID moet nog dynamisch -->
           <a href="./admin-account.php?approve-user=22" class="button">Approve user</a>
-          <?php 
-            if($error){
-              ?> 
-          <p class="error"><?php echo $error ?></p>
+          <?php
+          if ($error) {
+          ?>
+            <p class="error"><?php echo $error ?></p>
 
-              <?php
-            }
+          <?php
+          }
           ?>
         </div>
       </div>

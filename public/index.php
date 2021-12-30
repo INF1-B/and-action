@@ -11,7 +11,21 @@
   <!-- start navbar -->
 
   <div class="navbar">
-    <?php include "../templates/navbar.php"; ?>
+    <header class="container">
+      <div class="row">
+        <div class="nav_logo">
+          <img src="../public/assets/img/logo.png" alt="Logo And action" class="logo">
+        </div>
+        <ul class="nav_list">
+          <li class="nav_list_item"><a class="nav_link" href="../public/index.php">Home</a></li>
+          <li class="nav_list_item"><a class="nav_link" href="../public/login.php">Login</a></li>
+          <li class="nav_list_item"><a class="nav_button" href="../public/signUp.php">Sign up</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <span class="line"></span>
+      </div>
+    </header>
   </div>
 
   <!-- end navbar -->

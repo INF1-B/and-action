@@ -1,21 +1,30 @@
-<?php 
-  require_once("../utils/database.php");
-  require_once("../utils/authentication.php");
-  require_once("../utils/filter.php");
-  require_once("../utils/movies.php");
-  require_once("../utils/functions.php");
-  checkSessionLoggedIn();
-
-  if(!checkDatabaseLoggedIn($_SESSION['email'])){
-    header('Location: ./login.php');
-  }
+<?php
+// imports
+require_once("../utils/auth.php");
+require_once("../utils/database.php");
+require_once("../utils/filter.php");
+require_once("../utils/movies.php");
+require_once("../utils/functions.php");
 ?>
+
+<?php
+checkSessionLoggedIn();
+
+checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
+
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
+
+?>
+
+<?php $movies = getMoviesById($_SESSION['id']); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>And Action</title>
-  <link rel="stylesheet" href="./assets/css/thumpnail-display.css">
+  <link rel="stylesheet" href="./assets/css/thumbnail-display.css">
   <?php include "../templates/head.php" ?>
 </head>
 
@@ -23,7 +32,7 @@
   <!-- start navbar -->
 
   <div class="navbar">
-    <?php include "../templates/navbar.php";?>
+    <?php include "../templates/navbar.php"; ?>
   </div>
 
   <!-- end navbar -->
@@ -35,44 +44,23 @@
     </div>
 
 
-
-    <?php 
-    for ($row=0; $row < 1; $row++) { 
-        echo "<div class=\"movie-row\">";
-        for ($movie=0; $movie < 6; $movie++) { 
-          echo "
-          <div class=\"movie\">
-            <a href=\"#\">
-              <div class=\"thumbnail\" title=\"test\">
-              </div>
-              <p> scary moveh </p>
-            </a>
-          </div>
-          ";
-        }
-        echo "</div>";
+    <?php
+    for ($row = 0; $row < 1; $row++) {
+      echo "<div class=\"movie-row\">";
+      for ($movie = 0; $movie < count($movies); $movie++) {
+        echo "
+                <div class=\"movie\">
+                  <a href=" . "director-movie.php?id=" . $movies[$movie]["id"] . ">
+                    <div class=\"thumbnail\" title=" . $movies[$movie]["titel"] . " style=\"background-image:url('" . $movies[$movie]["thumbnail_pad"] . "')\">
+                    </div>
+                    <p> " . $movies[$movie]["titel"] . " </p>
+                  </a>
+                </div>
+                ";
       }
-?>
-
-    <h1>Under review</h1>
-
-    <?php 
-    for ($row=0; $row < 1; $row++) { 
-        echo "<div class=\"movie-row\">";
-        for ($movie=0; $movie < 6; $movie++) { 
-          echo "
-          <div class=\"movie\">
-            <a href=\"#\">
-              <div class=\"thumbnail\" title=\"test\">
-              </div>
-              <p> scary moveh </p>
-            </a>
-          </div>
-          ";
-        }
-        echo "</div>";
-      }
-?>
+      echo "</div>";
+    }
+    ?>
 
 
 
