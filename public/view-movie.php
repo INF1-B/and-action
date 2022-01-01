@@ -16,8 +16,21 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
-?>
+$movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
 
+$movieDetails = getMovie($movieId);
+$movieLikes = getMovieLikes($movieId);
+
+if (isset($_GET['updateLikes']) && $_GET['updateLikes'] == "true" && isset($_GET['user-id']) && isset($_GET['movie-id']) && is_numeric($_GET['user-id']) && is_numeric($_GET['movie-id']) && !empty($movieDetails)) {
+  $userId = filterInputGet($_GET["user-id"], "user-id");
+  $movieId = filterInputGet($_GET["movie-id"], "movie-id");
+
+  echo "<script> window.alert('If not liked before, your like will be added to this movie!') </script>";
+  likeMovie($userId, $movieId);
+  Header("Location: view-movie.php?id=$movieId");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,42 +49,52 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 
   <!-- end navbar -->
   <!-- start main container -->
-
+  <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0): ?>
   <div class="container">
+    <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // good movie quality
+      ?>
     <div class="movie">
-      <!-- aanpassen naar <video element> -->
-      <iframe src="https://www.w3schools.com/html/mov_bbb.mp4" title="placeholder" height="600vh" width="100%"></iframe> 
+      <video controls width="100%" height="850vh">
+        <source src="<?php echo $movieDetails['pad'] ?>" type="video/mp4">
+      </video>
     </div>
+    <?php else :  // bad movie quality 
+      ?>
+
+    <div class="movie">
+      <video controls width="100%" height="850vh">
+        <source src="<?php echo $movieDetails['pad'] ?>" type="video/mp4">
+      </video>
+    </div>
+    <?php endif ?>
     <div class="container-comment-description">
       <div class="text-wrapper">
         <div class="description">
-          <h1>Narcos: Mexico</h1>
+          <h1> <?php echo $movieDetails['titel'] ?> </h1>
           <p>
-            lorem ipsum dolor sit amet lorem ipsum
-            lorem ipsum dolor sit amet lorem ipsum
-            lorem ipsum dolor sit amet lorem ipsum
-            lorem ipsum dolor sit amet lorem ipsum
+            <?php echo $movieDetails['beschrijving'] ?>
           </p>
           <div class="sub-description">
-            <p><strong>Category:</strong></p>
-            <p><strong>Author:</strong></p>
-            <p><strong>Age:</strong></p>
-            <p><strong>Film guide:</strong></p>
+            <p><strong>Author:</strong> <?php echo $movieDetails['gebruikersnaam'] ?> </p>
+            <p><strong>Age rating:</strong> <?php echo $movieDetails['kijkwijzer_leeftijd'] ?> </p>
+            <p><strong>Film guides(s):</strong> <?php echo $movieDetails['kijkwijzer'] ?> </p>
+            <p><strong>Genre(s):</strong> <?php echo $movieDetails['genre'] ?> </p>
           </div>
         </div>
         <p class="movie-likes">
-          <a href="#">
+          <a onclick="window.alert('If not liked before, your like will be added to this movie!')"
+            href="?updateLikes=true&user-id=<?php echo $_SESSION['id'] ?>&movie-id=<?php echo $movieDetails["id"] ?>">
             <i class="fas fa-thumbs-up" style="font-size: 36px"></i>
           </a>
-          
-          <span> 120.231.41 </span>
+
+          <span> <?php echo $movieLikes['num'] ?> </span>
         </p>
       </div>
       <div>
         <form>
           <div>
             <h2>Feedback</h2>
-            <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Type here your feedback"></textarea>
+            <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Type your feedback"></textarea>
           </div>
           <div>
             <input type="submit" value="Submit Feedback" class="submit-feedback">
@@ -80,7 +103,11 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       </div>
     </div>
   </div>
-
+  <?php else:?>
+  <div class="container">
+    <h1 style="text-align: center"> Please check whether your subscription is active, your account is verified and if you have selected a valid movie </h1>
+  </div>
+  <?php endif ?>
   <!-- end main container  -->
 
 </body>

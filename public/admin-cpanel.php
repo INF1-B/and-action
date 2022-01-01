@@ -155,9 +155,9 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
             echo "<select name=\"user-role\" onchange=\"this.form.submit()\">";
                       foreach ($roles as $role) {
                           if ($role["naam"] == $user['rol']){
-                              echo "<option value=\"$role[id]\" selected> $role[naam] </option>";
+                            echo "<option value=\"$role[id]\" selected> $role[naam] </option>";
                         } else {
-                          echo "<option value=\"$role[id]\"> $role[naam] </option>";
+                            echo "<option value=\"$role[id]\"> $role[naam] </option>";
                         }
                       }
             echo "</select>";
@@ -169,9 +169,9 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
             echo "<select name=\"user-subscription\" onchange=\"this.form.submit()\">";
                       foreach ($subscriptions as $sub) {
                           if ($sub["naam"] == $user['abonnement']){
-                              echo "<option value=\"$sub[id]\" selected> $sub[naam] </option>";
+                            echo "<option value=\"$sub[id]\" selected> $sub[naam] </option>";
                         } else {
-                          echo "<option value=\"$sub[id]\"> $sub[naam] </option>";
+                            echo "<option value=\"$sub[id]\"> $sub[naam] </option>";
                         }
                       }
             echo "</select>";
