@@ -75,28 +75,6 @@ form > div > label {
   color:#F9B354;
 }
 
-.register-error, .register-success, .register-note {
-  text-align: center;
-  padding: 10px 0px 10px 0px;
-}
-
-.register-error {
-  color: red;
-}
-
-.register-success {
-  color: lightgreen;
-}
-
-.register-success > a {
-  color: white;
-}
-
-.register-note {
-  font-size: 11px;
-  color: white;
-}
-
 .subscription {
   width: 100%;
   padding: 8px 2px 8px 2px;
@@ -109,7 +87,6 @@ form > div > label {
 
 .form-password div {
   width: 49%;
-}
 }
 
 .upper {
@@ -177,28 +154,6 @@ form > div > label {
 .sign-up {
     text-decoration: none;
     color:#F9B354;
-}
-
-.register-error, .register-success, .register-note {
-    text-align: center;
-    padding: 10px 0px 10px 0px;
-}
-
-.register-error {
-    color: red;
-}
-
-.register-success {
-    color: lightgreen;
-}
-
-.register-success > a {
-    color: white;
-}
-
-.register-note {
-    font-size: 11px;
-    color: white;
 }
 
 .subscription {

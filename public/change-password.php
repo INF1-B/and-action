@@ -16,7 +16,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
-$message = messageGenerator("return-ch-pw", "change-password");
+$message = messageGenerator("ch-pw-note");
 
 if (isset($_POST["submit"])) {
   // filter all user values
@@ -29,16 +29,16 @@ if (isset($_POST["submit"])) {
       $data = getTableRecord("SELECT wachtwoord FROM gebruiker WHERE id = ?", "i", array($_SESSION["id"]));
       if (verifyPassword($input["current-pw"], $data["wachtwoord"])) {
         executeQuery("UPDATE gebruiker SET wachtwoord = ?, ingelogd = 0 WHERE id = ?", "si", array(generateHash($input["new-pw"]), $_SESSION["id"]));
-        $message = messageGenerator("pw-change-success", "change-password");
+        $message = messageGenerator("ch-pw-success");
         session_destroy();
       } else {
-        $message = messageGenerator("current-pw-error", "change-password");
+        $message = messageGenerator("ch-pw-current-pw");
       }
     } else {
-      $message = messageGenerator("new-pw-match-error", "change-password");
+      $message = messageGenerator("ch-pw-new-pw");
     }
   } else {
-    $message = messageGenerator("password-min", "change-password");
+    $message = messageGenerator("password");
   }
 }
 

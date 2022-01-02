@@ -16,7 +16,23 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
+$movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
+
+$movieLikes = getMovieLikes($movieId);
+$movie = getTableRecord("SELECT id, beschrijving, titel, thumbnail_pad
+                              FROM film
+                              WHERE id = ?", 
+                           "i", 
+                             array($movieId));
+$movieComments = getTableRecordsFiltered("SELECT commentaar.film_id, commentaar.gebruiker_id, commentaar.bericht, commentaar.tijdsstempel, gebruiker.gebruikersnaam, rol.naam as rol
+                                               FROM commentaar 
+                                               INNER JOIN gebruiker 
+                                               ON commentaar.gebruiker_id = gebruiker.id 
+                                               INNER JOIN rol 
+                                               ON gebruiker.rol_id = rol.id
+                                               WHERE commentaar.film_id = ?", "i", array($movieId));
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,42 +57,38 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 
     <div class="text-wrapper">
       <div class="description">
-        <h1>Narcos: Mexico</h1>
+        <h1><?php echo $movie["titel"]?></h1>
         <p>
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
+          <?php echo $movie['beschrijving'] ?>
         </p>
         <p class="movie-likes">
-          <a href="#">
+          <a>
             <i class="fas fa-thumbs-up" style="font-size: 36px;"></i>
           </a>
-          <span> 120.231.41 </span>
+          <span> <?php echo $movieLikes['num'] ?> </span>
         </p>
       </div>
       <div class="feedback">
         <h2>Feedback</h2>
         <?php
-        for ($comment = 0; $comment < 2; $comment++) {
+        for ($comment = 0; $comment < count($movieComments); $comment++) {
           echo "
             <div class=\"comment-wrapper\"> 
-              <p> 
-              lorem ipsum dolor sit amet lorem ipsum
-              lorem ipsum dolor sit amet lorem ipsum
-              lorem ipsum dolor sit amet lorem ipsum
-              lorem ipsum dolor sit amet lorem ipsum
-              <br>
+              <p>". 
+                $movieComments[$comment]["bericht"]
+              ."<br>
               <span class=\"comment-author\"> 
-                <small>
-                
-                - user
-                
-                </small>
+                <small> - 
+                <strong>".
+                $movieComments[$comment]['gebruikersnaam'] . "
+                </strong>"
+                . " (".$movieComments[$comment]["rol"].") " .
+                $movieComments[$comment]['tijdsstempel'] .
+                "  </small>
               </span>
               </p>
               <div class=\"delete-comment\">
-                  <a href=\"#\">X</a>
+                  <a href=\"?delete-comment=true&user-id=". $movieComments[$comment]["gebruiker_id"] . "&id=" . $movieComments[$comment]["film_id"] . "\"> X </a>
               </div> 
             </div>";
         }
@@ -85,15 +97,14 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
     </div>
 
     <div class="movie-wrapper">
-      <a href="#">
-        <div class="movie">
-          <img src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg" alt="movie-title">
+      <a href="?id=<?php echo $movieId ?>">
+        <div class="movie" >
+          <img width="400px" height="600px" src="<?php echo $movie['thumbnail_pad']?>" alt="<?php echo $movie['titel']?>">
         </div>
       </a>
       <div class="form-delete-movie">
-        <a href="#" class="delete-movie">
+        <a href="?delete-movie=true&user-id=<?php echo $_SESSION['id'] ?>&id=<?php echo $movie["id"] ?>" class="delete-movie">
           Delete movie
-
         </a>
       </div>
     </div>

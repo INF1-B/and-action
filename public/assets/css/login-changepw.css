@@ -70,28 +70,3 @@ form > div {
     text-decoration: none;
     color:#F9B354;
 }
-
-.login-note, .login-error, .change-pw-error, .change-pw-success, .change-pw-note {
-    text-align: center;
-    padding: 10px 0px 10px 0px;
-}
-
-.login-note, .change-pw-note{
-    font-size: 11px;
-}
-
-.login-error, .change-pw-error {
-    color: red;
-}
-
-.change-pw-success {
-    color: lightgreen;
-}
-
-.change-pw-success > a {
-    color: white;
-}
-
-.change-pw-note > a {
-    color:#F9B354;
-}

@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 
 INSERT INTO `rol` (`id`, `naam`, `beschrijving`) VALUES
-(1, 'Director ', 'This role is meant for directors and actors'),
+(1, 'Director', 'This role is meant for directors and actors'),
 (2, 'Admin', 'This role is meant for admin users'),
 (3, 'Watcher', 'This role is meant for every user that is trying to normally watch a movie');
 

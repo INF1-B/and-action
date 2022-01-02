@@ -28,6 +28,32 @@ footer {
   -webkit-transform-origin:0 0;
 }
 
+.error, .success, .note {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.error, .success {
+  font-size: 16px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: lightgreen;
+}
+
+.note {
+  color: white;
+  font-size: 12px;
+}
+
+.note > a {
+  color: #F9B354 !important;
+}
 /* media queries */
 @media (min-width : 321px) {
   .container-movies  > .movie-row > .movie {
