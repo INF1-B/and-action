@@ -6,15 +6,14 @@ include "../utils/database.php";
 ?>
 <?php
 
-$message = messageGenerator("register-note", "register");
+$message = messageGenerator("register-note");
 
 if (isset($_POST["submit"])) {
   // filter all user values
   $input["username"] = filterInputPost($_POST["username"], "username");
   $input["password"] = filterInputPost($_POST["password"], "password");
   $input["subscription"] = filterInputPost($_POST["subscription"], "subscription");
-  $input["email"] = filterEmail($_POST["email"]);
-  $input["email"] = $input["email"] ? filterInputPost($_POST["email"], "email") : false;
+  $input["email"] = filterEmail($_POST["email"]) ? strtolower(filterInputPost($_POST["email"], "email")) : false;
   $input["g-recaptcha"] = getRecaptchaResponse($_POST['g-recaptcha-response']);
 
   if ($input["g-recaptcha"]) {
@@ -27,21 +26,21 @@ if (isset($_POST["submit"])) {
             "iiiisss",
             array(3,  $input["subscription"], 0, 0, $input["username"], generateHash($input["password"]), $input["email"])
           )) {
-            $message = messageGenerator("register-success", "register");
+              $message = messageGenerator("register-success");
           } else {
-            $message = messageGenerator("register-failure-db", "register");
+            $message = messageGenerator("register-failure-db");
           }
         } else {
-          $message = messageGenerator("register-failure", "register");
+          $message = messageGenerator("register-failure");
         }
       } else {
-        $message = messageGenerator("password-confirm", "register");
+        $message = messageGenerator("password-confirm");
       }
     } else {
-      $message = messageGenerator("password", "register"); //
+      $message = messageGenerator("password"); //
     }
   } else {
-    $message = messageGenerator("recaptcha", "register"); // recaptcha error message
+    $message = messageGenerator("recaptcha"); // recaptcha error message
   }
 }
 

@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
           // set $_SESSION['id'] for getting the correct details of a user
           $_SESSION['id'] = $data["id"];
           if ($data["ingelogd"]) {
-            $message = messageGenerator("login-true", "login");
+            $message = messageGenerator("login-true");
           } else {
             // User status is updated in database, user was not loggedin to the database
             executeQuery("UPDATE gebruiker SET ingelogd = 1 WHERE id = ? AND email = ?", "is", array($data["id"], $input["email"]));
@@ -52,16 +52,16 @@ if (isset($_POST["submit"])) {
             header('Location: ./homepage.php');
           }
         } else {
-          $message = messageGenerator("login-error", "login");
+          $message = messageGenerator("login-error",);
         }
       } else {
-        $message = messageGenerator("login-error", "login");
+        $message = messageGenerator("login-error");
       }
     } else {
-      $message = messageGenerator("login-error", "login");
+      $message = messageGenerator("login-error");
     }
   } else {
-    $message = messageGenerator("recaptcha", "login"); // recaptcha error message
+    $message = messageGenerator("recaptcha"); // recaptcha error message
   }
 }
 

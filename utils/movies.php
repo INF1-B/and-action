@@ -111,6 +111,7 @@ function getMovieDetailsFiltered($movieDetails) {
 *
 */
 function getMovieLikes($id){
+    $id = filterInputGet($id, "id");
     $likes = getTableRecordsFiltered("SELECT COUNT(*) as likes FROM thumb_up WHERE film_id = ?", "i", array($id));
     $likes["num"] = $likes[0]["likes"];
     return $likes;
@@ -118,19 +119,17 @@ function getMovieLikes($id){
 
 // Function that adds to tumb_up table when liking a video. It will check if the user and film like combination does not already exist. If it exists it will not add otherwise it will.
 function likeMovie($userId, $filmId){
-    echo executeQuery("INSERT IGNORE INTO thumb_up (gebruiker_id, film_id) VALUES (?, ?)","ii",array($userId, $filmId));
-    $message = "You have liked this movie";
-    return $message;
+    $userId = filterInputGet($userId, "user-id");
+    $filmId = filterInputGet($filmId, "id");
+    //
+    executeQuery("INSERT IGNORE INTO thumb_up (gebruiker_id, film_id) VALUES (?, ?)","ii",array($userId, $filmId));
 }
 
 // Function that will add comment given on a movie to the database table 'commentaar'.
 function addComment($filmId, $userId, $message){
+    $message = filterInputGet($message, "feedback");
     $date = date('Y-m-d H:i:s');
     executeQuery("INSERT INTO commentaar (film_id, gebruiker_id, bericht, tijdsstempel) VALUES (?, ?, ?, ?)", "iiss", array($filmId, $userId, $message , $date));
-    $message = "Added comment";
-    return $message;
 }
-
-
 
 ?>

@@ -15,22 +15,32 @@ checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
 if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
-
+$message = "";
 $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
 
 $movieDetails = getMovie($movieId);
 $movieLikes = getMovieLikes($movieId);
 
-if (isset($_GET['updateLikes']) && $_GET['updateLikes'] == "true" && isset($_GET['user-id']) && isset($_GET['movie-id']) && is_numeric($_GET['user-id']) && is_numeric($_GET['movie-id']) && !empty($movieDetails)) {
-  $userId = filterInputGet($_GET["user-id"], "user-id");
-  $movieId = filterInputGet($_GET["movie-id"], "movie-id");
-
-  echo "<script> window.alert('If not liked before, your like will be added to this movie!') </script>";
-  likeMovie($userId, $movieId);
-  Header("Location: view-movie.php?id=$movieId");
+if (isset($_GET['updateLikes']) && $_GET['updateLikes'] == "true" && isset($_GET['user-id']) && isset($_GET['id']) && is_numeric($_GET['user-id']) && is_numeric($_GET['id']) && !empty($movieDetails)) {
+  likeMovie($_GET['user-id'], $_GET["id"]);
+  header("Location: view-movie.php?id=$movieId");
 }
 
+if (isset($_GET['submit-feedback'])) {
+  if (isset($_GET['feedback']) && strlen($_GET['feedback']) > 10 && strlen($_GET['feedback']) < 990){
+    if (isset($_GET['user-id']) && isset($_GET['id']) && is_numeric($_GET['user-id']) && is_numeric($_GET['id'])){
+        $message = messageGenerator("feedback-success");
+        addComment($_GET['id'], $_GET['user-id'], $_GET['feedback']);
+    } else {
+      $message = messageGenerator("feedback-failure-id");
+    }
+  } else {
+    $message = messageGenerator("feedback-failure-length");
+  } 
+} 
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,29 +93,38 @@ if (isset($_GET['updateLikes']) && $_GET['updateLikes'] == "true" && isset($_GET
         </div>
         <p class="movie-likes">
           <a onclick="window.alert('If not liked before, your like will be added to this movie!')"
-            href="?updateLikes=true&user-id=<?php echo $_SESSION['id'] ?>&movie-id=<?php echo $movieDetails["id"] ?>">
+            href="?id=<?php echo $movieDetails["id"]?>&updateLikes=true&user-id=<?php echo $_SESSION['id'] ?>">
             <i class="fas fa-thumbs-up" style="font-size: 36px"></i>
           </a>
-
           <span> <?php echo $movieLikes['num'] ?> </span>
         </p>
       </div>
       <div>
-        <form>
+        <form method="GET" action="<?php $_SERVER['PHP_SELF']?>">
           <div>
             <h2>Feedback</h2>
             <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Type your feedback"></textarea>
           </div>
           <div>
-            <input type="submit" value="Submit Feedback" class="submit-feedback">
+            <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
+            <input type="hidden" name="user-id" value="<?php echo $_SESSION['id']?>">
+            <input type="submit" name="submit-feedback" value="submit" class="submit-feedback">
           </div>
         </form>
+        <p>
+          <?php 
+          if (isset($message)){
+            echo $message;
+          }
+         ?>
+        </p>
       </div>
     </div>
   </div>
   <?php else:?>
   <div class="container">
-    <h1 style="text-align: center"> Please check whether your subscription is active, your account is verified and if you have selected a valid movie </h1>
+    <h1 style="text-align: center"> Please check whether your subscription is active, your account is verified and if
+      you have selected a valid movie! </h1>
   </div>
   <?php endif ?>
   <!-- end main container  -->

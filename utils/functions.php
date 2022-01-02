@@ -50,63 +50,69 @@ function updateSubscription($userId) {
 * Example : messageGenerator("recaptcha", "register");
 *
 */
-function messageGenerator($id, $page){
+function messageGenerator($id){
   $message = "";
   switch ($id) {
+    // ----- start error messages ----- //
     case 'recaptcha':
-      if ($page == "register") {
-        $message = "<p class=\"register-error\"> ERROR: Your recaptcha is incorrect! </p>";
-      } else if ($page == "login") {
-        $message = "<p class=\"login-error\"> ERROR: Your recaptcha is incorrect! </p>";
-      }
+      $message = "<p class=\"error\"> ERROR: Your recaptcha is incorrect! </p>";
       break;
     case 'password':
-      $message = "<p class=\"register-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
+      $message = "<p class=\"error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
       break;
     case 'email':
-      $message = "<p class=\"register-error\"> ERROR: Email exists, please pick another email to register. </p>";
+      $message = "<p class=\"error\"> ERROR: Email exists, please pick another email to register. </p>";
       break;
     case 'password-confirm':
-      $message = "<p class=\"register-error\"> ERROR: Password and confirmed password do not match! </p>";
-      break;
-    case 'register-success':
-      $message = "<p class=\"register-success\"> You have been registered! Please log in at the <a href=\"login.php\"> Login page. </a></p>";
+      $message = "<p class=\"error\"> ERROR: Password and confirmed password do not match! </p>";
       break;
     case 'register-failure':
-      $message = "<p class=\"register-error\"> ERROR: Please double check if all fields were filled in, and if your email is a legitimate email address! </p>";
+      $message = "<p class=\"error\"> ERROR: Please double check if all fields were filled in, and if your email is a legitimate email address! </p>";
       break;
     case 'register-failure-db': 
-      $message = "<p class=\"register-error\"> ERROR: Unable to register! Please try registering another email adress. </p>";
-      break;
-    case 'register-note':
-      $message = "<p class=\"register-note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
-      break;
-    case 'login-note':
-      $message = "<p class=\"no-account login-note\"> Don't have an account? <a class=\"sign-up\" href=\"signUp.php\"> Sign up. </a></p>";
+      $message = "<p class=\"error\"> ERROR: Unable to register! Please try registering another email adress. </p>";
       break;
     case 'login-error':
-      $message = "<p class=\"login-error\"> ERROR: incorrect email and/or password. </p>";
+      $message = "<p class=\"error\"> ERROR: Incorrect email and/or password. </p>";
       break;
     case 'login-true':
-      $message = "<p class=\"login-error\"> ERROR: Your account is already logged in! If you would like to login anyways, click <a href=\"?reset=true\" style=\"color: white\"> here </a> and re-enter your credentials. </p>";
+      $message = "<p class=\"error\"> ERROR: Your account is already logged in! If you would like to login anyways, click <a href=\"?reset=true\" style=\"color: white\"> here </a> and re-enter your credentials. </p>";
       break;
-    case 'current-pw-error':
-      $message = "<p class=\"change-pw-error\"> ERROR: Your current password does not match our records! </p>";
+    case 'ch-pw-current-pw':
+      $message = "<p class=\"error\"> ERROR: Your current password does not match our records! </p>";
       break;
-    case 'new-pw-match-error':
-      $message = "<p class=\"change-pw-error\"> ERROR: Your new password and confirmed password do not match! </p>";
+    case 'ch-pw-new-pw':
+      $message = "<p class=\"error\"> ERROR: Your new password and confirmed password do not match! </p>";
       break;
-    case 'password-min':
-      $message = "<p class=\"change-pw-error\"> ERROR: Your password does not meet the minimum requirements. These are 8 characters containing atleast 1 number, 1 special character and 1 uppercase character. </p>";
+    case 'feedback-failure-id':
+      $message = "<p class=\"error\"> ERROR : Failure retrieving movie and/ or user ID, please contact the administrator of this website </p>";
       break;
-    case 'pw-change-success':
-      $message = "<p class=\"change-pw-success\"> Your password has been changed! Please login again <a href=\"login.php\"> here </a> </p>";
+    case 'feedback-failure-length':
+      $message = "<p class=\"error\"> ERROR : Feedback length is either to short or to long. A minimum of 10 characters are needed and a maximum of 990</p>";
       break;
-    case 'return-ch-pw':
-      $message = "<p class=\"change-pw-note\">Click <a href=\"javascript:history.back()\"> here </a> to go back</p>";
+    // ----- start success messages ----- //
+    case 'register-success':
+      $message = "<p class=\"success\"> You have been registered! Please log in at the <a style=\"color: white\" href=\"login.php\"> Login page. </a></p>";
       break;
+    case 'ch-pw-success':
+      $message = "<p class=\"success\"> Your password has been changed! Please login again <a style=\"color: white\" href=\"login.php\"> here </a> </p>";
+      break;
+    case 'feedback-success':
+      $message = "<p class=\"success\"> Feedback was submitted succesfully! </p>";
+      break;
+    // ----- start note messages ----- //
+    case 'register-note':
+      $message = "<p class=\"note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
+      break;
+    case 'login-note':
+      $message = "<p class=\"note\"> Don't have an account? <a style=\"color: white\" class=\"sign-up\" href=\"signUp.php\"> Sign up. </a></p>";
+      break;
+    case 'ch-pw-note':
+      $message = "<p class=\"note\">Click <a style=\"color: white\" href=\"javascript:history.back()\"> here </a> to go back</p>";
+      break;
+    // ----- default error message -----  //
     default:
-      $message = "ERROR: contact the administrator of this page for more information.";
+      $message = "<p class=\"error\"> ERROR: contact the administrator of this website.";
       break;
   }
   return $message;
