@@ -19,7 +19,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
 
 $movieLikes = getMovieLikes($movieId);
-$movie = getTableRecord("SELECT film.id, film.beschrijving, film.titel
+$movie = getTableRecord("SELECT id, beschrijving, titel, thumbnail_pad
                               FROM film
                               WHERE id = ?", 
                            "i", 
@@ -97,9 +97,9 @@ $movieComments = getTableRecordsFiltered("SELECT commentaar.film_id, commentaar.
     </div>
 
     <div class="movie-wrapper">
-      <a href="#">
-        <div class="movie">
-          <img src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg" alt="movie-title">
+      <a href="?id=<?php echo $movieId ?>">
+        <div class="movie" >
+          <img width="400px" height="600px" src="<?php echo $movie['thumbnail_pad']?>" alt="<?php echo $movie['titel']?>">
         </div>
       </a>
       <div class="form-delete-movie">

@@ -16,7 +16,7 @@ if (isset($_SESSION['id']) && is_numeric($_SESSION['id']) && isset($_SESSION["lo
 $message = messageGenerator("login-note", "login");
 
 if (isset($_POST["submit"])) {
-  $input["email"] = filterInputPost($_POST["email"], "email");
+  $input["email"] = strtolower(filterInputPost($_POST["email"], "email"));
   $input["password"] = filterInputPost($_POST["password"], "password");
   $input["g-recaptcha"] = getRecaptchaResponse($_POST['g-recaptcha-response']);
   if ($input["g-recaptcha"]) {
