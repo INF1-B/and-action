@@ -88,7 +88,10 @@ function messageGenerator($id){
       $message = "<p class=\"error\"> ERROR : Failure retrieving movie and/ or user ID, please contact the administrator of this website </p>";
       break;
     case 'feedback-failure-length':
-      $message = "<p class=\"error\"> ERROR : Feedback length is either to short or to long. A minimum of 10 characters are needed and a maximum of 990</p>";
+      $message = "<p class=\"text-left error\"> ERROR : Feedback length is either to short or to long. A minimum of 10 characters are needed and a maximum of 990</p>";
+      break;
+    case 'director-comment':
+      $message = "<p class=\"text-left error\"> ERROR : Cannot delete comments or this movie since you have no rights over this movie or attached comments! </p>";
       break;
     // ----- start success messages ----- //
     case 'register-success':
@@ -98,7 +101,7 @@ function messageGenerator($id){
       $message = "<p class=\"success\"> Your password has been changed! Please login again <a style=\"color: white\" href=\"login.php\"> here </a> </p>";
       break;
     case 'feedback-success':
-      $message = "<p class=\"success\"> Feedback was submitted succesfully! </p>";
+      $message = "<p class=\"text-left success\"> Feedback was submitted succesfully! </p>";
       break;
     // ----- start note messages ----- //
     case 'register-note':

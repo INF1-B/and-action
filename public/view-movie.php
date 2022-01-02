@@ -69,7 +69,9 @@ if (isset($_GET['submit-feedback'])) {
       </video>
     </div>
     <?php else :  // bad movie quality 
-      ?>
+
+
+    ?>
 
     <div class="movie">
       <video controls width="100%" height="850vh">
