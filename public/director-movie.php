@@ -93,7 +93,7 @@ if (isset($_GET['delete-movie']) && $_GET['delete-movie'] == "true" && isset($_G
 
   <!-- end navbar -->
   <!-- start main container -->
-  <?php if (array_key_exists("titel", $movie)): ?>
+  <?php if (array_key_exists("titel", $movie) && $_SESSION['id'] == $movie['gebruikerId']): ?>
   <div class="container container-movie-specific">
 
     <div class="text-wrapper">
