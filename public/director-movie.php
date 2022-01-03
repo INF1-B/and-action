@@ -33,7 +33,8 @@ $movieComments = getTableRecordsFiltered("SELECT commentaar.id as commentId, com
                                                ON commentaar.gebruiker_id = gebruiker.id 
                                                INNER JOIN rol 
                                                ON gebruiker.rol_id = rol.id
-                                               WHERE commentaar.film_id = ?", "i", array($movieId));
+                                               WHERE commentaar.film_id = ?
+                                               LIMIT 5", "i", array($movieId));
 
 /* delete a comment ONLY if you are allowed to do so.
 *
@@ -139,30 +140,31 @@ if (isset($_GET['delete-movie']) && $_GET['delete-movie'] == "true" && isset($_G
     </div>
 
     <div class="movie-wrapper">
-      <a href="?id=<?php echo $movieId ?>">
-        <div class="movie">
-          <img width="400px" height="600px" src="<?php echo $movie['thumbnail_pad']?>"
-            alt="<?php echo $movie['titel']?>">
-        </div>
-      </a>
-      <div class="form-delete-movie">
-        <a href="?delete-movie=true&user-id=<?php echo $_SESSION['id'] ?>&id=<?php echo $movie["filmId"] ?>"
-          class="delete-movie">
-          Delete movie
+      <div class="movie">
+        <a href="view-movie.php?id=<?php echo $movieId ?>">
+          <img src="<?php echo $movie['thumbnail_pad']?>" alt="<?php echo $movie['titel']?>">
         </a>
+        <div class="form-delete-movie">
+          <a width="400px" height="600px"
+            href="?delete-movie=true&user-id=<?php echo $_SESSION['id'] ?>&id=<?php echo $movie["filmId"] ?>"
+            class="delete-movie">
+            Delete movie
+          </a>
+        </div>
       </div>
     </div>
     <?php else: ?>
     <div class="container">
-      <h1 style="text-align: center; color: white;"> 
-        Your movie could not be found! Please search for another movie <a style="color: #F9B354" href="homepage.php"> Here </a>
+      <h1 style="text-align: center; color: white;">
+        Your movie could not be found! Please search for another movie <a style="color: #F9B354" href="homepage.php">
+          Here </a>
       </h1>
     </div>
-    <?php endif ?>"
+    <?php endif ?>
   </div>
 
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

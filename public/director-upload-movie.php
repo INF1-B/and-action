@@ -266,11 +266,11 @@ if (isset($_POST['upload'])) {
   </div>
   <div class="right-side">
     <div class="director-image">
-      <img 
-        src="assets/img/logo.png">
+      <img src="assets/img/logo.png">
     </div>
   </div>
   </div>
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

@@ -198,9 +198,8 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
         </button></a>
     </div>
   </div>
-
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

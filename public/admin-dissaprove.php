@@ -56,9 +56,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   <!-- end main container  -->
   <!-- start footer -->
 
-  <div class="footer">
-    <?php include "../templates/footer.php"; ?>
-  </div>
+  <?php include "../templates/footer.php"; ?>
   <!-- end footer -->
 
 </body>

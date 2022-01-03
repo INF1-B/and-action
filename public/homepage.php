@@ -64,6 +64,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   </div> 
   <script src="./assets/js/filter.js"></script>
   <!-- end main container  -->
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

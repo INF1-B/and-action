@@ -46,8 +46,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       </div>
     </div>
   </div>
-
   <!-- end main container  -->
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

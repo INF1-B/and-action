@@ -130,7 +130,7 @@ if (isset($_GET['submit-feedback'])) {
   </div>
   <?php endif ?>
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

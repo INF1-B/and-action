@@ -90,7 +90,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   </div>
 
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

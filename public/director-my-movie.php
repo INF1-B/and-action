@@ -65,7 +65,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 
 
     <!-- end main container  -->
-
+    <?php include('../templates/footer.php') ?>
 </body>
 
 </html>
