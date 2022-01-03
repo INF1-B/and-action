@@ -35,7 +35,6 @@ $movieComments = getTableRecordsFiltered("SELECT commentaar.id as commentId, com
                                                ON gebruiker.rol_id = rol.id
                                                WHERE commentaar.film_id = ?
                                                LIMIT 5", "i", array($movieId));
-
 /* delete a comment ONLY if you are allowed to do so.
 *
 * Once a user presses the X button which can be done at a comment in the director-movie.php file (if any comments)
@@ -95,9 +94,9 @@ if (isset($_GET['delete-movie']) && $_GET['delete-movie'] == "true" && isset($_G
   <!-- start main container -->
   <?php if (array_key_exists("titel", $movie) && $_SESSION['id'] == $movie['gebruikerId']): ?>
   <div class="container container-movie-specific">
-
     <div class="text-wrapper">
       <div class="description">
+        <?php echo $movie['geaccepteerd'] ? "<p class=\"text-left success\"> Movie is verified! </p>" : "<p class=\"text-left error\"> Movie is unverified </p>"; ?>
         <h1><?php echo $movie["titel"]?></h1>
         <p>
           <?php echo $movie['beschrijving'] ?>

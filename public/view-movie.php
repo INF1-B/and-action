@@ -59,7 +59,7 @@ if (isset($_GET['submit-feedback'])) {
 
   <!-- end navbar -->
   <!-- start main container -->
-  <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0): ?>
+  <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0 && $movieDetails['geaccepteerd']): ?>
   <div class="container">
     <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // good movie quality
       ?>

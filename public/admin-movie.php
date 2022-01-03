@@ -17,8 +17,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 }
 
 $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
-
-$movie = getMovie($movieId, 0);
+$movie = getMovie($movieId);
 
 ?>
 
@@ -46,6 +45,7 @@ $movie = getMovie($movieId, 0);
 
     <div class="text-wrapper">
       <div class="description">
+        <?php echo $movie["geaccepteerd"] ? "<p class=\"text-left success\"> Movie is verified! </p>" : "<p class=\"text-left error\"> Movie is unverified </p>"; ?>
         <h1><?php echo $movie['titel']?></h1>
         <p>
           <?php echo $movie['beschrijving']?>
@@ -91,9 +91,8 @@ $movie = getMovie($movieId, 0);
   <div class="container">
     <h1 style="text-align: center; color: white;">
       This movie could not be found! This is probably because the movie does not exist, or has already been approved.
-      <br> 
       <a style="color: #F9B354" href="javascript:history.back()">
-        return 
+        Return 
       </a>
     </h1>
   </div>
