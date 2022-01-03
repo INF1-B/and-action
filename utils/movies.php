@@ -31,12 +31,6 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageR
     return $message;
 }
 
-// retrieve all movies, limited by 50 movies
-function getMovies(){
-    $movies = getTableRecords("SELECT id, titel, thumbnail_pad FROM film WHERE geaccepteerd = 1 LIMIT 50");
-    return $movies;
-}
-
 /* getMoviesById(): 
 *
 * Used for the 'my movies' section from a director.
@@ -52,14 +46,25 @@ function getMoviesById($id) {
     return $movies;
 }
 
+/* getMovies()
+*
+* This function retrieves some specific details about a movie. 
+* 
+*/
+function getMovies(){
+    $movies = getTableRecords("SELECT id, titel, thumbnail_pad, geaccepteerd FROM film WHERE geaccepteerd = 1 LIMIT 50");
+    return $movies;
+}
+
 /* getMovie():
 *
 * retrieve all the details from a movie when calling this function. This will retrieve all genres, filmguides, creator
 * creator and other movie details.
 *
+*
 */
-function getMovie($filmId, $movieStatus){
-    $movieDetails = getTableRecordsFiltered("SELECT film.id, film.titel, film.beschrijving, film.kijkwijzer_leeftijd, film.pad, film.thumbnail_pad, genre.naam as genre, kijkwijzer_geschiktheid.naam as kijkwijzer, gebruiker.gebruikersnaam, gebruiker.id as gebruikerId
+function getMovie($filmId){
+    $movieDetails = getTableRecordsFiltered("SELECT film.id, film.titel, film.geaccepteerd, film.beschrijving, film.kijkwijzer_leeftijd, film.pad, film.thumbnail_pad, genre.naam as genre, kijkwijzer_geschiktheid.naam as kijkwijzer, gebruiker.gebruikersnaam, gebruiker.id as gebruikerId
                                                 FROM film 
                                                 INNER JOIN genre_film  
                                                 ON film.id = genre_film.film_id 
@@ -71,19 +76,9 @@ function getMovie($filmId, $movieStatus){
                                                 ON film_kijkwijzer_geschiktheid.kijkwijzer_geschiktheid_id = kijkwijzer_geschiktheid.id
                                                 INNER JOIN gebruiker 
                                                 ON film.gebruiker_id = gebruiker.id 
-                                                WHERE film.id = ? AND geaccepteerd = $movieStatus", "i", array($filmId));
+                                                WHERE film.id = ?", "i", array($filmId));
     $movieDetails = getMovieDetailsFiltered($movieDetails);
     return $movieDetails;
-}
-
-/* getUnverifiedMovies()
-*
-* This function retrieves all movies which have not been accepted yet. This is used for the admin to approve or dissaprove movies.
-*
-*/
-function getUnverifiedMovies(){
-    $movies = getTableRecords("SELECT id, titel, thumbnail_pad FROM film WHERE geaccepteerd = 0");
-    return $movies;
 }
 
 /* getMovieDetailsFiltered():
@@ -105,6 +100,7 @@ function getMovieDetailsFiltered($movieDetails) {
     $movie["pad"] = $movieDetails[0]['pad'];
     $movie["gebruikersnaam"] = $movieDetails[0]['gebruikersnaam'];
     $movie["thumbnail_pad"] = $movieDetails[0]['thumbnail_pad'];
+    $movie["geaccepteerd"] = $movieDetails[0]['geaccepteerd'];
     $movie['genres'] = array();
     $movie['kijkwijzers'] = array();
     foreach ($movieDetails as  $movieDetail) {
@@ -114,6 +110,42 @@ function getMovieDetailsFiltered($movieDetails) {
     $movie['genre'] = implode(", ", array_unique($movie['genres']));
     $movie['kijkwijzer'] = implode(", ", array_unique($movie['kijkwijzers']));
     return $movie;  
+}
+
+/* getUnreviewedMovies():
+*
+* return all unreviewed movies. The query searched for movies who have not been accepted yet AND
+* where there is no message attached to the movie either.
+*
+*/
+function getUnreviewedMovies(){
+    $movies = getTableRecords("SELECT count(commentaar.bericht) AS bericht, film.titel, film.thumbnail_pad, film.id, film.geaccepteerd  
+                                    FROM film 
+                                    LEFT JOIN commentaar 
+                                    ON film.id = commentaar.film_id 
+                                    GROUP BY film.id
+                                    HAVING film.geaccepteerd = 0 
+                                    AND bericht = 0;
+                                    ");
+    return $movies;
+}
+
+/* getDissaprovedMovies():
+*
+* Return all dissaproved movies, The query searches for movies which have not been accepted yet AND
+* where a message is attached to the movie. That way a comment can only be from the admin which has reviewed it atleast once before.
+*
+*/
+function getDissaprovedMovies(){
+    $movies = getTableRecords("SELECT count(commentaar.bericht) AS bericht, MAX(commentaar.tijdsstempel) AS tijdsstempel, film.titel, film.thumbnail_pad, film.id, film.pad, film.geaccepteerd  
+                                    FROM film 
+                                    LEFT JOIN commentaar 
+                                    ON film.id = commentaar.film_id 
+                                    GROUP BY film.id
+                                    HAVING film.geaccepteerd = 0 
+                                    AND bericht > 0 ;
+        ");
+    return $movies;
 }
 
 /* getMovieLikes(): 
@@ -129,7 +161,13 @@ function getMovieLikes($id){
     return $likes;
 }
 
-// Function that adds to tumb_up table when liking a video. It will check if the user and film like combination does not already exist. If it exists it will not add otherwise it will.
+/* likeMovie():
+*
+* Function that adds userId and MovieId to thumb_up table when liking a video. 
+* It will check if the user and film like combination does not already exist. 
+* If it exists it will not add otherwise it will.
+*
+*/
 function likeMovie($userId, $filmId){
     $userId = filterInputGet($userId, "user-id");
     $filmId = filterInputGet($filmId, "id");
@@ -137,7 +175,11 @@ function likeMovie($userId, $filmId){
     executeQuery("INSERT IGNORE INTO thumb_up (gebruiker_id, film_id) VALUES (?, ?)","ii",array($userId, $filmId));
 }
 
-// Function that will add comment given on a movie to the database table 'commentaar'.
+/* addComment():
+*
+* Function that will add comment given on a movie to the database table 'commentaar'
+*
+*/
 function addComment($filmId, $userId, $message){
     $message = filterInputGet($message, "feedback");
     $date = date('Y-m-d H:i:s');

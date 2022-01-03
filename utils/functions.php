@@ -5,13 +5,18 @@ This file will contain general functions used within the project. Think about a 
 functions related to video management and more.
 */
 
-// this function retrieves an string value as an input, and returns the hashes value back to the user. The hashing algorithm used for this is BCRYPT.
-// the default cost (times the values gets hased) is 10. Therefore we have set the value to 12 which increases some security on the hashes.
+/* generateHash():
+*
+* this function retrieves an string value as an input, and returns the hashes value back to the user. The hashing algorithm used for this is BCRYPT.
+*
+*/
 function generateHash($stringValue) {
   return password_hash($stringValue, PASSWORD_BCRYPT);
 }
 
-/* verifyPassword(): verifies if a password exists, if so returns true, otherwise returns false;
+/* verifyPassword(): 
+*
+* verifies if a password exists, if so returns true, otherwise returns false;
 *
 * Example: verifyPassword("test", "$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a"); // returns true of false
 *
@@ -23,7 +28,9 @@ function verifyPassword($password, $hashedpassword){
   return false;
 }
 
-/* getRecaptchaResponse(): verifies whether the user has succesfully filled in the reCaptcha (V2)
+/* getRecaptchaResponse(): 
+*
+* verifies whether the user has succesfully filled in the reCaptcha (V2)
 *
 * No example can be provided here since this will be the sitekey client side which is the user input.
 *
@@ -35,7 +42,9 @@ function getRecaptchaResponse($recaptchaResponse){
   return $responseKeys["success"];
 } 
 
-/* activateSubscription(): extends the subscription of a user with 1 year, updates the record into the database
+/* activateSubscription(): 
+* 
+* extends the subscription of a user with 1 year, updates the record into the database
 *
 * Example: activateSubscription($_SESSION['id']) // abonnement_eind attribute is updated
 *
@@ -45,7 +54,9 @@ function updateSubscription($userId) {
   executeQuery("UPDATE gebruiker SET abonnement_eind = ? WHERE id = ?", "ss", array($timestamp, $userId));
 }
 
-/* messageGenerator(): generates error messages based on the $id and $page your giving
+/* messageGenerator(): 
+*
+* generates error messages based on the $id and $page your giving
 *
 * Example : messageGenerator("recaptcha", "register");
 *
