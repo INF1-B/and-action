@@ -18,7 +18,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 $message = "";
 $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
 
-$movieDetails = getMovie($movieId);
+$movieDetails = getMovie($movieId, "1");
 $movieLikes = getMovieLikes($movieId);
 
 if (isset($_GET['updateLikes']) && $_GET['updateLikes'] == "true" && isset($_GET['user-id']) && isset($_GET['id']) && is_numeric($_GET['user-id']) && is_numeric($_GET['id']) && !empty($movieDetails)) {

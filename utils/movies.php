@@ -33,7 +33,7 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageR
 
 // retrieve all movies, limited by 50 movies
 function getMovies(){
-    $movies = getTableRecords("SELECT id, titel, thumbnail_pad FROM film LIMIT 50");
+    $movies = getTableRecords("SELECT id, titel, thumbnail_pad FROM film WHERE geaccepteerd = 1 LIMIT 50");
     return $movies;
 }
 
@@ -58,8 +58,8 @@ function getMoviesById($id) {
 * creator and other movie details.
 *
 */
-function getMovie($filmId){
-    $movieDetails = getTableRecordsFiltered("SELECT film.id, film.titel, film.beschrijving, film.kijkwijzer_leeftijd, film.pad, genre.naam as genre, kijkwijzer_geschiktheid.naam as kijkwijzer, gebruiker.gebruikersnaam
+function getMovie($filmId, $movieStatus){
+    $movieDetails = getTableRecordsFiltered("SELECT film.id, film.titel, film.beschrijving, film.kijkwijzer_leeftijd, film.pad, film.thumbnail_pad, genre.naam as genre, kijkwijzer_geschiktheid.naam as kijkwijzer, gebruiker.gebruikersnaam, gebruiker.id as gebruikerId
                                                 FROM film 
                                                 INNER JOIN genre_film  
                                                 ON film.id = genre_film.film_id 
@@ -71,9 +71,19 @@ function getMovie($filmId){
                                                 ON film_kijkwijzer_geschiktheid.kijkwijzer_geschiktheid_id = kijkwijzer_geschiktheid.id
                                                 INNER JOIN gebruiker 
                                                 ON film.gebruiker_id = gebruiker.id 
-                                                WHERE film.id = ?", "i", array($filmId));
+                                                WHERE film.id = ? AND geaccepteerd = $movieStatus", "i", array($filmId));
     $movieDetails = getMovieDetailsFiltered($movieDetails);
     return $movieDetails;
+}
+
+/* getUnverifiedMovies()
+*
+* This function retrieves all movies which have not been accepted yet. This is used for the admin to approve or dissaprove movies.
+*
+*/
+function getUnverifiedMovies(){
+    $movies = getTableRecords("SELECT id, titel, thumbnail_pad FROM film WHERE geaccepteerd = 0");
+    return $movies;
 }
 
 /* getMovieDetailsFiltered():
@@ -88,11 +98,13 @@ function getMovieDetailsFiltered($movieDetails) {
         return $movieDetails;
     }
     $movie["id"] = $movieDetails[0]['id'];
+    $movie['gebruikerId'] = $movieDetails[0]['gebruikerId'];
     $movie["titel"] = $movieDetails[0]['titel'];
     $movie["beschrijving"] = $movieDetails[0]['beschrijving'];
     $movie["kijkwijzer_leeftijd"] = $movieDetails[0]['kijkwijzer_leeftijd'];
     $movie["pad"] = $movieDetails[0]['pad'];
     $movie["gebruikersnaam"] = $movieDetails[0]['gebruikersnaam'];
+    $movie["thumbnail_pad"] = $movieDetails[0]['thumbnail_pad'];
     $movie['genres'] = array();
     $movie['kijkwijzers'] = array();
     foreach ($movieDetails as  $movieDetail) {

@@ -16,6 +16,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
+$movies = getUnverifiedMovies();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,21 +43,19 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       <h1>Under review</h1>
     </div>
 
-
-
     <?php
     for ($row = 0; $row < 1; $row++) {
       echo "<div class=\"movie-row\">";
-      for ($movie = 0; $movie < 6; $movie++) {
+      for ($movie = 0; $movie < count($movies); $movie++) {
         echo "
-          <div class=\"movie\">
-            <a href=\"#\">
-              <div class=\"thumbnail\" title=\"test\">
-              </div>
-              <p> scary moveh </p>
-            </a>
-          </div>
-          ";
+                <div class=\"movie\">
+                  <a href=" . "admin-movie.php?id=" . $movies[$movie]["id"] . ">
+                    <div class=\"thumbnail\" title=" . $movies[$movie]["titel"] . " style=\"background-image:url('" . $movies[$movie]["thumbnail_pad"] . "')\">
+                    </div>
+                    <p> " . $movies[$movie]["titel"] . " </p>
+                  </a>
+                </div>
+                ";
       }
       echo "</div>";
     }

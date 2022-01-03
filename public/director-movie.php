@@ -20,7 +20,7 @@ $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET[
 $message = "";
 
 $movieLikes = getMovieLikes($movieId);
-$movie = getTableRecord("SELECT gebruiker.id as gebruikerId, film.id as filmId, film.beschrijving, film.titel, film.thumbnail_pad
+$movie = getTableRecord("SELECT gebruiker.id as gebruikerId, film.id as filmId, film.beschrijving, film.titel, film.thumbnail_pad, film.geaccepteerd
                               FROM film
                               INNER JOIN gebruiker
                               ON film.gebruiker_id = gebruiker.id
@@ -73,7 +73,6 @@ if (isset($_GET['delete-movie']) && $_GET['delete-movie'] == "true" && isset($_G
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -156,8 +155,8 @@ if (isset($_GET['delete-movie']) && $_GET['delete-movie'] == "true" && isset($_G
     <?php else: ?>
     <div class="container">
       <h1 style="text-align: center; color: white;">
-        Your movie could not be found! Please search for another movie <a style="color: #F9B354" href="homepage.php">
-          Here </a>
+        Your movie could not be found! This is probably an invalid movie, or you don't have the correct permissons. <br> Please continue your search <a style="color: #F9B354" href="homepage.php">
+          here </a>
       </h1>
     </div>
     <?php endif ?>
