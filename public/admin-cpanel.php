@@ -145,9 +145,9 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
         </tr>
         <?php
         foreach ($users as $key => $user) {
-          $verified = $user['geverifieerd'] == 1 ? "yes, <a onclick=\"window.alert('user is now unverified! Reloading might be required.')\" href=\"?verify-user-admin=false&user-id=" . $user['id'] . "\" > unverify user </a>" : "no, <a onclick=\"window.alert('user is now verified! Reloading might be required.')\" href=\"?verify-user-admin=true&user-id=" . $user['id'] . "\" > verify user </a>";
+          $verified = $user['geverifieerd'] ? "yes, <a onclick=\"window.alert('user is now unverified! Reloading might be required.')\" href=\"?verify-user-admin=false&user-id=" . $user['id'] . "\" > unverify user </a>" : "no, <a onclick=\"window.alert('user is now verified! Reloading might be required.')\" href=\"?verify-user-admin=true&user-id=" . $user['id'] . "\" > verify user </a>";
           echo "<tr>";
-          echo "<td>" . $key + 1 . "</td>";
+          echo "<td> test </td>";
           echo "<td>" . $user['gebruikersnaam'] . "</td>";
           echo "<td>" . $user['email'] . "</td>";
           echo "<td>"; 
