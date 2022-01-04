@@ -12,7 +12,7 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageR
     $filteredGenres = filterIntMultiple($genres);
     $filteredFilmguides = filterIntMultiple($filmGuides);
  
-    executeQuery("INSERT INTO film (gebruiker_id, titel, pad, thumbnail_pad, geaccepteerd, beschrijving, kijkwijzer_leeftijd) VALUES (?, ?, ?, ?, ?, ?, ?)", "isssisi", array($userId, $title, $path, $thumbnailPath, $accepted, $description, $ageRating));
+    executeQuery("INSERT INTO film (gebruiker_id, titel, pad, thumbnail_pad, geaccepteerd, beschrijving, kijkwijzer_leeftijd) VALUES (?, ?, ?, ?, ?, ?, ?)", "isssisi", array($userId, $title, $path, $thumbnailPath, $accepted["geverifieerd"], $description, $ageRating));
     $filmId = getTableRecords("SELECT MAX(id) FROM film");
     $filmIdInput = getTableRecord("SELECT film.id FROM film WHERE id = ?", "i", array($filmId[0]['MAX(id)']));
 
