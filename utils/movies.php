@@ -152,7 +152,7 @@ function getDissaprovedMovies(){
 *
 */
 function getRecentlyWatchedMovies($userId){
-    $movies = getTableRecordsFiltered("SELECT MAX(tijdsstempel) as latest, id, laatst_bekeken.gebruiker_id, titel, thumbnail_pad, geaccepteerd 
+    $movies = getTableRecordsFiltered("SELECT MAX(tijdsstempel) as latest, id, titel, thumbnail_pad, geaccepteerd 
                                             FROM film 
                                             INNER JOIN laatst_bekeken
                                             ON film.id = laatst_bekeken.film_id
@@ -163,7 +163,28 @@ function getRecentlyWatchedMovies($userId){
                                             LIMIT 5", "i", array($userId));
     return $movies;
 }
-
+/* getSuggestedMovies():
+*
+*
+* Based on previously watched movies that the user has watched, other movies with the same genre will be advised to the user.
+* This function returns all suggested movies, limited by 5
+*
+*/
+function getSuggestedMovies($userId){
+    $movies = getTableRecordsFiltered("SELECT film.id, titel, thumbnail_pad, geaccepteerd, genre.naam as genre FROM film
+                                            INNER JOIN genre_film
+                                            ON film.id = genre_film.film_id
+                                            INNER JOIN genre
+                                            ON genre_film.genre_id = genre.id
+                                            WHERE genre.id IN (SELECT genre_id FROM genre_film WHERE film_id IN (SELECT film_id FROM laatst_bekeken))
+                                            AND film.id NOT IN (SELECT film_id FROM laatst_bekeken WHERE gebruiker_id = ?)
+                                            AND geaccepteerd = 1
+                                            GROUP BY film.id
+                                            ORDER BY film.id DESC
+                                            LIMIT 5
+                                            ", "i", array($userId));
+    return $movies;
+}
 /* getMovieLikes(): 
 *
 * retieves the likes from a specific movie, after that formats it from a multi dimensional associative array to a

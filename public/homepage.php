@@ -31,6 +31,8 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   <?php 
   $movies = getMovies(); 
   $recWMovies = getRecentlyWatchedMovies($_SESSION['id']);
+  $suggestedMovies = getSuggestedMovies($_SESSION['id']);
+
   ?>
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
@@ -85,6 +87,31 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       echo "</div>";
     }
     ?>
+    <?php if (count($suggestedMovies) > 0) :?>
+    <div class="upper mt">
+      <p>
+      <h1>Suggestions</h1><br></p>
+    </div>
+    <p> Since you watched movies in the genre <?php echo $suggestedMovies[0]["genre"] ?> </p>
+
+    <?php
+    for ($row = 0; $row < 1; $row++) {
+      echo "<div class=\"movie-row\">";
+      for ($sugMovie = 0; $sugMovie < count($suggestedMovies); $sugMovie++) {
+        echo "
+              <div class=\"movie\">
+                <a href=" . "view-movie.php?id=" . $suggestedMovies[$sugMovie]["id"] . ">
+                  <div class=\"thumbnail\" title=" . $suggestedMovies[$sugMovie]["titel"] . " style=\"background-image:url('" . $suggestedMovies[$sugMovie]["thumbnail_pad"] . "')\">
+                  </div>
+                  <p> " . $suggestedMovies[$sugMovie]["titel"] . " </p>
+                </a>
+              </div>
+              ";
+      }
+      echo "</div>";
+    }
+    ?>
+    <?php endif ?>
   </div>
   <script src="./assets/js/filter.js"></script>
   <!-- end main container  -->
