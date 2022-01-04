@@ -67,7 +67,7 @@ if (isset($_POST['upload'])) {
     else {
       if (strlen($_FILES['Movie']['name']) < 70) {
         $tmpFileName = $_FILES['Movie']['tmp_name'];
-        $path = $frontEndPath . "/" . $moviename;
+        $path = $frontEndPath . "/premium/" . $moviename;
         $movie = true;
       }
     }
@@ -87,7 +87,7 @@ if (isset($_POST['upload'])) {
     } else {
       if (strlen($_FILES['Thumbnail']['name']) < 70) {
         $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
-        $thumbnailPath = $frontEndPath . "/" . $thumbnailname;
+        $thumbnailPath = $frontEndPath . "/thumbnail/" . $thumbnailname;
         $thumbnail = true;
       }
     }
@@ -101,17 +101,20 @@ if (isset($_POST['upload'])) {
     $descriptionmess = "Please add a description.";
   }
   if (isset($title) and isset($genre) and isset($ageRating) and isset($filmGuide) and $movie and $thumbnail and isset($description)) {
-    if (!file_exists($uploadDir)) {
-      mkdir($uploadDir, 0777, true);
-      moveUploadedFile($uploadDir, $tmpFileName, $moviename);
+    if (!file_exists($uploadDir . "/premium") && !file_exists($uploadDir . "/standard") && !file_exists($uploadDir . "/thumbnail")) {
+      mkdir($uploadDir . "/premium", 0777, true);
+      mkdir($uploadDir . "/standard", 0777, true);
+      mkdir($uploadDir . "/thumbnail", 0777, true);
+      moveUploadedFile($uploadDir . "/premium", $tmpFileName, $moviename);
       //thumbnail
-      moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+      moveUploadedFile($uploadDir . "/thumbnail", $tmpFileName2, $thumbnailname);
     } else {
       moveUploadedFile($uploadDir, $tmpFileName, $moviename);
       //thumbnail
       moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
     }
     uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
+    changeVideoQuality($path, "200x200", str_replace("premium", "standard", $path));
   }
 }
 ?>

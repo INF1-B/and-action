@@ -26,7 +26,6 @@ function uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageR
     executeQuery("INSERT INTO film_kijkwijzer_geschiktheid (kijkwijzer_geschiktheid_id, film_id) VALUES " . implode(" ", $filmGuide["questionMarks"]), 
                      str_repeat("ii", count($filmGuide["questionMarks"])), 
                      $filmGuide["values"]);
-
     $message = "Movie uploaded";
     return $message;
 }
