@@ -28,7 +28,10 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 </head>
 
 <body>
-  <?php $movies = getMovies(); ?>
+  <?php 
+  $movies = getMovies(); 
+  $recWMovies = getRecentlyWatchedMovies($_SESSION['id']);
+  ?>
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
   </div>
@@ -60,8 +63,29 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       echo "</div>";
     }
     ?>
+    <!--Recently watched -->
+    <div class="upper mt">
+      <h1>Recently watched</h1>
+    </div>
 
-  </div> 
+    <?php
+    for ($row = 0; $row < 1; $row++) {
+      echo "<div class=\"movie-row\">";
+      for ($recWMovie = 0; $recWMovie < count($recWMovies); $recWMovie++) {
+        echo "
+              <div class=\"movie\">
+                <a href=" . "view-movie.php?id=" . $recWMovies[$recWMovie]["id"] . ">
+                  <div class=\"thumbnail\" title=" . $recWMovies[$recWMovie]["titel"] . " style=\"background-image:url('" . $recWMovies[$recWMovie]["thumbnail_pad"] . "')\">
+                  </div>
+                  <p> " . $recWMovies[$recWMovie]["titel"] . " </p>
+                </a>
+              </div>
+              ";
+      }
+      echo "</div>";
+    }
+    ?>
+  </div>
   <script src="./assets/js/filter.js"></script>
   <!-- end main container  -->
   <?php include('../templates/footer.php') ?>

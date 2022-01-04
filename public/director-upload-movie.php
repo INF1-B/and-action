@@ -60,14 +60,14 @@ if (isset($_POST['upload'])) {
       $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
     } 
-    else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
-      $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
-      $movie = FALSE;
-    } 
+    // else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
+    //   $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
+    //   $movie = FALSE;
+    // } 
     else {
       if (strlen($_FILES['Movie']['name']) < 70) {
         $tmpFileName = $_FILES['Movie']['tmp_name'];
-        $path = $frontEndPath . "/premium/" . $moviename;
+        $path = $frontEndPath . "/premium/" .  $moviename;
         $movie = true;
       }
     }
@@ -105,13 +105,13 @@ if (isset($_POST['upload'])) {
       mkdir($uploadDir . "/premium", 0777, true);
       mkdir($uploadDir . "/standard", 0777, true);
       mkdir($uploadDir . "/thumbnail", 0777, true);
-      moveUploadedFile($uploadDir . "/premium", $tmpFileName, $moviename);
+      moveUploadedFile($uploadDir . DS . "premium", $tmpFileName, $moviename);
       //thumbnail
-      moveUploadedFile($uploadDir . "/thumbnail", $tmpFileName2, $thumbnailname);
+      moveUploadedFile($uploadDir . DS . "thumbnail", $tmpFileName2, $thumbnailname);
     } else {
-      moveUploadedFile($uploadDir, $tmpFileName, $moviename);
+      moveUploadedFile($uploadDir . DS . "premium", $tmpFileName, $moviename);
       //thumbnail
-      moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+      moveUploadedFile($uploadDir . DS . "thumbnail", $tmpFileName2, $thumbnailname);
     }
     uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
     changeVideoQuality("../..".$path, "200x200", "../..".str_replace("premium", "standard", $path));

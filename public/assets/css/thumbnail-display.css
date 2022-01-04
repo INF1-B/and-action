@@ -6,6 +6,7 @@
 h1 > span {
   font-weight: normal;
 }
+
 .container-movies > .movie-row , .movies {
   display: flex;
   flex-wrap: wrap;

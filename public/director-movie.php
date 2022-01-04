@@ -64,6 +64,7 @@ if (isset($_GET['delete-movie']) && $_GET['delete-movie'] == "true" && isset($_G
     executeQuery("DELETE FROM thumb_up WHERE film_id = ?", "i", array($movie['filmId']));
     executeQuery("DELETE FROM commentaar WHERE film_id = ?", "i", array($movie['filmId']));
     executeQuery("DELETE FROM film_kijkwijzer_geschiktheid WHERE film_id = ?","i", array($movie['filmId']));
+    executeQuery("DELETE FROM laatst_bekeken WHERE film_id = ?", "i", array($movie['filmId']));
     executeQuery("DELETE FROM film WHERE id = ?", "i", array($movie['filmId']));
     header("Location: director-my-movie.php");
   } else {

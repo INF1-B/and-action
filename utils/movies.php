@@ -146,6 +146,23 @@ function getDissaprovedMovies(){
         ");
     return $movies;
 }
+/* getRecentlyWatchedMovies():
+*
+* returns all recently watched movies, this is bound to a user, and limited by the latest 5 movies they have watched
+*
+*/
+function getRecentlyWatchedMovies($userId){
+    $movies = getTableRecordsFiltered("SELECT MAX(tijdsstempel) as latest, id, laatst_bekeken.gebruiker_id, titel, thumbnail_pad, geaccepteerd 
+                                            FROM film 
+                                            INNER JOIN laatst_bekeken
+                                            ON film.id = laatst_bekeken.film_id
+                                            WHERE geaccepteerd = 1 
+                                            AND laatst_bekeken.gebruiker_id = ?
+                                            GROUP BY film_id
+                                            ORDER BY latest DESC
+                                            LIMIT 5", "i", array($userId));
+    return $movies;
+}
 
 /* getMovieLikes(): 
 *
@@ -183,6 +200,17 @@ function addComment($filmId, $userId, $message){
     $message = filterInputGet($message, "feedback");
     $date = date('Y-m-d H:i:s');
     executeQuery("INSERT INTO commentaar (film_id, gebruiker_id, bericht, tijdsstempel) VALUES (?, ?, ?, ?)", "iiss", array($filmId, $userId, $message , $date));
+}
+
+/* addRecentlyWatched():
+*
+* Once a movie has been watched or is in progress of watching by a user, a record will be added which retrieves some random movies in the "recently watched" section 
+* This will only add 1 record in the table
+*
+*/
+function addRecentlyWatched($filmId, $userId){
+    $date = date('Y-m-d H:i:s');
+    executeQuery("INSERT IGNORE INTO laatst_bekeken (film_id, gebruiker_id, tijdsstempel) VALUES (?, ?, ?)", "iis", array($filmId, $userId, $date));
 }
 
 ?>

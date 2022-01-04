@@ -60,24 +60,24 @@ if (isset($_GET['submit-feedback'])) {
   <!-- end navbar -->
   <!-- start main container -->
   <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0 && $movieDetails['geaccepteerd']): ?>
-  <div class="container">
-    <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // premium movie quality ?>
-
+    <?php addRecentlyWatched($movieId, $_SESSION['id'])?>
+    <div class="container">
+    <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // good movie quality
+      ?>
     <div class="movie">
-      <video controls width="100%" height="850vh">
+      <video id="video" controls width="100%" height="100%">
         <source src="<?php echo $movieDetails['pad'] ?>" type="video/mp4">
       </video>
     </div>
-    
-    <?php else :  // standard movie quality  ?>
+    <?php else :  // bad movie quality  ?>
 
     <div class="movie">
-      <video controls width="100%" height="850vh">
+      <video id="video" controls width="100%" height="100%">
         <source src="<?php echo str_replace("premium", "standard", $movieDetails['pad']); ?>" type="video/mp4">
       </video>
     </div>
-
     <?php endif ?>
+
     <div class="container-comment-description">
       <div class="text-wrapper">
         <div class="description">
