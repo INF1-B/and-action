@@ -206,8 +206,9 @@ function getVideoLength($file){
 *
 */
 function changeVideoQuality($originalVideo, $resolution, $outputPath){
-  system("ffmpeg -i " . $originalVideo . " -s " . $resolution . " " . $outputPath);
-  return $outputPath;
+  echo "ffmpeg -i " . $originalVideo . " -s " . $resolution . " " . $outputPath;
+  // system("ffmpeg -i " . $originalVideo . " -s " . $resolution . " " . $outputPath);
+  // return $outputPath;
 }
 
 ?>

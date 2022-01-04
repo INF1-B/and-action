@@ -114,7 +114,7 @@ if (isset($_POST['upload'])) {
       moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
     }
     uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
-    changeVideoQuality($path, "200x200", str_replace("premium", "standard", $path));
+    changeVideoQuality("../..".$path, "200x200", "../..".str_replace("premium", "standard", $path));
   }
 }
 ?>
