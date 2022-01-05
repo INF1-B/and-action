@@ -8,13 +8,13 @@ require_once("../utils/functions.php");
 ?>
 
 <?php
-checkSessionLoggedIn();
+// checkSessionLoggedIn();
 
-checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
+// checkAuthorization($_SESSION['rol'], array("Admin", "Director", "Watcher"));
 
-if (!checkDatabaseLoggedIn($_SESSION['id'])) {
-  header('Location: ./login.php');
-}
+// if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+//   header('Location: ./login.php');
+// }
 $message = "";
 $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
 
@@ -79,7 +79,7 @@ if (isset($_GET['submit-feedback'])) {
     <?php endif ?>
 
     <div class="container-comment-description">
-      <div class="text-wrapper">
+      <div class="text-wrapper left-side">
         <div class="description">
           <h1> <?php echo $movieDetails['titel'] ?> </h1>
           <p>
@@ -100,11 +100,11 @@ if (isset($_GET['submit-feedback'])) {
           <span> <?php echo $movieLikes['num'] ?> </span>
         </p>
       </div>
-      <div>
+      <div class="right-side">
         <form method="GET" action="<?php $_SERVER['PHP_SELF']?>">
           <div>
             <h2>Feedback</h2>
-            <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Type your feedback"></textarea>
+            <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Tell us what you think about this movie"></textarea>
           </div>
           <div>
             <input type="hidden" name="id" value="<?php echo $_GET['id']?>">

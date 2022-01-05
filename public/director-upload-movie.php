@@ -8,13 +8,13 @@ require_once("../utils/functions.php");
 ?>
 
 <?php
-// checkSessionLoggedIn();
+checkSessionLoggedIn();
 
-// checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
+checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
 
-// if (!checkDatabaseLoggedIn($_SESSION['id'])) {
-//   header('Location: ./login.php');
-// }
+if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+  header('Location: ./login.php');
+}
 
 ?>
 <?php
