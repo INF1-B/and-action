@@ -130,11 +130,11 @@ if (isset($_POST['upload'])) {
   document.multiselect('#genre-select').setIsEnabled(true);;
   document.multiselect('#filmguide-select').setIsEnabled(true);;
   </script>
+  <script src="assets/js/upload-file.js"> </script>
 </head>
 
 <body>
   <!-- start navbar -->
-
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
   </div>
@@ -262,7 +262,7 @@ if (isset($_POST['upload'])) {
         ?>
         <div class="upload-error-message">
           <div class="spaceupload">
-            <input type="submit" name='upload' value="upload" class="supload">
+            <input onclick="loadScreen();" type="submit" name='upload' value="upload" class="supload">
           </div>
       </form>
     </div>
@@ -270,8 +270,8 @@ if (isset($_POST['upload'])) {
   <div class="right-side">
     <div class="director-image">
       <div>
-        <img src="assets/img/clapboard-upload-movie.png" alt="And Action!">
-        <h1> Show your show! </h1>
+        <img id="upload-image" src="assets/img/clapboard-upload-movie.png" alt="And Action!">
+        <h1 id="upload-title"> Show your show! </h1>
       </div>
     </div>
   </div>
