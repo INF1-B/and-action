@@ -8,13 +8,13 @@ require_once("../utils/functions.php");
 ?>
 
 <?php
-checkSessionLoggedIn();
+// checkSessionLoggedIn();
 
-checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
+// checkAuthorization($_SESSION['rol'], array("Admin", "Director"));
 
-if (!checkDatabaseLoggedIn($_SESSION['id'])) {
-  header('Location: ./login.php');
-}
+// if (!checkDatabaseLoggedIn($_SESSION['id'])) {
+//   header('Location: ./login.php');
+// }
 
 ?>
 <?php
@@ -269,7 +269,10 @@ if (isset($_POST['upload'])) {
   </div>
   <div class="right-side">
     <div class="director-image">
-      <img src="assets/img/logo.png">
+      <div>
+        <img src="assets/img/clapboard-upload-movie.png" alt="And Action!">
+        <h1> Show your show! </h1>
+      </div>
     </div>
   </div>
   </div>

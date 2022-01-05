@@ -90,12 +90,21 @@ textarea {
     justify-content: space-between;
 }
 
-.director-image {
-    justify-content: center;
+.right-side {
+    flex: 2;
 }
 
-.director-image > img {
-    margin-right: 100px;
-    height: 400px;
-    width: 400px;
+.director-image {
+    width: 80%;
+}
+
+.director-image > div {
+    margin-left: 20%;
+    color: white;
+    text-align: center;
+}
+
+.director-image > div > img {
+    height: 350px;
+    width: 350px;
 }
