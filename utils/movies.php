@@ -165,9 +165,18 @@ function getRecentlyWatchedMovies($userId){
 }
 /* getSuggestedMovies():
 *
-*
 * Based on previously watched movies that the user has watched, other movies with the same genre will be advised to the user.
 * This function returns all suggested movies, limited by 5
+*
+* explanation nested subquery: (WHERE genre.id IN (SELECT genre_id FROM genre_film WHERE film_id IN (SELECT film_id FROM laatst_bekeken)))
+*
+* This searches for moviegenres that ware previously watched by the user. It checks it by searching in the table 'laatst_bekeken' for movies the  
+* user has seen, and retrieves all genres that ware attached to these movies
+*
+* explanation second subquery: (AND film.id NOT IN (SELECT film_id FROM laatst_bekeken WHERE gebruiker_id = ?))
+*
+* This second subquery retrieves all the movies that are in the film table, which the user has not seen yet. It does this by selecting all movies in the film table, 
+* minus the movies the user has attached to itself in the laatst_bekeken table
 *
 */
 function getSuggestedMovies($userId){
@@ -176,8 +185,15 @@ function getSuggestedMovies($userId){
                                             ON film.id = genre_film.film_id
                                             INNER JOIN genre
                                             ON genre_film.genre_id = genre.id
-                                            WHERE genre.id IN (SELECT genre_id FROM genre_film WHERE film_id IN (SELECT film_id FROM laatst_bekeken))
-                                            AND film.id NOT IN (SELECT film_id FROM laatst_bekeken WHERE gebruiker_id = ?)
+                                            WHERE genre.id IN (SELECT genre_id 
+                                                                FROM genre_film 
+                                                                WHERE film_id 
+                                                                IN (SELECT 
+                                                                    film_id 
+                                                                    FROM laatst_bekeken)) 
+                                            AND film.id NOT IN (SELECT film_id 
+                                                                FROM laatst_bekeken 
+                                                                WHERE gebruiker_id = ?)
                                             AND geaccepteerd = 1
                                             GROUP BY film.id
                                             ORDER BY film.id DESC
