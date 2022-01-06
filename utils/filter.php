@@ -180,7 +180,7 @@ function filterPassword($password){
 *
 */
 function filterName($name){
-  if (preg_match('/[a-zA-Z]/', $name)){
+  if (preg_match('/[a-z]/', $name)){
     return true;
   }
   return false;
