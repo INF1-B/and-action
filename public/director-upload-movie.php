@@ -81,6 +81,7 @@ if (isset($_POST['upload'])) {
   }
 
   if (!($_FILES['Thumbnail']['error'] > 0)) {
+    $thumbnailmess = "";
     $allowedext = IMAGEEXTENSIONS;
     $thumbnailname = $_FILES['Thumbnail']['name'];
     $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
