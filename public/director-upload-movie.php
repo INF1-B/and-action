@@ -98,7 +98,7 @@ if (isset($_POST['upload'])) {
       $filetypethumbmess = "Resolution should be <br> 400x600 only";
       $thumbnail = FALSE;
     } else if (!ctype_alpha(pathinfo($_FILES["Thumbnail"]["tmp_name"], PATHINFO_FILENAME))) {
-      $filetypemoviemess = "Your image is only allowed to have letters!";
+      $filetypethumbmess = "Your image is only allowed to have letters!";
       $movie = FALSE;
     }
     else {
