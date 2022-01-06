@@ -65,7 +65,7 @@ if (isset($_POST['upload'])) {
     } else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
       $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
       $movie = FALSE;
-    } else if (ctype_alpha(pathinfo($_FILES["Movie"]["name"], PATHINFO_FILENAME))) {
+    } else if (!ctype_alpha(pathinfo($_FILES["Movie"]["name"], PATHINFO_FILENAME))) {
       $filetypemoviemess = "Your movie is only allowed to have letters!, e.g: TheAvengers.mp4";
       $movie = FALSE;
     }
