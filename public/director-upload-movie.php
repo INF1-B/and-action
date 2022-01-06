@@ -64,7 +64,7 @@ if (isset($_POST['upload'])) {
       $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
       $movie = FALSE;
     } 
-    else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
+    else if (filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
       $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
       $movie = FALSE;
     }
@@ -81,19 +81,18 @@ if (isset($_POST['upload'])) {
   }
 
   if (!($_FILES['Thumbnail']['error'] > 0)) {
-    $thumbnailmess = "";
     $allowedext = IMAGEEXTENSIONS;
     $thumbnailname = $_FILES['Thumbnail']['name'];
     $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
     $imageMimeType = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
     if (!in_array($ext, $allowedext) or !$imageMimeType) {
-      $thumbnailmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
+      $thumbnailmess = "filetype not allowed, <br> must be .png, ,jpeg or .jpg";
       $thumbnail = FALSE;
     } else if (!filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2000)){ // max 2mb
-      $thumbnailmess = "Max 2MB image size";
+      $filetypethumbmess = "Max 2MB image size";
       $thumbnail = FALSE;
     } else if (!filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")){
-      $thumbnailmess = "Resolution should be 400x600";
+      $filetypethumbmess = "Resolution should be <br> 400x600 only";
       $thumbnail = FALSE;
     }
     else {
@@ -255,6 +254,9 @@ if (isset($_POST['upload'])) {
             <?php
             if (isset($thumbnailmess)) {
               echo "<p class=\"upload-error-message\">" . $thumbnailmess . "</p>";
+            }
+            if (isset($filetypethumbmess)) {
+              echo "<p class=\"upload-error-message\">" . $filetypethumbmess . "</p>";
             }
             ?>
           </div>

@@ -79,7 +79,7 @@ function filterEmail($email){
 */
 function filterInputFileSize($file, $size){
   $size = $size * 1000; // converts it to KB
-  if ($file < $size) {
+  if (filesize($file) < $size) {
     return true;
   }
   return false;
