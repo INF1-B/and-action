@@ -64,7 +64,7 @@ if (isset($_POST['upload'])) {
       $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
       $movie = FALSE;
     } 
-    else if (filterInputFileSize($_FILES["Movie"]["tmp_name"], 950 * 1000 )) { // max 950MB
+    else if (filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
       $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
       $movie = FALSE;
     }
@@ -88,7 +88,7 @@ if (isset($_POST['upload'])) {
     if (!in_array($ext, $allowedext) or !$imageMimeType) {
       $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
       $thumbnail = FALSE;
-    } else if (filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2 * 1000)){ // max 2mb
+    } else if (filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2000)){ // max 2mb
       $filetypethumbmess = "Your image is to big! max 2MB is allowed";
       $thumbnail = FALSE;
     } else if (filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")){

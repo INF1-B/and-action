@@ -83,7 +83,7 @@ function filterInputFileSize($file, $size){
   if ($file < $size) {
     return true;
   }
-  return "ERROR: file size is to big! it must be a max of " . $size . " KB";
+  return false;
 }
 
 /* filterFileMimeTypes(): 
@@ -116,7 +116,7 @@ function moveUploadedFile($destination, $tmpFileName, $fileName){
       return true;
     }
   }
-  return "ERROR: Unable to move the uploaded file to the directory!";
+  return false;
 }
 
 /* filterUploadFileLength(): 
@@ -130,7 +130,7 @@ function filterUploadFileLength($fileName, $allowedLength){
   if (strlen($fileName) <= $allowedLength){
     return true;
   }
-  return "ERROR: the name of the uploaded file contains to many characters!";
+  return false;
 }
 
 /* filterImageResolution(): 
