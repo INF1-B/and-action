@@ -150,7 +150,7 @@ function filterImageResolution($image, $x, $y){
   if ($imageX == $x && $imageY == $y){
     return true;
   }
-  return "ERROR: The size of the image does not fit the specified x and y axes, these are " . $x . " x " . $y . " yours are $imageX x $imageY";
+  return false;
 }
 
 /* filterPassword():

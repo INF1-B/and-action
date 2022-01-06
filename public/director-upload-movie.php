@@ -60,10 +60,14 @@ if (isset($_POST['upload'])) {
       $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
     } 
-    // else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
-    //   $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
-    //   $movie = FALSE;
-    // } 
+    else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
+      $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
+      $movie = FALSE;
+    } 
+    else if (filterInputFileSize($_FILES["Movie"]["tmp_name"], 950 * 1000 )) { // max 950MB
+      $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
+      $movie = FALSE;
+    }
     else {
       if (strlen($_FILES['Movie']['name']) < 70) {
         $tmpFileName = $_FILES['Movie']['tmp_name'];
@@ -84,7 +88,14 @@ if (isset($_POST['upload'])) {
     if (!in_array($ext, $allowedext) or !$imageMimeType) {
       $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
       $thumbnail = FALSE;
-    } else {
+    } else if (filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2 * 1000)){ // max 2mb
+      $filetypethumbmess = "Your image is to big! max 2MB is allowed";
+      $thumbnail = FALSE;
+    } else if (filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")){
+      $filetypethumbmess = "The resolution of your image should be 400x600!";
+      $thumbnail = FALSE;
+    }
+    else {
       if (strlen($_FILES['Thumbnail']['name']) < 70) {
         $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
         $thumbnailPath = $frontEndPath . "/thumbnail/" . $thumbnailname;

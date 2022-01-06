@@ -25,7 +25,7 @@ if (isset($_GET['approve']) && $_GET['approve'] == "true" && isset($_GET['id']) 
 
 if (isset($_GET['approve']) && $_GET['approve'] == "true" && count($movie) > 0 && $movieId > 0 && isset($_GET['button']) && $_GET['button'] == "clicked"){
   executeQuery("UPDATE film SET geaccepteerd = 1 WHERE id = ?", "i", array($movieId));
-  header("Location: homepage.php");
+  header("Location: admin-movie.php?id=$_GET[id]");
 }
 
 ?>

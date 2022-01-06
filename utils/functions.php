@@ -104,6 +104,9 @@ function messageGenerator($id){
     case 'director-comment':
       $message = "<p class=\"text-left error\"> ERROR : Cannot delete comments or this movie since you have no rights over this movie or attached comments! </p>";
       break;
+    case 'admin-dissaprove-fail':
+      $message = "<p class=\"text-left error\"> ERROR : A minimum of 10 characters are needed before submitting! </p>";
+      break;
     // ----- start success messages ----- //
     case 'register-success':
       $message = "<p class=\"success\"> You have been registered! Please log in at the <a style=\"color: white\" href=\"login.php\"> Login page. </a></p>";
