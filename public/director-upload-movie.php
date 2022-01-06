@@ -59,15 +59,13 @@ if (isset($_POST['upload'])) {
     if (!in_array($ext, $allowedext) or !$videoMimeType) {
       $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
-    } 
-    else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
+    } else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
       $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded! Your movie is currenly " . getVideoLength($_FILES["Movie"]["tmp_name"]) . " seconds!";
       $movie = FALSE;
-    } 
-    else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
+    } else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
       $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
       $movie = FALSE;
-    } else if (!ctype_alpha(pathinfo($_FILES["Movie"]["tmp_name"], PATHINFO_FILENAME))) {
+    } else if (ctype_alpha(pathinfo($_FILES["Movie"]["name"], PATHINFO_FILENAME))) {
       $filetypemoviemess = "Your movie is only allowed to have letters!, e.g: TheAvengers.mp4";
       $movie = FALSE;
     }
@@ -97,8 +95,8 @@ if (isset($_POST['upload'])) {
     } else if (!filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")){
       $filetypethumbmess = "Resolution should be <br> 400x600 only";
       $thumbnail = FALSE;
-    } else if (!ctype_alpha(pathinfo($_FILES["Thumbnail"]["tmp_name"], PATHINFO_FILENAME))) {
-      $filetypethumbmess = "Your image is only allowed to have letters!";
+    } else if (!filterName(pathinfo($_FILES["Thumbnail"]["name"], PATHINFO_FILENAME))) {
+      $filetypemoviemess = "Your image is only allowed to have letters!";
       $movie = FALSE;
     }
     else {
