@@ -92,7 +92,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
       <p>
       <h1>Suggestions</h1><br></p>
     </div>
-    <p> Since you watched movies in the genre <?php echo $suggestedMovies[0]["genre"] ?> </p>
+    <p> Since you recently watched movies in the genre(s) <?php  echo $suggestedMovies[0]["genres"] ?> </p>
 
     <?php
     for ($row = 0; $row < 1; $row++) {

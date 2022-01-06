@@ -81,7 +81,7 @@ if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" &&
   if ($id == $_SESSION['id']) {
     echo "<script> window.alert('Can not delete your own account!') </script>";
   } else {
-    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id))){
+    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id)) && executeQuery("DELETE FROM laatst_bekeken WHERE gebruiker_id = ?", "i", array($id))){
       if (executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id))) {
        header("Location: admin-cpanel.php");
       }

@@ -189,8 +189,10 @@ function getSuggestedMovies($userId){
                                                                 FROM genre_film 
                                                                 WHERE film_id 
                                                                 IN (SELECT 
-                                                                    film_id 
-                                                                    FROM laatst_bekeken)) 
+                                                                    film_id
+                                                                    FROM laatst_bekeken
+                                                                    WHERE gebruiker_id = ?
+                                                                    )) 
                                             AND film.id NOT IN (SELECT film_id 
                                                                 FROM laatst_bekeken 
                                                                 WHERE gebruiker_id = ?)
@@ -198,9 +200,32 @@ function getSuggestedMovies($userId){
                                             GROUP BY film.id
                                             ORDER BY film.id DESC
                                             LIMIT 5
-                                            ", "i", array($userId));
+                                            ", "ii", array($userId, $userId));
+    getFilteredGenres($movies);
     return $movies;
 }
+
+/* getFilteredGenres():
+*
+* sums 1 genre of each movie, and returns the genres back into an array. 
+* After that the array is filtered so no duplicate genres can be found in this array
+* the & sign (&$movies) means "passing by reference". 
+* This means that no copy is returned, but the original $movies variable (only from the function getSuggestedMovies()) is given, and after that altered in the function getFilteredGenres(), 
+* but a copy is not returned (and not necessarily needed)
+*
+* 
+*/
+function getFilteredGenres(&$movies){
+    if (count($movies) > 0) {
+        $movies[0]["genres"] = array();
+        foreach ($movies as $movie) {
+            array_push($movies[0]["genres"], $movie["genre"]);
+        }
+        $movies[0]["genres"] = implode(", ", array_unique($movies[0]["genres"]));
+    }
+}
+
+
 /* getMovieLikes(): 
 *
 * retieves the likes from a specific movie, after that formats it from a multi dimensional associative array to a
@@ -209,7 +234,10 @@ function getSuggestedMovies($userId){
 */
 function getMovieLikes($id){
     $id = filterInputGet($id, "id");
-    $likes = getTableRecordsFiltered("SELECT COUNT(*) as likes FROM thumb_up WHERE film_id = ?", "i", array($id));
+    $likes = getTableRecordsFiltered("SELECT COUNT(*) 
+                                            AS likes 
+                                            FROM thumb_up 
+                                            WHERE film_id = ?", "i", array($id));
     $likes["num"] = $likes[0]["likes"];
     return $likes;
 }
