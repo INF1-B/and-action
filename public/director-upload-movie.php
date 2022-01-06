@@ -64,7 +64,7 @@ if (isset($_POST['upload'])) {
       $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!";
       $movie = FALSE;
     } 
-    else if (filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
+    else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
       $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
       $movie = FALSE;
     }
