@@ -189,11 +189,10 @@ function getVideoLength($file){
   if(!isset($duration[1])){
     return false;
   }
-  // $hours = $duration[1];
-  // $minutes = $duration[2];
+  $hours = $duration[1];
+  $minutes = $duration[2];
   $seconds = $duration[3];
-  //  return $seconds + ($minutes*60) + ($hours*60*60);
-  return $seconds;
+  return $seconds + ($minutes*60) + ($hours*60*60);
 }
 
 /* changeVideoQuality():
