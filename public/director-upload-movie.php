@@ -86,13 +86,13 @@ if (isset($_POST['upload'])) {
     $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
     $imageMimeType = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
     if (!in_array($ext, $allowedext) or !$imageMimeType) {
-      $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
+      $thumbnailmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
       $thumbnail = FALSE;
     } else if (!filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2000)){ // max 2mb
-      $filetypethumbmess = "Max 2MB image size";
+      $thumbnailmess = "Max 2MB image size";
       $thumbnail = FALSE;
     } else if (!filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")){
-      $filetypethumbmess = "Resolution should be 400x600";
+      $thumbnailmess = "Resolution should be 400x600";
       $thumbnail = FALSE;
     }
     else {
@@ -254,9 +254,6 @@ if (isset($_POST['upload'])) {
             <?php
             if (isset($thumbnailmess)) {
               echo "<p class=\"upload-error-message\">" . $thumbnailmess . "</p>";
-            }
-            if (isset($filetypethumbmess)) {
-              echo "<p class=\"upload-error-message\">" . $filetypethumbmess . "</p>";
             }
             ?>
           </div>
