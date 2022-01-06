@@ -173,6 +173,19 @@ function filterPassword($password){
   }
   return false;
 }
+
+/* filterName():
+* 
+* checks whether the name only contains letters. This is used for the movie name and thumbnail name
+*
+*/
+function filterName($name){
+  if (preg_match('/[a-zA-Z]/', $name)){
+    return true;
+  }
+  return false;
+}
+
 /* getVideoLength(): 
 *
 * retrieves the length of a video, the application ffmpeg is needed to succesfully execute this. On the server this should be installed as a binary
