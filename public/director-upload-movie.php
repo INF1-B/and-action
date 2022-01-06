@@ -89,10 +89,10 @@ if (isset($_POST['upload'])) {
       $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
       $thumbnail = FALSE;
     } else if (!filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2000)){ // max 2mb
-      $filetypethumbmess = "Your image is to big! max 2MB is allowed";
+      $filetypethumbmess = "Max 2MB image size";
       $thumbnail = FALSE;
     } else if (!filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")){
-      $filetypethumbmess = "The resolution of your image should be 400x600!";
+      $filetypethumbmess = "Resolution should be 400x600";
       $thumbnail = FALSE;
     }
     else {
