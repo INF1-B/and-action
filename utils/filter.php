@@ -77,7 +77,6 @@ function filterEmail($email){
 * Example : filterInputFileSize($_FILES["uploadedFileParameter"]["name"], 500); // allowed file size of the uploaded file/video is 500kb
 *
 */
-// to be tested
 function filterInputFileSize($file, $size){
   $size = $size * 1000; // converts it to KB
   if ($file < $size) {
@@ -93,7 +92,6 @@ function filterInputFileSize($file, $size){
 * Example: filterFileMimeType($_FILES["uploadedFileParameter"]["tmp_name"], array("image/gif", "image/jpg", "image/jpeg"));
 *
 */
-// to be tested
 function filterFileMimeType($file, $allowedMimeTypes){
   $uploadedMimeType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $file);
   if (in_array($uploadedMimeType, $allowedMimeTypes)) {

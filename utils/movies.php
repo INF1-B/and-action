@@ -178,6 +178,8 @@ function getRecentlyWatchedMovies($userId){
 * This second subquery retrieves all the movies that are in the film table, which the user has not seen yet. It does this by selecting all movies in the film table, 
 * minus the movies the user has attached to itself in the laatst_bekeken table
 *
+* SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))  -  this command is needed to run the query succesfully. Default this is disabled on Linux systems
+*
 */
 function getSuggestedMovies($userId){
     $movies = getTableRecordsFiltered("SELECT film.id, titel, thumbnail_pad, geaccepteerd, genre.naam as genre FROM film
