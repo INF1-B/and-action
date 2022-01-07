@@ -19,7 +19,7 @@
         <ul class="nav_list">
           <li class="nav_list_item"><a class="nav_link" href="../public/index.php">Home</a></li>
           <li class="nav_list_item"><a class="nav_link" href="../public/login.php">Login</a></li>
-          <li class="nav_list_item"><a class="nav_button" href="../public/signUp.php">Sign up</a></li>
+          <li class="nav_list_item"><a class="nav_button" href="../public/signup.php">Sign up</a></li>
         </ul>
       </div>
       <div class="row">
