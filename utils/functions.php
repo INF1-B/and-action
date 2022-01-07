@@ -122,7 +122,7 @@ function messageGenerator($id){
       $message = "<p class=\"note\"> Note that signing up might take a little time. <br> You will get a message once the process has finished! </p>";
       break;
     case 'login-note':
-      $message = "<p class=\"note\"> Don't have an account? <a style=\"color: white\" class=\"sign-up\" href=\"signUp.php\"> Sign up. </a></p>";
+      $message = "<p class=\"note\"> Don't have an account? <a style=\"color: white\" class=\"sign-up\" href=\"signup.php\"> Sign up. </a></p>";
       break;
     case 'ch-pw-note':
       $message = "<p class=\"note\">Click <a style=\"color: white\" href=\"javascript:history.back()\"> here </a> to go back</p>";
