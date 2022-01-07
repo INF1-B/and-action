@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Gegenereerd op: 14 dec 2021 om 08:41
+-- Gegenereerd op: 07 jan 2022 om 15:38
 -- Serverversie: 8.0.27-0ubuntu0.20.04.1
 -- PHP-versie: 7.4.3
 
@@ -63,7 +63,8 @@ CREATE TABLE IF NOT EXISTS `commentaar` (
   PRIMARY KEY (`id`),
   KEY `film_id` (`film_id`),
   KEY `gebruiker_id` (`gebruiker_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `film` (
   `kijkwijzer_leeftijd` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `gebruiker_id` (`gebruiker_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -97,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `film_kijkwijzer_geschiktheid` (
   KEY `kijkwijzer_geschiktheid_id` (`kijkwijzer_geschiktheid_id`,`film_id`),
   KEY `film_id` (`film_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -118,15 +121,18 @@ CREATE TABLE IF NOT EXISTS `gebruiker` (
   UNIQUE KEY `uni_mail` (`email`),
   KEY `rol_id` (`rol_id`),
   KEY `abonnement_id` (`abonnement_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `gebruiker`
 --
 
 INSERT INTO `gebruiker` (`id`, `rol_id`, `abonnement_id`, `geverifieerd`, `ingelogd`, `gebruikersnaam`, `wachtwoord`, `email`, `abonnement_eind`) VALUES
-(1, 1, 1, 1, 0, 'test', '$2y$17$mnbKoUsrQfz7W14CRrnEj.FW1pLWL53wKjuX4jiFKHWVGehUOG7aK', 'test@email.nl', NULL),
-(2, 2, 2, 1, 0, 'test2', '$2y$17$nhNIeCrqWk9D3OEj9jqGMOdZjWwGVVIvIggicsN83fzi32Uqrl24i', 'test2@email.nl', NULL);
+(6, 1, 3, 1, 0, 'Michel Disbergen', '$2y$10$8lK4mkwHtDhddXr2.XJOOO3LL6giJlj2u8hWqGSt3D5xZEh5FVSJ.', 'michel.disbergen@student.nhlstenden.com', '2023-01-07 12:16:44'),
+(7, 3, 1, 1, 0, 'test-watcher-standard', '$2y$10$4FzMXodjbVEeKraGau6jj.ZPbjFpdoQAaVHDHtLfhsSFA4UQxRJ7u', 'test-watcher-standard@student.nhlstenden.com', '2023-01-07 12:23:43'),
+(8, 3, 2, 1, 0, 'test-watcher-premium', '$2y$10$.i4Fd1SrsN3qxXynNrXmcOUaXNAb4PoF0dG1CWPbfhtNWyhTFvcdK', 'test-watcher-premium@student.nhlstenden.com', '2023-01-07 12:23:44'),
+(9, 2, 3, 1, 0, 'test-director', '$2y$10$T.RSB2Esa7o0jA0FawNILeGy/U/wpVKaLee0HX47CkzQ1cu7FaKGC', 'test-director@student.nhlstenden.com', '2023-01-07 12:23:48'),
+(10, 1, 2, 1, 0, 'test-admin', '$2y$10$b1VePrtdsA.kbkKT3Kp85.UyykGwf68BDBMtvDC8D6vm9bWMjkHOy', 'test-admin@student.nhlstenden.com', '2023-01-07 12:23:46');
 
 -- --------------------------------------------------------
 
@@ -156,8 +162,8 @@ INSERT INTO `genre` (`id`, `naam`, `beschrijving`) VALUES
 (9, 'Mystery', 'Mystery genre'),
 (10, 'Romance', 'Romance genre'),
 (11, 'Thriller', 'Thriller genre'),
-(12, 'Other', 'Other genre, this describes a movie that doesnt fit in any other genre'),
-(13, 'sci-fi', 'sci-fi genre');
+(12, 'Sci-fi', 'sci-fi genre'),
+(13, 'Other', 'Other genre, this describes a movie that doesnt fit in any other genre');
 
 -- --------------------------------------------------------
 
@@ -172,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `genre_film` (
   KEY `genre_id` (`genre_id`,`film_id`),
   KEY `film_id` (`film_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -213,6 +220,7 @@ CREATE TABLE IF NOT EXISTS `laatst_bekeken` (
   KEY `gebruiker_id` (`gebruiker_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
 -- --------------------------------------------------------
 
 --
@@ -231,8 +239,8 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 
 INSERT INTO `rol` (`id`, `naam`, `beschrijving`) VALUES
-(1, 'Director', 'This role is meant for directors and actors'),
-(2, 'Admin', 'This role is meant for admin users'),
+(1, 'Admin', 'This role is meant for admin users\r\n'),
+(2, 'Director', 'This role is meant for directors and actors'),
 (3, 'Watcher', 'This role is meant for every user that is trying to normally watch a movie');
 
 -- --------------------------------------------------------
