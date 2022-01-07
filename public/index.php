@@ -32,7 +32,7 @@
   <!-- start main container -->
   <div class="image-container">
     <div class="container">
-      <img src="assets/images/logo.svg" alt="logo">
+      <img src="assets/img/logo.png" alt="logo">
       <h1>Show your show!</h1>
     </div>
   </div>

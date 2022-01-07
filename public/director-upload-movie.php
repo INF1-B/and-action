@@ -60,7 +60,7 @@ if (isset($_POST['upload'])) {
       $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
     } else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
-      $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded! Your movie is currenly " . getVideoLength($_FILES["Movie"]["tmp_name"]) . " seconds!";
+      $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded! Your movie is currently " . getVideoLength($_FILES["Movie"]["tmp_name"]) . " seconds!";
       $movie = FALSE;
     } else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000 )) { // max 950MB
       $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";

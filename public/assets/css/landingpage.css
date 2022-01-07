@@ -8,7 +8,7 @@
 .image-container {
     width: 100%;
     margin-bottom: 50px;
-    background-image: url('../images/background.svg') ;
+    background-image: url('../img/background.svg') ;
     box-shadow: inset 0 0 0 50vw rgba(60, 59, 58, 0.6);
     background-position: center center;
     background-size: cover;
@@ -22,7 +22,7 @@
     padding-top: 20vh;
     
 }
-.image-container h1{
+.image-container h1 {
     padding-top: 10vh;
     padding-right: 40%;
     font-size: 35px;

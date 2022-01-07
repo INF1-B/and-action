@@ -61,13 +61,6 @@ if (isset($_GET['search-movie'])) {
             <div class="search_bar">
                 <form action="<?php $_SERVER["PHP_SELF"]?>" method="GET">
                     <input type="text" id="search" placeholder="search..." name="search-movie" value="<?php echo isset($_GET['search-movie']) ? $_GET['search-movie'] : "" ?>">
-                    <?php 
-                    if (isset($_GET['genres'])){
-                        foreach ($_GET['genres'] as $genre) {
-                            echo "<input type=\"hidden\" value=\"" . $genre . "\" name=\"genres[]\">";
-                        }
-                    }
-                    ?>
                 </form>
             </div>
         <?php
