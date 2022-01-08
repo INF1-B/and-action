@@ -81,7 +81,7 @@ if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" &&
   if ($id == $_SESSION['id']) {
     echo "<script> window.alert('Can not delete your own account!') </script>";
   } else {
-    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id))){
+    if (executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id)) && executeQuery("DELETE FROM laatst_bekeken WHERE gebruiker_id = ?", "i", array($id))){
       if (executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id))) {
        header("Location: admin-cpanel.php");
       }
@@ -145,9 +145,10 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
         </tr>
         <?php
         foreach ($users as $key => $user) {
+          $key = $key + 1;
           $verified = $user['geverifieerd'] ? "yes, <a onclick=\"window.alert('user is now unverified! Reloading might be required.')\" href=\"?verify-user-admin=false&user-id=" . $user['id'] . "\" > unverify user </a>" : "no, <a onclick=\"window.alert('user is now verified! Reloading might be required.')\" href=\"?verify-user-admin=true&user-id=" . $user['id'] . "\" > verify user </a>";
           echo "<tr>";
-          echo "<td>" . $key + 1 . "</td>";
+          echo "<td> $key </td>";
           echo "<td>" . $user['gebruikersnaam'] . "</td>";
           echo "<td>" . $user['email'] . "</td>";
           echo "<td>"; 
@@ -198,9 +199,8 @@ if (isset($_GET['verify-user-admin']) && $_GET['verify-user-admin'] == "true" &&
         </button></a>
     </div>
   </div>
-
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

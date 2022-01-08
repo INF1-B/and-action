@@ -59,15 +59,19 @@ if (isset($_POST['upload'])) {
     if (!in_array($ext, $allowedext) or !$videoMimeType) {
       $filetypemoviemess = "filetype not allowed, must be .mp4";
       $movie = FALSE;
-    } 
-    // else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
-    //   $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded!"; // to be tested on server
-    //   $movie = FALSE;
-    // } 
-    else {
+    } else if (getVideoLength($_FILES["Movie"]["tmp_name"]) < 60 * 20) {
+      $filetypemoviemess = "Your movie has to be atleast 20 minutes in order to be uploaded! Your movie is currently " . getVideoLength($_FILES["Movie"]["tmp_name"]) . " seconds!";
+      $movie = FALSE;
+    } else if (!filterInputFileSize($_FILES["Movie"]["tmp_name"], 950000)) { // max 950MB
+      $filetypemoviemess = "Your movie exceeds the max upload file size! Max 950MB is allowed";
+      $movie = FALSE;
+    } else if (!ctype_alpha(pathinfo($_FILES["Movie"]["name"], PATHINFO_FILENAME))) {
+      $filetypemoviemess = "Your movie is only allowed to have letters!, e.g: TheAvengers.mp4";
+      $movie = FALSE;
+    } else {
       if (strlen($_FILES['Movie']['name']) < 70) {
         $tmpFileName = $_FILES['Movie']['tmp_name'];
-        $path = $frontEndPath . "/" . $moviename;
+        $path = $frontEndPath . "/premium/" .  $moviename;
         $movie = true;
       }
     }
@@ -82,12 +86,21 @@ if (isset($_POST['upload'])) {
     $ext = "." . pathinfo($thumbnailname, PATHINFO_EXTENSION);
     $imageMimeType = filterFileMimeType($_FILES["Thumbnail"]["tmp_name"], IMAGEMIMETYPES);
     if (!in_array($ext, $allowedext) or !$imageMimeType) {
-      $filetypethumbmess = "filetype not allowed, must be .png, ,jpeg or .jpg";
+      $thumbnailmess = "filetype not allowed, <br> must be .png, ,jpeg or .jpg";
       $thumbnail = FALSE;
+    } else if (!filterInputFileSize($_FILES['Thumbnail']['tmp_name'], 2000)) { // max 2mb
+      $filetypethumbmess = "Max 2MB image size";
+      $thumbnail = FALSE;
+    } else if (!filterImageResolution($_FILES["Thumbnail"]["tmp_name"], "400", "600")) {
+      $filetypethumbmess = "Resolution should be <br> 400x600 only";
+      $thumbnail = FALSE;
+    } else if (!filterName(pathinfo($_FILES["Thumbnail"]["name"], PATHINFO_FILENAME))) {
+      $filetypemoviemess = "Your image is only allowed to have letters!";
+      $movie = FALSE;
     } else {
       if (strlen($_FILES['Thumbnail']['name']) < 70) {
         $tmpFileName2 = $_FILES['Thumbnail']['tmp_name'];
-        $thumbnailPath = $frontEndPath . "/" . $thumbnailname;
+        $thumbnailPath = $frontEndPath . "/thumbnail/" . $thumbnailname;
         $thumbnail = true;
       }
     }
@@ -101,17 +114,20 @@ if (isset($_POST['upload'])) {
     $descriptionmess = "Please add a description.";
   }
   if (isset($title) and isset($genre) and isset($ageRating) and isset($filmGuide) and $movie and $thumbnail and isset($description)) {
-    if (!file_exists($uploadDir)) {
-      mkdir($uploadDir, 0777, true);
-      moveUploadedFile($uploadDir, $tmpFileName, $moviename);
+    if (!file_exists($uploadDir . "/premium") && !file_exists($uploadDir . "/standard") && !file_exists($uploadDir . "/thumbnail")) {
+      mkdir($uploadDir . "/premium", 0777, true);
+      mkdir($uploadDir . "/standard", 0777, true);
+      mkdir($uploadDir . "/thumbnail", 0777, true);
+      moveUploadedFile($uploadDir . DS . "premium", $tmpFileName, $moviename);
       //thumbnail
-      moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+      moveUploadedFile($uploadDir . DS . "thumbnail", $tmpFileName2, $thumbnailname);
     } else {
-      moveUploadedFile($uploadDir, $tmpFileName, $moviename);
+      moveUploadedFile($uploadDir . DS . "premium", $tmpFileName, $moviename);
       //thumbnail
-      moveUploadedFile($uploadDir, $tmpFileName2, $thumbnailname);
+      moveUploadedFile($uploadDir . DS . "thumbnail", $tmpFileName2, $thumbnailname);
     }
     uploadMovie($userId, $title, $path, $thumbnailPath, $description, $ageRating, $filmGuide, $genre);
+    changeVideoQuality("../.." . $path, "200x200", "../.." . str_replace("premium", "standard", $path));
   }
 }
 ?>
@@ -124,14 +140,14 @@ if (isset($_POST['upload'])) {
   <link rel="stylesheet" href="./assets/css/multiselect.css">
   <link rel="stylesheet" href="./assets/css/styleupload.css">
   <script src="assets/js/multiselect.min.js">
-  document.multiselect('#genre-select').setIsEnabled(true);;
-  document.multiselect('#filmguide-select').setIsEnabled(true);;
+    document.multiselect('#genre-select').setIsEnabled(true);;
+    document.multiselect('#filmguide-select').setIsEnabled(true);;
   </script>
+  <script src="assets/js/upload-file.js"> </script>
 </head>
 
 <body>
   <!-- start navbar -->
-
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
   </div>
@@ -168,7 +184,7 @@ if (isset($_POST['upload'])) {
                 echo "</select>";
                 ?>
                 <script>
-                document.multiselect('#genre-select').setCheckBoxClick(true);
+                  document.multiselect('#genre-select').setCheckBoxClick(true);
                 </script>
               </div>
               <?php
@@ -191,7 +207,7 @@ if (isset($_POST['upload'])) {
               echo "</select>";
               ?>
               <script>
-              document.multiselect('#filmguide-select').setCheckBoxClick(true);
+                document.multiselect('#filmguide-select').setCheckBoxClick(true);
               </script>
             </div>
             <?php
@@ -249,8 +265,7 @@ if (isset($_POST['upload'])) {
         </div>
         <div class="spaceupload">
           <label for="Description" class="spacetextupload">Description</label>
-          <textarea id="Description" name="Description" rows="5" cols="70"
-            placeholder="Type here your description of the movie"></textarea>
+          <textarea id="Description" name="Description" rows="5" cols="70" placeholder="Type here your description of the movie"></textarea>
         </div>
         <?php
         if (isset($descriptionmess)) {
@@ -259,18 +274,21 @@ if (isset($_POST['upload'])) {
         ?>
         <div class="upload-error-message">
           <div class="spaceupload">
-            <input type="submit" name='upload' value="upload" class="supload">
+            <input onclick="loadScreen();" type="submit" name='upload' value="upload" class="supload">
           </div>
       </form>
     </div>
   </div>
   <div class="right-side">
     <div class="director-image">
-      <img 
-        src="assets/img/logo.png">
+      <div>
+        <img id="upload-image" src="assets/img/clapboard-upload-movie.png" alt="And Action!">
+        <h1 id="upload-title"> Show your show! </h1>
+      </div>
     </div>
   </div>
   </div>
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

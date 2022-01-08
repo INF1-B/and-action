@@ -2,6 +2,7 @@
 
 .container-movie-specific {
   display: flex;
+  justify-content: space-between;
   color: #FFFFFF;
 }
 

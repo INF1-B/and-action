@@ -8,12 +8,15 @@ p {
 
 label {
     display: block;
+    margin-bottom: 5px;
 }
 
 form > div > textarea {
     width: 100%;
-    height: 250px;
+    height: 150px;
     resize: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .description > p {
@@ -49,4 +52,13 @@ form > div > textarea {
 
 .movie-likes > span {
     margin-left: 10px;
+  }
+
+  .left-side {
+      flex: 5;
+  }
+
+  .right-side {
+      flex: 7;
+      margin-left: 20px;
   }

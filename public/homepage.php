@@ -28,7 +28,12 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 </head>
 
 <body>
-  <?php $movies = getMovies(); ?>
+  <?php
+  $movies = getMovies();
+  $recWMovies = getRecentlyWatchedMovies($_SESSION['id']);
+  $suggestedMovies = getSuggestedMovies($_SESSION['id']);
+
+  ?>
   <div class="navbar">
     <?php include "../templates/navbar.php"; ?>
   </div>
@@ -44,10 +49,11 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
     </div>
 
     <?php
-    for ($row = 0; $row < 1; $row++) {
-      echo "<div class=\"movie-row\">";
-      for ($movie = 0; $movie < count($movies); $movie++) {
-        echo "
+    if (count($movies) > 0) {
+      for ($row = 0; $row < 1; $row++) {
+        echo "<div class=\"movie-row\">";
+        for ($movie = 0; $movie < count($movies); $movie++) {
+          echo "
                 <div class=\"movie\">
                   <a href=" . "view-movie.php?id=" . $movies[$movie]["id"] . ">
                     <div class=\"thumbnail\" title=" . $movies[$movie]["titel"] . " style=\"background-image:url('" . $movies[$movie]["thumbnail_pad"] . "')\">
@@ -56,14 +62,78 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
                   </a>
                 </div>
                 ";
+        }
+        echo "</div>";
+      }
+    } else {
+      for ($row = 0; $row < 1; $row++) {
+        echo "<div class=\"movie-row\">";
+        for ($movie = 0; $movie < 5; $movie++) {
+          echo "
+                <div class=\"movie\">
+                  <a href=\"#\">
+                    <div class=\"thumbnail\" title=\"And Action!\" style=\"background-image:url('assets/img/clapboard-upload-movie.png'); background-size: contain;\">
+                    </div>
+                    <p> &#169; And Action </p>
+                  </a>
+                </div>
+                ";
+        }
+        echo "</div>";
+      }
+    }
+    ?>
+    <!--Recently watched -->
+    <div class="upper mt">
+      <h1>Recently watched</h1>
+    </div>
+
+    <?php
+    for ($row = 0; $row < 1; $row++) {
+      echo "<div class=\"movie-row\">";
+      for ($recWMovie = 0; $recWMovie < count($recWMovies); $recWMovie++) {
+        echo "
+              <div class=\"movie\">
+                <a href=" . "view-movie.php?id=" . $recWMovies[$recWMovie]["id"] . ">
+                  <div class=\"thumbnail\" title=" . $recWMovies[$recWMovie]["titel"] . " style=\"background-image:url('" . $recWMovies[$recWMovie]["thumbnail_pad"] . "')\">
+                  </div>
+                  <p> " . $recWMovies[$recWMovie]["titel"] . " </p>
+                </a>
+              </div>
+              ";
       }
       echo "</div>";
     }
     ?>
+    <?php if (count($suggestedMovies) > 0) : ?>
+      <div class="upper mt">
+        <p>
+        <h1>Suggestions</h1><br></p>
+      </div>
+      <p> Since you recently watched movies in the genre(s) <?php echo $suggestedMovies[0]["genres"] ?> </p>
 
-  </div> 
+      <?php
+      for ($row = 0; $row < 1; $row++) {
+        echo "<div class=\"movie-row\">";
+        for ($sugMovie = 0; $sugMovie < count($suggestedMovies); $sugMovie++) {
+          echo "
+              <div class=\"movie\">
+                <a href=" . "view-movie.php?id=" . $suggestedMovies[$sugMovie]["id"] . ">
+                  <div class=\"thumbnail\" title=" . $suggestedMovies[$sugMovie]["titel"] . " style=\"background-image:url('" . $suggestedMovies[$sugMovie]["thumbnail_pad"] . "')\">
+                  </div>
+                  <p> " . $suggestedMovies[$sugMovie]["titel"] . " </p>
+                </a>
+              </div>
+              ";
+        }
+        echo "</div>";
+      }
+      ?>
+    <?php endif ?>
+  </div>
   <script src="./assets/js/filter.js"></script>
   <!-- end main container  -->
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

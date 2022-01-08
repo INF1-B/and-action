@@ -54,6 +54,11 @@ footer {
 .note > a {
   color: #F9B354 !important;
 }
+
+.text-left {
+  text-align: left;
+}
+
 /* media queries */
 @media (min-width : 321px) {
   .container-movies  > .movie-row > .movie {

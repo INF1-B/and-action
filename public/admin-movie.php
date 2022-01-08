@@ -16,6 +16,9 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
   header('Location: ./login.php');
 }
 
+$movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
+$movie = getMovie($movieId);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,60 +40,65 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 
   <!-- end navbar -->
   <!-- start main container -->
-
+  <?php if (array_key_exists("titel", $movie)): ?>
   <div class="container container-movie-specific">
 
     <div class="text-wrapper">
       <div class="description">
-        <h1>Scary Movie</h1>
+        <?php echo $movie["geaccepteerd"] ? "<p class=\"text-left success\"> Movie is verified! </p>" : "<p class=\"text-left error\"> Movie is unverified </p>"; ?>
+        <h1><?php echo $movie['titel']?></h1>
         <p>
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
-          lorem ipsum dolor sit amet lorem ipsum
+          <?php echo $movie['beschrijving']?>
         </p>
         <p class="category">
           <strong>
-            Category:
+            Genre(s): 
           </strong>
-          Comedy
+          <?php echo $movie['genre']?>
         </p>
         <p class="author">
           <strong>
             Author:
           </strong>
-          <a class="author-link" href="#"> John Doe </a>
+          <a class="author-link" href="#"> 
+            <?php echo $movie['gebruikersnaam'] ?>
+          </a>
         </p>
-        <video autoplay>
-          <source src="movie.mp4" type="video/mp4">
+        <video controls>
+          <source src="<?php echo $movie['pad']?>" type="video/mp4">
         </video>
       </div>
     </div>
-    <div>
-      <div class="movie-wrapper">
+    <div class="movie-wrapper">
+      <div class="movie">
         <a href="#">
-          <div class="movie">
-            <img src="https://m.media-amazon.com/images/M/MV5BZmFkMzc2NTctN2U1Ni00MzE5LWJmMzMtYWQ4NjQyY2MzYmM1XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg" alt="movie-title">
-          </div>
+          <img
+            src="<?php echo $movie['thumbnail_pad']?>"
+            alt="<?php echo $movie['titel']?>">
         </a>
-        <div class="form-movie">
-          <a href="#" class="approve-movie">
-            Approve
-          </a>
-          <a href="#" class="dissaprove-movie">
-            Disapprove
-          </a>
-        </div>
+      </div>
+      <div class="form-movie">
+        <a href="admin-approve.php?approve=true&id=<?php echo $movie['id']?>" class="approve-movie">
+          Approve
+        </a>
+        <a href="admin-dissaprove.php?approve=false&id=<?php echo $movie['id']?>" class="dissaprove-movie">
+          Disapprove
+        </a>
       </div>
     </div>
   </div>
-
+  <?php else : ?>
+  <div class="container">
+    <h1 style="text-align: center; color: white;">
+      This movie could not be found! This is probably because the movie does not exist, or has already been approved.
+      <a style="color: #F9B354" href="javascript:history.back()">
+        Return 
+      </a>
+    </h1>
+  </div>
+  <?php endif ?>
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>

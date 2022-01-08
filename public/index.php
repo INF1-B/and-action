@@ -19,7 +19,7 @@
         <ul class="nav_list">
           <li class="nav_list_item"><a class="nav_link" href="../public/index.php">Home</a></li>
           <li class="nav_list_item"><a class="nav_link" href="../public/login.php">Login</a></li>
-          <li class="nav_list_item"><a class="nav_button" href="../public/signUp.php">Sign up</a></li>
+          <li class="nav_list_item"><a class="nav_button" href="../public/signup.php">Sign up</a></li>
         </ul>
       </div>
       <div class="row">
@@ -32,7 +32,7 @@
   <!-- start main container -->
   <div class="image-container">
     <div class="container">
-      <img src="assets/images/logo.svg" alt="logo">
+      <img src="assets/img/logo.png" alt="logo">
       <h1>Show your show!</h1>
     </div>
   </div>
@@ -102,7 +102,6 @@
   </div>
 
   <!-- end main container  -->
-
   <?php include('../templates/footer.php') ?>
 </body>
 

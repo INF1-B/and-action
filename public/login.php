@@ -13,7 +13,7 @@ if (isset($_SESSION['id']) && is_numeric($_SESSION['id']) && isset($_SESSION["lo
   header("Location: homepage.php"); // redirect if user is already logged in
 }
 
-$message = messageGenerator("login-note", "login");
+$message = messageGenerator("login-note");
 
 if (isset($_POST["submit"])) {
   $input["email"] = strtolower(filterInputPost($_POST["email"], "email"));

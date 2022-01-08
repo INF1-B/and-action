@@ -6,7 +6,11 @@ This file will contain everything that is related to databases. Think about a da
 connection, database 
 */
 
-// connect to the database, return the $conn var if the connection is succesful, if not return an error message
+/* dbConnect():
+*
+* connect to the database, return the $conn var if the connection is succesfull, if not return an error message
+*
+*/
 function dbConnect($server, $username, $password, $database){
     // check if the connection exists
     $conn = mysqli_connect($server, $username, $password, $database);
@@ -16,7 +20,9 @@ function dbConnect($server, $username, $password, $database){
     return $conn;
 }
 
-/* Execute a select query on the database and return the results, this will retrieve multiple records.
+/* getTableRecords(): 
+*
+* Execute a select query on the database and return the results, this will retrieve multiple records.
 * Result will be as follows:
 *
 * array
@@ -42,7 +48,9 @@ function getTableRecords($sql){
     return $rows;
 }
 
-/* Execute a select query on the database and return the results, this will retrieve multiple records.
+/* getTableRecordsFiltered(): 
+*
+* Execute a select query on the database and return the results, this will retrieve multiple records.
 * Result will be as follows:
 *
 * array
@@ -69,7 +77,9 @@ function getTableRecordsFiltered($sql, $dataTypes, $values){
     return $rows;
 }
 
-/* execute a select query on the database and return a specific record, this will retrieve 1 single record.
+/* getTableRecord(): 
+*
+* execute a select query on the database and return a specific record, this will retrieve 1 single record.
 * Result will be as follows:
 *
 * array (
@@ -99,7 +109,9 @@ function getTableRecord($sql, $dataTypes, $values){
     return $row;
 }
 
-/* execute a insert, delete or update query, example:
+/* executeQuery(): 
+*
+* execute a insert, delete or update query, example:
 * insert query - insert an user
 * executeQuery("INSERT INTO gebruiker (rol_id, abonnement_id, geverifieerd, ingelogd, gebruikersnaam, wachtwoord, email) VALUES (?, ?, ?, ?, ?, ?, ?)", "iiiisss", array(1, 1, 1, 0, "TEST100", generateHash("testWachtwoord"), "TEST100@test.nl"));
 *
@@ -120,9 +132,11 @@ function executeQuery($sql, $dataTypes, $values){
     return $result;
 }
 
-/* return a multi dimensional associative array containing the amount of values and the datatypes
+/* setInsert():
 *
-*
+* return a multi dimensional associative array containing the amount of values and the datatypes. 
+* this is used for when submitting the genres & filmguides when uploading a movie. 
+* For example: Because a user can select 0 to 12 genres, the prepared statement must be created dynamically
 *
 */
 function setInsert($filteredValue, $id){
@@ -143,13 +157,21 @@ function setInsert($filteredValue, $id){
 /* this part is reserved for the sub functions */
 // ------------------------------------------- //
 
-// prepares a query
+/* prepareQuery():
+*
+* prepares a query
+*
+*/ 
 function prepareQuery($db, $sql){
     $stmt = mysqli_prepare($db, $sql) or die( mysqli_stmt_error($stmt));
     return $stmt;
 }
 
-// executes a prepared and binded query
+/* executePreparedQuery():
+*
+* executes a prepared and binded query
+*
+*/
 function executePreparedQuery($stmt){
     if (mysqli_stmt_execute($stmt)) {
         return true;
@@ -157,13 +179,21 @@ function executePreparedQuery($stmt){
     return false;
 }
 
-// retrieve a result from a SELECT query, doesn't work if function value is directly returned!
+/* getResult():
+*
+* retrieve a result from a SELECT query, doesn't work if function value is directly returned!
+*
+*/
 function getResult($stmt){
     $result = mysqli_stmt_get_result($stmt) or die(mysqli_stmt_error($stmt));
     return $result;
 }
 
-// bind an update, delete or insert query
+/* bindQuery():
+*
+* bind an query
+*
+*/
 function bindQuery($stmt, $dataTypes, $values){
     mysqli_stmt_bind_param($stmt, $dataTypes, ...$values) or die( mysqli_stmt_error($stmt));
     return $stmt;

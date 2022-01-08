@@ -18,7 +18,7 @@ if (!checkDatabaseLoggedIn($_SESSION['id'])) {
 $message = "";
 $movieId = isset($_GET['id']) && is_numeric($_GET['id']) ? filterInputGet($_GET['id'], "id") : 0;
 
-$movieDetails = getMovie($movieId);
+$movieDetails = getMovie($movieId, "1");
 $movieLikes = getMovieLikes($movieId);
 
 if (isset($_GET['updateLikes']) && $_GET['updateLikes'] == "true" && isset($_GET['user-id']) && isset($_GET['id']) && is_numeric($_GET['user-id']) && is_numeric($_GET['id']) && !empty($movieDetails)) {
@@ -59,26 +59,27 @@ if (isset($_GET['submit-feedback'])) {
 
   <!-- end navbar -->
   <!-- start main container -->
-  <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0): ?>
-  <div class="container">
+  <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0 && $movieDetails['geaccepteerd']): ?>
+    <?php addRecentlyWatched($movieId, $_SESSION['id'])?>
+    <div class="container">
     <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // good movie quality
       ?>
     <div class="movie">
-      <video controls width="100%" height="850vh">
+      <video id="video" controls width="100%" height="100%">
         <source src="<?php echo $movieDetails['pad'] ?>" type="video/mp4">
       </video>
     </div>
-    <?php else :  // bad movie quality 
-      ?>
+    <?php else :  // bad movie quality  ?>
 
     <div class="movie">
-      <video controls width="100%" height="850vh">
-        <source src="<?php echo $movieDetails['pad'] ?>" type="video/mp4">
+      <video id="video" controls width="100%" height="100%">
+        <source src="<?php echo str_replace("premium", "standard", $movieDetails['pad']); ?>" type="video/mp4">
       </video>
     </div>
     <?php endif ?>
+
     <div class="container-comment-description">
-      <div class="text-wrapper">
+      <div class="text-wrapper left-side">
         <div class="description">
           <h1> <?php echo $movieDetails['titel'] ?> </h1>
           <p>
@@ -99,11 +100,11 @@ if (isset($_GET['submit-feedback'])) {
           <span> <?php echo $movieLikes['num'] ?> </span>
         </p>
       </div>
-      <div>
+      <div class="right-side">
         <form method="GET" action="<?php $_SERVER['PHP_SELF']?>">
           <div>
             <h2>Feedback</h2>
-            <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Type your feedback"></textarea>
+            <textarea id="feedback" name="feedback" rows="5" cols="70" placeholder="Tell us what you think about this movie"></textarea>
           </div>
           <div>
             <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
@@ -128,7 +129,7 @@ if (isset($_GET['submit-feedback'])) {
   </div>
   <?php endif ?>
   <!-- end main container  -->
-
+  <?php include('../templates/footer.php') ?>
 </body>
 
 </html>
