@@ -17,7 +17,8 @@ if (isset($_GET["update-subscription"]) && $_GET['update-subscription'] == "true
 * The genres parameter represents the genre to which a movie is bound.
 */
 if (isset($_GET['search-movie'])) {
-    $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
+    $movies = getTableRecordsFiltered(
+        "SELECT film.id, film.titel, film.thumbnail_pad
                                             FROM film 
                                             INNER JOIN gebruiker 
                                             ON film.gebruiker_id = gebruiker.id
@@ -28,24 +29,26 @@ if (isset($_GET['search-movie'])) {
                                             OR gebruikersnaam 
                                             LIKE CONCAT('%',?,'%')
                                             AND geaccepteerd = 1",
-                                     "sss",
-                                     array($_GET["search-movie"], $_GET["search-movie"], $_GET["search-movie"]));
-
-} else if (isset($_GET['genres'])){
-    $orStatements = str_repeat(" OR genre.naam = ? ", count($_GET['genres'])-1);
+        "sss",
+        array($_GET["search-movie"], $_GET["search-movie"], $_GET["search-movie"])
+    );
+} else if (isset($_GET['genres'])) {
+    $orStatements = str_repeat(" OR genre.naam = ? ", count($_GET['genres']) - 1);
     $dataTypes = str_repeat("s", count($_GET['genres']));
-    $movies = getTableRecordsFiltered("SELECT film.id, film.titel, film.thumbnail_pad
+    $movies = getTableRecordsFiltered(
+        "SELECT film.id, film.titel, film.thumbnail_pad
                                             FROM film 
                                             INNER JOIN genre_film 
                                             ON film.id = genre_film.film_id 
                                             INNER JOIN genre 
                                             ON genre_film.genre_id = genre.id
                                             WHERE genre.naam = ? 
-                                            ".$orStatements."
+                                            " . $orStatements . "
                                             AND geaccepteerd = 1 
-                                            GROUP BY film.id" , 
-                                            $dataTypes, 
-                                            $_GET['genres']);
+                                            GROUP BY film.id",
+        $dataTypes,
+        $_GET['genres']
+    );
 }
 
 
@@ -57,13 +60,25 @@ if (isset($_GET['search-movie'])) {
         </div>
         <?php
         if ($_SESSION['loggedIn']) {
+            $page = explode('/', $_SERVER['REQUEST_URI']);
+            $page = array_pop($page);
+            if ($page == "homepage.php" || $page == "admin-dashboard.php") :
         ?>
-            <div class="search_bar">
-                <form action="<?php $_SERVER["PHP_SELF"]?>" method="GET">
-                    <input type="text" id="search" placeholder="search..." name="search-movie" value="<?php echo isset($_GET['search-movie']) ? $_GET['search-movie'] : "" ?>">
-                </form>
-            </div>
+                <div class="search_bar">
+                    <form action="<?php $_SERVER["PHP_SELF"] ?>" method="GET">
+                        <input type="text" id="search" placeholder="search..." name="search-movie" value="<?php echo isset($_GET['search-movie']) ? $_GET['search-movie'] : "" ?>">
+                    </form>
+                </div>
+            <?php
+            else :
+            ?>
+                <div class="search_bar">
+                    <form action="homepage.php" method="GET">
+                        <input type="text" id="search" placeholder="search..." name="search-movie" value="<?php echo isset($_GET['search-movie']) ? $_GET['search-movie'] : "" ?>">
+                    </form>
+                </div>
         <?php
+            endif;
         }
         ?>
         <ul class="nav_list">
