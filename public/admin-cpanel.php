@@ -84,7 +84,7 @@ if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" &&
     executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id));
     executeQuery("DELETE FROM laatst_bekeken WHERE gebruiker_id = ?", "i", array($id));
     executeQuery("DELETE FROM commentaar WHERE gebruiker_id = ?", "i", array($id));
-    executeQuery("DELETE FROM thumbs_up WHERE gebruiker_id = ?", "i", array($id));
+    executeQuery("DELETE FROM thumb_up WHERE gebruiker_id = ?", "i", array($id));
     executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id));
     header("Location: admin-cpanel.php");
   }
