@@ -62,14 +62,14 @@ if (isset($_GET['submit-feedback'])) {
   <?php if ($_SESSION['abonnement_eind'] > date('Y-m-d H:i:s') && isset($_GET['id']) && is_numeric($_GET['id']) && $_SESSION['geverifieerd'] && count($movieDetails) > 0 && $movieDetails['geaccepteerd']): ?>
     <?php addRecentlyWatched($movieId, $_SESSION['id'])?>
     <div class="container">
-    <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // good movie quality
+    <?php if ($_SESSION['abonnement'] == "Premium" || $_SESSION['abonnement'] == "Director") : // premium movie quality
       ?>
     <div class="movie">
       <video id="video" controls width="100%" height="100%">
         <source src="<?php echo $movieDetails['pad'] ?>" type="video/mp4">
       </video>
     </div>
-    <?php else :  // bad movie quality  ?>
+    <?php else :  // standard movie quality for standard users  ?>
 
     <div class="movie">
       <video id="video" controls width="100%" height="100%">
