@@ -81,12 +81,15 @@ if (isset($_GET['delete-user-admin']) && $_GET['delete-user-admin'] == "true" &&
   if ($id == $_SESSION['id']) {
     echo "<script> window.alert('Can not delete your own account!') </script>";
   } else {
-    executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id));
-    executeQuery("DELETE FROM laatst_bekeken WHERE gebruiker_id = ?", "i", array($id));
-    executeQuery("DELETE FROM commentaar WHERE gebruiker_id = ?", "i", array($id));
-    executeQuery("DELETE FROM thumb_up WHERE gebruiker_id = ?", "i", array($id));
-    executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id));
-    header("Location: admin-cpanel.php");
+    if (!executeQuery("DELETE FROM film WHERE gebruiker_id = ?", "i", array($id))){
+      echo "<script> window.alert('User cannot be deleted before movies are deleted! Please contact this user first.') </script>";
+    } else {
+      executeQuery("DELETE FROM laatst_bekeken WHERE gebruiker_id = ?", "i", array($id));
+      executeQuery("DELETE FROM commentaar WHERE gebruiker_id = ?", "i", array($id));
+      executeQuery("DELETE FROM thumb_up WHERE gebruiker_id = ?", "i", array($id));
+      executeQuery("DELETE FROM gebruiker WHERE id = ?", "i", array($id));
+      header("Location: admin-cpanel.php");
+    }
   }
 }
 
