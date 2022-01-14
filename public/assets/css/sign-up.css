@@ -1,0 +1,171 @@
+.container-login, .container-changepassword {
+    background-color:#2D2C2C;
+    margin-top:10%;
+    width: 33% !important;
+    height:40%;
+    padding: 50px 30px 30px 30px;
+    overflow: hidden;
+    color: white;
+}
+
+.upper {
+  display:flex;
+  justify-content: center;
+}
+
+.upper > div {
+  flex:1;
+}
+
+.upper > div > h1,h2 {
+  margin-left: 50px;
+  color:#F9B354;
+  padding-top:20px;
+}
+
+.upper > div > .logo {
+  margin-left: 30px;
+  width:135px;
+  height:130px;
+}
+
+input[type="text"], input[type="password"] {
+  background-color:#FFFFFF;
+  color:black;
+  height:30px;
+  width: 100%;
+  padding:10px;
+  margin: 2px 0px 10px 0px;
+  border:none;
+}
+
+form > div {
+  width: 85%;
+  margin: 0 auto;
+  display: block;
+}
+
+form > div > label {
+  margin-top: 20px;
+}
+
+.submit-form {
+  display: flex;
+  align-items: center;
+}
+
+.submit-form > input {
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 7px 20px 7px 20px;
+  font-size: 15px;
+  background-color:#F9B354;
+  color: white;
+  border:none;
+}
+
+.no-account {
+  text-align: center;
+  font-size: 12px;
+  margin-top:10px;
+}
+
+.sign-up {
+  text-decoration: none;
+  color:#F9B354;
+}
+
+.subscription {
+  width: 100%;
+  padding: 8px 2px 8px 2px;
+}
+
+.form-password {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-password div {
+  width: 49%;
+}
+
+.upper {
+    display:flex;
+    justify-content: center;
+}
+
+.upper > div {
+    flex:1;
+}
+
+.upper > div > h1,h2 {
+    margin-left: 50px;
+    color:#F9B354;
+    padding-top:20px;
+}
+
+.upper > div > .logo {
+    margin-left: 30px;
+    width:135px;
+    height:130px;
+}
+
+input[type="text"], input[type="password"] {
+    background-color:#FFFFFF;
+    color:black;
+    height:30px;
+    width: 100%;
+    padding:10px;
+    margin: 2px 0px 10px 0px;
+    border:none;
+}
+
+form > div {
+    width: 85%;
+    margin: 0 auto;
+    display: block;
+}
+
+form > div > label {
+    margin-top: 20px;
+}
+
+.submit-form {
+    display: flex;
+    align-items: center;
+}
+
+.submit-form > input {
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 7px 20px 7px 20px;
+    font-size: 15px;
+    background-color:#F9B354;
+    color: white;
+    border:none;
+}
+
+.no-account {
+    text-align: center;
+    font-size: 12px;
+    margin-top:10px;
+}
+
+.sign-up {
+    text-decoration: none;
+    color:#F9B354;
+}
+
+.subscription {
+    width: 100%;
+    padding: 8px 2px 8px 2px;
+}
+
+.form-password {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-password div {
+    width: 49%;
+}

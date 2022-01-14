@@ -1,0 +1,62 @@
+.container-movies {
+  color: white;
+  padding-top: 30px;
+}
+
+h1 > span {
+  font-weight: normal;
+}
+
+.container-movies > .movie-row , .movies {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-movies > .movie-row > .movie, .movies > .movie {
+  height: 100%;
+  margin: 20px 20px 0px 0px;
+  overflow: hidden;
+}
+
+.container-movies > h1 {
+  margin-top: 30px;
+}
+
+.movie > a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnail , .movie_thumbnail{
+  background-color: white;
+  border: 2px solid gray;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 280px;
+}
+
+/* Bigger movie thumpnail for movie specific pages*/
+.movie-wrapper > a > .movie {
+  height: 600px;
+}
+
+.movie-wrapper > a {
+  display: block;
+  width: 400px;
+}
+
+.movie > a > img {
+  margin: 0 auto;
+  width: 100%; 
+  height: 100%;
+  border: 2px solid gray;
+  display: block;
+}
+
+.mt {
+  margin-top: 50px;
+}

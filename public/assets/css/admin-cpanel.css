@@ -1,0 +1,77 @@
+.delete-user-button {
+  padding: 10px 15px 10px 15px;
+  color: red;
+  font-weight: bold;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+
+.delete-user-button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+#admin-account-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+}
+
+#admin-account-table td, #admin-account-table th {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+  height: 50px;
+}
+
+#admin-account-table tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#admin-account-table tr:nth-child(odd){
+  background-color: #ddd;
+}
+
+#admin-account-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #F9B354;;
+  color: white;
+}
+
+.search-user-container {
+  width: 100%;
+  display: flex;
+}
+
+.search-user {
+  width: 100%;
+  border-right: none;
+  padding: 5px;
+  height: 40px;
+  outline: none;
+  color: lightgray;
+  border-radius: 2px 0 0 2px;
+}
+
+.search-user:focus{
+  color: black;
+}
+
+.search-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background: black;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 0 2px 2px 0;
+}
+
+.refresh-button {
+  font-size:24px; 
+  padding: 2px 5px 2px 5px;
+}

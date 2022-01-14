@@ -1,0 +1,88 @@
+@import url('./header.css');
+/* ----- General usage - don't change ----- */
+
+body {
+  background-color: #3C3B3A;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+/* use for navbar template (template/navbar.php), DON'T CHANGE THIS */
+footer {
+  width: 100%;
+  height: 5vh;
+}
+
+/* Only attributes that the main container may hold! DON'T CHANGE THIS */
+.container {
+  width: 75%;
+  margin: 0 auto;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+/* Google recaptcha for login and register page */
+.g-recaptcha {
+  margin-top: 20px;
+  transform:scale(0.77);
+  -webkit-transform:scale(0.77);
+  transform-origin:0 0;
+  -webkit-transform-origin:0 0;
+}
+
+.error, .success, .note {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.error, .success {
+  font-size: 16px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: lightgreen;
+}
+
+.note {
+  color: white;
+  font-size: 12px;
+}
+
+.note > a {
+  color: #F9B354 !important;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* media queries */
+@media (min-width : 321px) {
+  .container-movies  > .movie-row > .movie {
+    width: 200px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+  .container-movies > .movie-row > .movie {
+    width: 200px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  
+  .container-movies > .movie-row > .movie {
+    width: 200px; 
+  }
+} 
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+  .container-movies > .movie-row > .movie {
+    width: 200px;
+  }
+}

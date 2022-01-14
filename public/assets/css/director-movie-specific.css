@@ -1,0 +1,87 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css");
+
+.container-movie-specific {
+  display: flex;
+  justify-content: space-between;
+  color: #FFFFFF;
+}
+
+.container-movie-specific > .text-wrapper {
+  flex: 3;
+  margin-right: 100px;
+}
+
+.container-movie-specific > .movie-wrapper {
+  flex: 2;
+  margin-left: 10px;
+}
+
+/* left side */
+
+.text-wrapper > .description > .movie-likes {
+  margin-top: 30px;
+}
+
+.text-wrapper > .feedback > .comment-wrapper {
+  width: 75%;
+  border: 1px solid #F9B354;
+  overflow: hidden;
+  display: flex;
+  margin: 25px 0px 25px 0px;
+}
+
+.feedback > .comment-wrapper > p {
+  flex: 1;
+  padding: 5px 0px 0px 10px;
+}
+
+.feedback > .comment-wrapper > .delete-comment {
+  flex: 1;
+  width: 100%;
+  padding: 5px 10px 0px 10px;
+  text-align: right;
+}
+
+.delete-comment > a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.comment-author {
+  display: block;
+  margin-top: 10px;
+}
+
+.movie-likes {
+  margin: 0px 0px 50px 0px;
+}
+
+.movie-likes > a {
+  text-decoration: none;
+  color: white;
+}
+
+.movie-likes > a:hover, .delete-comment > a:hover {
+  color: #F9B354;
+}
+
+.movie-likes > span {
+  margin-left: 10px;
+}
+
+/* right side */
+
+.form-delete-movie {
+  display: flex;
+  justify-content: center;
+}
+
+.form-delete-movie > a {
+  background-color: #DC3545;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}

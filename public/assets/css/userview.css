@@ -1,0 +1,64 @@
+body {
+    color: white;
+}
+
+p {
+    margin-bottom:8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form > div > textarea {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.description > p {
+    width: 600px;
+}
+
+.sub-description {
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+.submit-feedback {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    background-color:#F9B354;
+}
+
+.container-comment-description {
+    margin: 20px 0px 50px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.movie-likes > a {
+    color : white;
+    text-decoration: none;
+}
+
+.movie-likes > a:hover {
+    color: #F9B354;
+}
+
+.movie-likes > span {
+    margin-left: 10px;
+  }
+
+  .left-side {
+      flex: 5;
+  }
+
+  .right-side {
+      flex: 7;
+      margin-left: 20px;
+  }
